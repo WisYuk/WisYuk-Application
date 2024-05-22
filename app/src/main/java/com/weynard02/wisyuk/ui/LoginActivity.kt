@@ -1,4 +1,4 @@
-package com.weynard02.wisyuk.view
+package com.weynard02.wisyuk.ui
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

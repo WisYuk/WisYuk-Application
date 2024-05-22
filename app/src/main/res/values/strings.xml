@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">WisYuk</string>
+    <string name="login_title_header">Login</string>
+    <string name="enter_email">Email</string>
+    <string name="email_format_is_not_correct">Email format is not correct</string>
+    <string name="enter_password">Password</string>
+    <string name="password_can_t_be_lower_than_8_characters">Password can\'t be lower than 8 characters</string>
+    <string name="login">Login</string>
 </resources>
