@@ -53,6 +53,8 @@ class SignUpActivity : AppCompatActivity() {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
 
+            viewModel.postData(name, email, password)
+
         }
     }
 
