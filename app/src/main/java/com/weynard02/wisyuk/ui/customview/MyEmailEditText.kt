@@ -1,4 +1,4 @@
-package com.weynard02.wisyuk.customview
+package com.weynard02.wisyuk.ui.customview
 
 import android.content.Context
 import android.graphics.Canvas

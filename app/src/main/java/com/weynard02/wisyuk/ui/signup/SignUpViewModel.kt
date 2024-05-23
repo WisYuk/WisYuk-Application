@@ -3,10 +3,11 @@ package com.weynard02.wisyuk.ui.signup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.weynard02.wisyuk.data.repository.UserRepository
 import com.weynard02.wisyuk.utils.Utils.isEmailValid
 import com.weynard02.wisyuk.utils.Utils.isPasswordValid
 
-class SignUpViewModel : ViewModel(){
+class SignUpViewModel(private val repository: UserRepository) : ViewModel(){
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading : LiveData<Boolean> = _isLoading
 
