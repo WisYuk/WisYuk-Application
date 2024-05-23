@@ -2,6 +2,7 @@ package com.weynard02.wisyuk.ui.login
 
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
@@ -19,6 +20,7 @@ class LoginActivity : AppCompatActivity() {
         ViewModelFactory.getInstance(this)
     }
 
+    private var errorMessage: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -51,8 +53,32 @@ class LoginActivity : AppCompatActivity() {
         binding.loginButton.setOnClickListener {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
+
+            viewModel.login(email, password)
+        }
+    }
+    private fun observerViewModel() {
+        viewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
+        viewModel.isError.observe(this) {
+            showError(it)
+        }
+        viewModel.message.observe(this) {
+            if (it != null) {
+                errorMessage = it
+            }
         }
     }
 
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showError(isError: Boolean) {
+        if (isError) {
+            //
+        }
+    }
 
 }
