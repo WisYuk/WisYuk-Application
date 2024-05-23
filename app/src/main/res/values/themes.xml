@@ -50,4 +50,8 @@
     </style>
 
     <style name="Theme.WisYuk" parent="Base.Theme.WisYuk" />
+
+    <style name="Custom.ProgressBar" parent="Base.Theme.WisYuk">
+        <item name="colorSecondary">@color/black</item>
+    </style>
 </resources>

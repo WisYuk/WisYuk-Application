@@ -6,4 +6,7 @@
     <string name="enter_password">Password</string>
     <string name="password_can_t_be_lower_than_8_characters">Password can\'t be lower than 8 characters</string>
     <string name="login">Login</string>
+    <string name="sign_up_header_title">Sign Up</string>
+    <string name="enter_name">Name</string>
+    <string name="sign_up">Sign Up</string>
 </resources>
