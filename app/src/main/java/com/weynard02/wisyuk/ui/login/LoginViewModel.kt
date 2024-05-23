@@ -21,18 +21,21 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
 
     fun login(email: String, password: String) {
         _isLoading.value = true
-        // handle response belum
-        val saveSessionJob = saveSession(
-            UserModel(
-                email,
-                "token",
-                true
+        viewModelScope.launch {
+            // handle response belum
+            val saveSessionJob = saveSession(
+                UserModel(
+                    email,
+                    "token",
+                    true
+                )
             )
-        )
-        saveSessionJob.join()
-        _message.value = "success"
-        _isLoading.value = false
-        _isError.value = false
+            saveSessionJob.join()
+            _message.value = "success"
+            _isLoading.value = false
+            _isError.value = false
+        }
+
     }
 
     private fun saveSession(user: UserModel) : Job {
