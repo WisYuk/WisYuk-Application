@@ -54,4 +54,9 @@
     <style name="Custom.ProgressBar" parent="Base.Theme.WisYuk">
         <item name="colorSecondary">@color/black</item>
     </style>
+
+    <style name="HeaderText">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
