@@ -1,11 +1,11 @@
-package com.weynard02.wisyuk.ui.login
+package com.wisyuk.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.weynard02.wisyuk.data.pref.UserModel
-import com.weynard02.wisyuk.data.repository.UserRepository
+import com.wisyuk.data.pref.UserModel
+import com.wisyuk.data.repository.UserRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 

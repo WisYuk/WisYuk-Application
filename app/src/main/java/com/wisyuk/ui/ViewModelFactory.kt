@@ -1,12 +1,12 @@
-package com.weynard02.wisyuk.ui
+package com.wisyuk.ui
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.weynard02.wisyuk.data.repository.UserRepository
-import com.weynard02.wisyuk.di.Injection
-import com.weynard02.wisyuk.ui.login.LoginViewModel
-import com.weynard02.wisyuk.ui.signup.SignUpViewModel
+import com.wisyuk.data.repository.UserRepository
+import com.wisyuk.di.Injection
+import com.wisyuk.ui.login.LoginViewModel
+import com.wisyuk.ui.signup.SignUpViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")

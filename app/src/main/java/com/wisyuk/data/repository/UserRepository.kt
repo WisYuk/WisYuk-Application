@@ -1,7 +1,7 @@
-package com.weynard02.wisyuk.data.repository
+package com.wisyuk.data.repository
 
-import com.weynard02.wisyuk.data.pref.UserModel
-import com.weynard02.wisyuk.data.pref.UserPreference
+import com.wisyuk.data.pref.UserModel
+import com.wisyuk.data.pref.UserPreference
 import kotlinx.coroutines.flow.Flow
 
 class UserRepository private constructor(
