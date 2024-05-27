@@ -16,4 +16,8 @@
     <string name="welcome_title">Where do you want to go, %1$s?</string>
     <string name="welcome_to_wisyuk">Welcome to WisYuk</string>
     <string name="recommendation_today">Recommendations Today</string>
+    <string name="tourism_preview_photo">Tourism Preview Photo</string>
+    <string name="tourism_title">Tourism Title</string>
+    <string name="description_item">Description</string>
+    <string name="date_item">Jan 00, 1971</string>
 </resources>
