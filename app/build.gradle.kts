@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.weynard02.wisyuk"
+    namespace = "com.wisyuk"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.weynard02.wisyuk"
+        applicationId = "com.wisyuk"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

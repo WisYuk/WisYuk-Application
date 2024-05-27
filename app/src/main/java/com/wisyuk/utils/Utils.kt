@@ -1,4 +1,4 @@
-package com.weynard02.wisyuk.utils
+package com.wisyuk.utils
 
 object Utils {
     fun isEmailValid(email: CharSequence): Boolean {

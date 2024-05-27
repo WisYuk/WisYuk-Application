@@ -1,18 +1,14 @@
-package com.weynard02.wisyuk.ui.signup
+package com.wisyuk.ui.signup
 
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.weynard02.wisyuk.R
-import com.weynard02.wisyuk.databinding.ActivitySignUpBinding
-import com.weynard02.wisyuk.ui.ViewModelFactory
+import com.wisyuk.databinding.ActivitySignUpBinding
+import com.wisyuk.ui.ViewModelFactory
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
@@ -23,13 +19,7 @@ class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_sign_up)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        setContentView(binding.root)
 
         setupView()
         setupAction()

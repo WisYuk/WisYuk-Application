@@ -1,4 +1,4 @@
-package com.weynard02.wisyuk.data.pref
+package com.wisyuk.data.pref
 
 import android.content.Context
 import androidx.datastore.core.DataStore
