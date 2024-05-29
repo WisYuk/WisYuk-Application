@@ -23,7 +23,8 @@
 
     <TextView
         android:id="@+id/main_title"
-        style="@style/HeaderText"
+        android:textSize="@dimen/header"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -63,7 +64,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:text="@string/welcome_title"
-        android:textSize="20sp"
+        android:textSize="@dimen/heading1"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchBar" />
@@ -83,7 +84,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/recommendation_today"
-        android:textSize="20sp"
+        android:textSize="@dimen/heading1"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcome_image" />
