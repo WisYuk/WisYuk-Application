@@ -29,4 +29,7 @@
     <string name="ride">Ride</string>
     <string name="local_tour_guide">Local Tour Guide</string>
     <string name="continue_payment">Lanjutkan ke pembayaran</string>
+    <string name="dummy_selected_hotel">Hotel Hidayat</string>
+    <string name="dummy_selected_ride">Suzuki Ertiga Jaya</string>
+    <string name="dummy_selected_tour_guide">Alex</string>
 </resources>
