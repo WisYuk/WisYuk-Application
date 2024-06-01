@@ -37,4 +37,6 @@
     <string name="title_plan">Plans</string>
     <string name="title_favorite">Favorites</string>
     <string name="title_profile">Profile</string>
+    <string name="back">Back</string>
+    <string name="favorite">Favorite</string>
 </resources>
