@@ -1,4 +1,4 @@
-package com.wisyuk.ui.home
+package com.wisyuk.ui.home.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +10,7 @@ import com.wisyuk.data.repository.UserRepository
 import com.wisyuk.data.response.ListTourismItem
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val repository: UserRepository) : ViewModel() {
+class HomeViewModel(private val repository: UserRepository) : ViewModel() {
 
     private val _listTourism = MutableLiveData<List<ListTourismItem>>()
     val listTourism: LiveData<List<ListTourismItem>> = _listTourism
