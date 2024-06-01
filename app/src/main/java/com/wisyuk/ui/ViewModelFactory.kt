@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.wisyuk.data.repository.UserRepository
 import com.wisyuk.di.Injection
+import com.wisyuk.ui.home.ui.home.HomeViewModel
 import com.wisyuk.ui.login.LoginViewModel
 import com.wisyuk.ui.signup.SignUpViewModel
 
@@ -17,6 +18,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(SignUpViewModel::class.java) -> {
                 SignUpViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+                HomeViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

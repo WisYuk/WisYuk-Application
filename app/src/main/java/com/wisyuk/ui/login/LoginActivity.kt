@@ -1,5 +1,6 @@
 package com.wisyuk.ui.login
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.wisyuk.databinding.ActivityLoginBinding
 import com.wisyuk.ui.ViewModelFactory
+import com.wisyuk.ui.home.MainActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -24,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
 
         setupView()
         setupAction()
+        observerViewModel()
     }
 
     private fun setupView() {
@@ -43,6 +46,12 @@ class LoginActivity : AppCompatActivity() {
         binding.loginButton.setOnClickListener {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
+
+            // hanya testing intent
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            finish()
 
             viewModel.login(email, password)
         }
