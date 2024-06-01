@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.wisyuk.data.response.ListTourismItem
 import com.wisyuk.databinding.ItemTourismBinding
-import com.wisyuk.ui.detail_home.DetailActivity
+import com.wisyuk.ui.home.detail_home.DetailActivity
 
 class TourismAdapter : ListAdapter<ListTourismItem, TourismAdapter.MyViewHolder>(DIFF_CALLBACK) {
 

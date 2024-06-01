@@ -13,7 +13,10 @@
         android:theme="@style/Theme.WisYuk"
         tools:targetApi="31">
         <activity
-            android:name=".ui.detail_home.DetailActivity"
+            android:name=".ui.yourplan.detail_plan.DetailPlanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.detail_home.DetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.signup.SignUpActivity"

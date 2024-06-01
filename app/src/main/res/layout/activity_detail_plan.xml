@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.home.detail_home.DetailActivity">
+        tools:context=".ui.yourplan.detail_plan.DetailPlanActivity">
 
         <ImageView
             android:id="@+id/iv_detail_photo"
@@ -81,61 +81,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Spinner
-                android:id="@+id/spinner_hotel"
+            <TextView
+                android:id="@+id/selected_hotel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@android:drawable/btn_dropdown"
-                android:spinnerMode="dropdown"
+                android:textSize="@dimen/heading2"
+                android:textStyle="bold"
+                android:text="@string/dummy_selected_hotel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_hotel_title" />
 
-            <TextView
-                android:id="@+id/additional_note_hotel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/note_hotel"
-                android:textSize="@dimen/normal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner_hotel" />
-
-            <LinearLayout
-                android:id="@+id/price_container_hotel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/additional_note_hotel">
-
-                <TextView
-                    android:id="@+id/price_title_hotel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/price"
-                    android:textSize="@dimen/heading2"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/price_value_hotel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/price_value"
-                    android:textAlignment="viewEnd"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/heading2"/>
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/add_button_hotel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/add_to_plan"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/price_container_hotel" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -161,51 +118,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Spinner
-                android:id="@+id/spinner_ride"
+            <TextView
+                android:id="@+id/selected_ride"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@android:drawable/btn_dropdown"
-                android:spinnerMode="dropdown"
+                android:textSize="@dimen/heading2"
+                android:textStyle="bold"
+                android:text="@string/dummy_selected_ride"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_ride_title" />
-
-            <LinearLayout
-                android:id="@+id/price_container_ride"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/spinner_ride">
-
-                <TextView
-                    android:id="@+id/price_title_ride"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/price"
-                    android:textSize="@dimen/heading2"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/price_value_ride"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/price_value"
-                    android:textAlignment="viewEnd"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/heading2"/>
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/add_button_ride"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/add_to_plan"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/price_container_ride" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -231,70 +154,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Spinner
-                android:id="@+id/spinner_tour_guide"
+            <TextView
+                android:id="@+id/selected_tour_guide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@android:drawable/btn_dropdown"
-                android:spinnerMode="dropdown"
+                android:textSize="@dimen/heading2"
+                android:textStyle="bold"
+                android:text="@string/dummy_selected_tour_guide"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_tour_guide_title" />
 
-            <LinearLayout
-                android:id="@+id/price_container_tour_guide"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/spinner_tour_guide">
-
-                <TextView
-                    android:id="@+id/price_title_tour_guide"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/price"
-                    android:textSize="@dimen/heading2"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/price_value_tour_guide"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/price_value"
-                    android:textAlignment="viewEnd"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/heading2"/>
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/add_button_tour_guide"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/add_to_plan"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/price_container_tour_guide" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:padding="16dp"
-            app:layout_constraintTop_toBottomOf="@id/tour_guide_container"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="?colorSurfaceDim">
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/continue_payment"/>
-
-        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
