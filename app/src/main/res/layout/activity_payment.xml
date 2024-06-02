@@ -270,7 +270,7 @@
             android:text="@string/ovo"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button"
+            android:id="@+id/bt_payment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:backgroundTint="@color/gray"

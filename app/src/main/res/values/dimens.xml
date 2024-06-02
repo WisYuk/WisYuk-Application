@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="profile">32sp</dimen>
     <dimen name="header">24sp</dimen>
     <dimen name="heading1">20sp</dimen>
     <dimen name="heading2">16sp</dimen>

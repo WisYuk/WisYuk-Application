@@ -54,4 +54,10 @@
     <string name="gopay">Gopay</string>
     <string name="bca">BCA</string>
     <string name="bri">BRI</string>
+    <string name="profile">Profile</string>
+    <string name="email">Email</string>
+    <string name="email_dummy">email@gmail.com</string>
+    <string name="your_preferences">Your Preferences</string>
+    <string name="preferences_dummy">Preferences</string>
+    <string name="edit">Edit</string>
 </resources>
