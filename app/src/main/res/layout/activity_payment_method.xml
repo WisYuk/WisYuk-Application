@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.paymentmethod.PaymentMethodActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/payment_method"
+            android:textAlignment="center"
+            android:textSize="@dimen/header"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_ovo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingVertical="8dp"
+            android:background="none"
+            android:textColor="@color/black"
+            android:textAlignment="textStart"
+            android:drawableLeft="@drawable/baseline_account_circle_24"
+            app:strokeWidth="2dp"
+            android:text="@string/ovo"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_shopeepay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingVertical="8dp"
+            android:background="none"
+            android:textColor="@color/black"
+            android:textAlignment="textStart"
+            android:drawableLeft="@drawable/baseline_account_circle_24"
+            app:strokeWidth="2dp"
+            app:cornerRadius="24dp"
+            android:text="@string/shopeepay"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_gopay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingVertical="8dp"
+            android:background="none"
+            android:textColor="@color/black"
+            android:textAlignment="textStart"
+            android:drawableLeft="@drawable/baseline_account_circle_24"
+            app:strokeWidth="2dp"
+            app:cornerRadius="24dp"
+            android:text="@string/gopay"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_bca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingVertical="8dp"
+            android:background="none"
+            android:textColor="@color/black"
+            android:textAlignment="textStart"
+            android:drawableLeft="@drawable/baseline_account_circle_24"
+            app:strokeWidth="2dp"
+            app:cornerRadius="24dp"
+            android:text="@string/bca"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_bri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingVertical="8dp"
+            android:background="none"
+            android:textColor="@color/black"
+            android:textAlignment="textStart"
+            android:drawableLeft="@drawable/baseline_account_circle_24"
+            app:strokeWidth="2dp"
+            app:cornerRadius="24dp"
+            android:text="@string/bri"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

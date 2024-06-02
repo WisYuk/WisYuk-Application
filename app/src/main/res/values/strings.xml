@@ -49,4 +49,9 @@
     <string name="pay">Process Payment</string>
     <string name="ovo">OVO</string>
     <string name="total_price">Total Price</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="shopeepay">Shopeepay</string>
+    <string name="gopay">Gopay</string>
+    <string name="bca">BCA</string>
+    <string name="bri">BRI</string>
 </resources>
