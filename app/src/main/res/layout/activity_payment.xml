@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.payment.PaymentActivity">
+
+    <ScrollView
+        android:id="@+id/sv_2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/payment_confirmation"
+                android:textAlignment="center"
+                android:textSize="@dimen/header"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_plan_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:text="@string/payment_confirmation"
+                android:textSize="@dimen/heading1"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_plan_photo"
+                android:layout_width="match_parent"
+                android:layout_height="215dp"
+                android:contentDescription="@string/payment_confirmation_photo"
+                android:src="@drawable/baseline_image_24" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_plan_hotel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hotel"
+                    android:textSize="@dimen/heading1"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_plan_hotel_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dummy_selected_hotel"
+                    android:textSize="@dimen/heading2" />
+
+                <TextView
+                    android:id="@+id/tv_plan_hotel_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_plan_hotel_date"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/normal" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_plan_hotel_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/price"
+                        android:textSize="@dimen/normal"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_plan_hotel_price_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/price_value"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/normal" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/tv_plan_ride"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/ride"
+                    android:textSize="@dimen/heading1"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_plan_ride_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dummy_selected_ride"
+                    android:textSize="@dimen/heading2" />
+
+                <TextView
+                    android:id="@+id/tv_plan_ride_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_plan_date"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/normal" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_plan_ride_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/price"
+                        android:textSize="@dimen/normal"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_plan_ride_price_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/price_value"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/normal" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/tv_plan_guide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/local_tour_guide"
+                    android:textSize="@dimen/heading1"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_plan_guide_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dummy_selected_tour_guide"
+                    android:textSize="@dimen/heading2" />
+
+                <TextView
+                    android:id="@+id/tv_plan_guide_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_plan_date"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/normal" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_plan_guide_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/price"
+                        android:textSize="@dimen/normal"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_plan_guide_price_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/price_value"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/normal" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_plan_total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/total_price"
+                android:textSize="@dimen/normal"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_plan_total_price_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/price_value"
+                android:textAlignment="textEnd"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/normal" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_method_choose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingVertical="8dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="@color/black"
+            android:textColor="@color/black"
+            android:drawableLeft="@drawable/baseline_account_circle_24"
+            app:strokeWidth="2dp"
+            app:cornerRadius="24dp"
+            android:text="@string/ovo"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/gray"
+            app:cornerRadius="24dp"
+            android:text="@string/pay" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,4 +39,14 @@
     <string name="title_profile">Profile</string>
     <string name="back">Back</string>
     <string name="favorite">Favorite</string>
+
+    <string name="payment_confirmation">Payment Confirmation</string>
+    <string name="payment_confirmation_photo">Payment Confirmation Photo</string>
+    <string name="tv_plan_hotel_name">Dummy Hotel Name</string>
+    <string name="tv_plan_hotel_date">Dummy Date</string>
+    <string name="tv_plan_date">Dec 25, 2022</string>
+    <string name="no_payment_method">Choose Payment Method</string>
+    <string name="pay">Process Payment</string>
+    <string name="ovo">OVO</string>
+    <string name="total_price">Total Price</string>
 </resources>
