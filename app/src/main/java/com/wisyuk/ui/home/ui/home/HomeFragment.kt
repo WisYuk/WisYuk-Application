@@ -15,6 +15,7 @@ import com.wisyuk.databinding.FragmentHomeBinding
 import com.wisyuk.ui.TourismAdapter
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.login.LoginActivity
+import com.wisyuk.ui.userdatemenu.DateActivity
 
 class HomeFragment : Fragment() {
 
@@ -104,6 +105,8 @@ class HomeFragment : Fragment() {
             searchBar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.navigation_date_filter -> {
+                        val intent = Intent(requireActivity(), DateActivity::class.java)
+                        startActivity(intent)
                         true
                     }
                     else -> false
