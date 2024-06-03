@@ -64,4 +64,5 @@
     <string name="transaction_success">Transaction Success</string>
     <string name="transaction_failed">Transaction Failed</string>
     <string name="reminder_date">(2 Day left)</string>
+    <string name="title_filter_date">Filter Date</string>
 </resources>
