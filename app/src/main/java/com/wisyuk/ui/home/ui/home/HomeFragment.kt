@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.wisyuk.R
 import com.wisyuk.data.response.ListTourismItem
 import com.wisyuk.databinding.FragmentHomeBinding
 import com.wisyuk.ui.TourismAdapter
@@ -99,6 +100,15 @@ class HomeFragment : Fragment() {
                     homeViewModel.getTourism(query)
                     false
                 }
+            searchBar.inflateMenu(R.menu.filter_menu)
+            searchBar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.navigation_date_filter -> {
+                        true
+                    }
+                    else -> false
+                }
+            }
         }
     }
 
