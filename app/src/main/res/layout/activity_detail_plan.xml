@@ -81,17 +81,58 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/selected_hotel"
+            <LinearLayout
+                android:id="@+id/selected_hotel_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/custom_border_background"
                 android:layout_marginTop="16dp"
-                android:textSize="@dimen/heading2"
-                android:textStyle="bold"
-                android:text="@string/dummy_selected_hotel"
+                android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_hotel_title" />
+                app:layout_constraintTop_toBottomOf="@id/tv_hotel_title">
+
+                <TextView
+                    android:id="@+id/selected_hotel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/heading2"
+                    android:textStyle="bold"
+                    android:text="@string/dummy_selected_hotel" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/date_reminder_hotel_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/custom_border_background_no_radius"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/selected_hotel_container">
+
+                <TextView
+                    android:id="@+id/date_hotel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/heading2"
+                    android:textStyle="bold"
+                    android:text="@string/tv_plan_date" />
+
+                <TextView
+                    android:id="@+id/reminder_hotel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textSize="@dimen/heading2"
+                    android:textColor="?colorPrimary"
+                    android:text="@string/reminder_date" />
+
+            </LinearLayout>
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -118,17 +159,57 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/selected_ride"
+            <LinearLayout
+                android:id="@+id/selected_ride_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/custom_border_background"
                 android:layout_marginTop="16dp"
-                android:textSize="@dimen/heading2"
-                android:textStyle="bold"
-                android:text="@string/dummy_selected_ride"
+                android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_ride_title" />
+                app:layout_constraintTop_toBottomOf="@id/tv_ride_title">
+
+                <TextView
+                    android:id="@+id/selected_ride"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/heading2"
+                    android:textStyle="bold"
+                    android:text="@string/dummy_selected_ride" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/date_reminder_ride_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/custom_border_background_no_radius"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/selected_ride_container">
+
+                <TextView
+                    android:id="@+id/date_ride"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/heading2"
+                    android:textStyle="bold"
+                    android:text="@string/tv_plan_date" />
+
+                <TextView
+                    android:id="@+id/reminder_ride"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textSize="@dimen/heading2"
+                    android:textColor="?colorPrimary"
+                    android:text="@string/reminder_date" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -154,17 +235,58 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/selected_tour_guide"
+            <LinearLayout
+                android:id="@+id/selected_tour_guide_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/custom_border_background"
                 android:layout_marginTop="16dp"
-                android:textSize="@dimen/heading2"
-                android:textStyle="bold"
-                android:text="@string/dummy_selected_tour_guide"
+                android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_tour_guide_title" />
+                app:layout_constraintTop_toBottomOf="@id/tv_tour_guide_title">
+
+                <TextView
+                    android:id="@+id/selected_tour_guide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/heading2"
+                    android:textStyle="bold"
+                    android:text="@string/dummy_selected_tour_guide" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/date_reminder_tour_guide_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/custom_border_background_no_radius"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/selected_tour_guide_container">
+
+                <TextView
+                    android:id="@+id/date_tour_guide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/heading2"
+                    android:textStyle="bold"
+                    android:text="@string/tv_plan_date" />
+
+                <TextView
+                    android:id="@+id/reminder_tour_guide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textSize="@dimen/heading2"
+                    android:textColor="?colorPrimary"
+                    android:text="@string/reminder_date" />
+
+            </LinearLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

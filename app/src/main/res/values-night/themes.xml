@@ -48,7 +48,7 @@
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
     </style>
-    <style name="Custom.ProgressBar" parent="Base.Theme.WisYuk">
+    <style name="Custom.BlackWhite" parent="Base.Theme.WisYuk">
         <item name="colorSecondary">@color/white</item>
     </style>
 </resources>
