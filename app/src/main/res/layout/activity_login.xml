@@ -79,7 +79,7 @@
         android:id="@+id/forgot_password_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#0000"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
         android:text="@string/forgot_password"
         android:textColor="@color/md_theme_primary"
         app:layout_constraintEnd_toEndOf="parent"

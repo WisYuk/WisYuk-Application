@@ -42,9 +42,14 @@ class HomeFragment : Fragment() {
 
         homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
             if (!user.isLogin) {
-                startActivity(Intent(
-                    requireActivity(), LoginActivity::class.java))
-                activity?.finish()
+//                startActivity(Intent(
+//                    requireActivity(), LoginActivity::class.java))
+//                activity?.finish()
+                binding.loginButton.visibility = View.VISIBLE
+                binding.logoutButton.visibility = View.GONE
+            } else {
+                binding.loginButton.visibility = View.GONE
+                binding.logoutButton.visibility = View.VISIBLE
             }
         }
 
@@ -52,6 +57,17 @@ class HomeFragment : Fragment() {
         setupRecyclerView()
         observerViewModel()
         searchEngine()
+
+        binding.loginButton.setOnClickListener {
+            val intent = Intent(requireActivity(), LoginActivity::class.java)
+            startActivity(intent)
+        }
+        binding.logoutButton.setOnClickListener {
+            homeViewModel.logout()
+            val intent = Intent(requireActivity(), LoginActivity::class.java)
+            startActivity(intent)
+        }
+
         return root
     }
 

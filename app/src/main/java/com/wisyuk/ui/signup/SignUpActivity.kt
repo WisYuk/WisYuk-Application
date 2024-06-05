@@ -47,6 +47,9 @@ class SignUpActivity : AppCompatActivity() {
 
             viewModel.postData(name, email, password)
 
+            viewModel.signUpResponse.observe(this) {
+                finish()
+            }
         }
     }
 
