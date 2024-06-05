@@ -8,7 +8,7 @@ data class LoginResponse(
 	val message: String,
 
 	@field:SerializedName("user")
-	val user: User? = null,
+	val user: User,
 
 	@field:SerializedName("status")
 	val status: String
@@ -17,26 +17,26 @@ data class LoginResponse(
 data class User(
 
 	@field:SerializedName("image")
-	val image: String? = null,
+	val image: String,
 
 	@field:SerializedName("password")
-	val password: String? = null,
+	val password: String,
 
 	@field:SerializedName("updated_at")
-	val updatedAt: String? = null,
+	val updatedAt: String,
 
 	@field:SerializedName("name")
-	val name: String? = null,
+	val name: String,
 
 	@field:SerializedName("bool_promotion")
-	val boolPromotion: Int? = null,
+	val boolPromotion: Int,
 
 	@field:SerializedName("created_at")
-	val createdAt: String? = null,
+	val createdAt: String,
 
 	@field:SerializedName("id")
-	val id: Int? = null,
+	val id: Int,
 
 	@field:SerializedName("email")
-	val email: String? = null
+	val email: String
 )

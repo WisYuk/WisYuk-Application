@@ -19,7 +19,7 @@ class MyPasswordEditText: AppCompatEditText {
         addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (s.toString().length < 8) {
+                if (s.toString().length < 3) {
                     setError(context.getString(R.string.password_can_t_be_lower_than_8_characters), null)
                 } else {
                     error = null
