@@ -3,15 +3,25 @@ package com.wisyuk.data.repository
 import com.wisyuk.data.api.ApiService
 import com.wisyuk.data.pref.UserModel
 import com.wisyuk.data.pref.UserPreference
+import com.wisyuk.data.response.SignUpResponse
 import kotlinx.coroutines.flow.Flow
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class UserRepository private constructor(
     private val userPreference: UserPreference,
     private val apiService: ApiService
 ) {
 
-    suspend fun signUp(name: String, email: String, password: String, promotion: Boolean = false)
-        = apiService.signup(name, email, password, promotion)
+    suspend fun signUp(name: String, email: String, password: String, promotion: Boolean = false): SignUpResponse {
+        val nameRequestBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
+        val emailRequestBody = email.toRequestBody("text/plain".toMediaTypeOrNull())
+        val passwordRequestBody = password.toRequestBody("text/plain".toMediaTypeOrNull())
+        val promotionRequestBody = promotion.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+
+        return apiService.signup(nameRequestBody, emailRequestBody, passwordRequestBody, promotionRequestBody)
+    }
 
     suspend fun login(email: String, password: String) = apiService.login(email, password)
     suspend fun saveSession(user: UserModel) {

@@ -47,9 +47,11 @@ class HomeFragment : Fragment() {
 //                activity?.finish()
                 binding.loginButton.visibility = View.VISIBLE
                 binding.logoutButton.visibility = View.GONE
+                binding.choosePlanTitle.text = getString(R.string.welcome_title_guest)
             } else {
                 binding.loginButton.visibility = View.GONE
                 binding.logoutButton.visibility = View.VISIBLE
+                binding.choosePlanTitle.text = getString(R.string.welcome_title, user.name)
             }
         }
 
