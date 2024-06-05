@@ -7,10 +7,13 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.wisyuk.R
 import com.wisyuk.databinding.ActivityLoginBinding
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.home.MainActivity
+import com.wisyuk.ui.signup.SignUpActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -56,6 +59,12 @@ class LoginActivity : AppCompatActivity() {
             }
 
         }
+
+        binding.signUpButton.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
     private fun observerViewModel() {
         viewModel.isLoading.observe(this) {
@@ -77,7 +86,15 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showError(isError: Boolean) {
         if (isError) {
-            //
+            AlertDialog.Builder(this).apply {
+                setTitle(getString(R.string.oh_no_there_is_something_wrong))
+                setMessage(errorMessage)
+                setNegativeButton(getString(R.string.close)) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                create()
+                show()
+            }
         }
     }
 
