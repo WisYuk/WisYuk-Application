@@ -46,8 +46,9 @@ class SignUpActivity : AppCompatActivity() {
             val name = binding.etName.text.toString()
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
+            val isSubscribe = binding.promotionCheck.isChecked
 
-            viewModel.postData(name, email, password)
+            viewModel.postData(name, email, password, isSubscribe)
 
             viewModel.signUpResponse.observe(this) {
                 finish()

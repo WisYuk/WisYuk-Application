@@ -26,7 +26,7 @@ class SignUpViewModel(private val repository: UserRepository) : ViewModel(){
     private val _signUpResponse = MutableLiveData<SignUpResponse>()
     val signUpResponse: LiveData<SignUpResponse> = _signUpResponse
 
-    fun postData(name: String, email: String, password: String) {
+    fun postData(name: String, email: String, password: String, promotion: Boolean) {
         _isLoading.value = true
 
         if (!isEmailValid(email) || !isPasswordValid(password)) {
@@ -38,7 +38,7 @@ class SignUpViewModel(private val repository: UserRepository) : ViewModel(){
 
         viewModelScope.launch {
             try {
-                val response = repository.signUp(name, email, password)
+                val response = repository.signUp(name, email, password, promotion)
                 _signUpResponse.value = response
                 _message.value = response.message
                 _isLoading.value = false

@@ -20,7 +20,7 @@ interface ApiService {
         @Part("name") name: RequestBody,
         @Part("email") email: RequestBody,
         @Part("password") password: RequestBody,
-        @Part("promotion") promotion: RequestBody,
+        @Part("promotion") promotion: Int,
     ): SignUpResponse
 
     @FormUrlEncoded

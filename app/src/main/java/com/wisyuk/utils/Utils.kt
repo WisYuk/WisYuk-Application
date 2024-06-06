@@ -9,4 +9,6 @@ object Utils {
     fun isPasswordValid(password: String): Boolean {
         return password.length >= 8
     }
+
+    fun Boolean.toInt() = if (this) 1 else 0
 }
