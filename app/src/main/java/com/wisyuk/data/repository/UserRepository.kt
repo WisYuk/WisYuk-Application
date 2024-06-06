@@ -7,7 +7,6 @@ import com.wisyuk.data.response.SignUpResponse
 import com.wisyuk.utils.Utils.toInt
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 
 class UserRepository private constructor(
