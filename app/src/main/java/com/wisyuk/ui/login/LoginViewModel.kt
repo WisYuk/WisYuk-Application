@@ -35,7 +35,6 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
                 val saveSessionJob = saveSession(
                     UserModel(
                         email,
-                        result.image,
                         result.name,
                         true
                     )
