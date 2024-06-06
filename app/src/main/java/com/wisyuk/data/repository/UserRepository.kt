@@ -23,6 +23,9 @@ class UserRepository private constructor(
     }
 
     suspend fun login(email: String, password: String) = apiService.login(email, password)
+
+    suspend fun getProfile(userId: Int) = apiService.getProfile(userId)
+
     suspend fun saveSession(user: UserModel) {
         userPreference.saveSession(user)
     }

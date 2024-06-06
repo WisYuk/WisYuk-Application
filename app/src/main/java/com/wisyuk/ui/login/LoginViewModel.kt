@@ -36,6 +36,7 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
                     UserModel(
                         email,
                         result.name,
+                        result.id,
                         true
                     )
                 )

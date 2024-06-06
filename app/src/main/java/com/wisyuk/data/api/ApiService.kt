@@ -31,6 +31,6 @@ interface ApiService {
 
     @GET("profile/{userId}")
     suspend fun getProfile(
-        @Path("userId") userId: String,
+        @Path("userId") userId: Int,
     ) : ProfileResponse
 }

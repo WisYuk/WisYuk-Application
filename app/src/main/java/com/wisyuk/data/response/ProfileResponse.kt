@@ -20,7 +20,7 @@ data class Data(
 	val image: String,
 
 	@field:SerializedName("preferences")
-	val preferences: String,
+	val preferences: List<String>,
 
 	@field:SerializedName("name")
 	val name: String,
