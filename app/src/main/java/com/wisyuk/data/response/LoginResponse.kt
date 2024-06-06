@@ -17,7 +17,7 @@ data class LoginResponse(
 data class User(
 
 	@field:SerializedName("image")
-	val image: String,
+	val image: String? = null,
 
 	@field:SerializedName("password")
 	val password: String,
