@@ -33,14 +33,17 @@ class UserRepository private constructor(
 
     suspend fun updateProfile(userId: Int, image: File? = null, name: String, preferences: List<String> ): UpdateProfileResponse {
         val nameRequestBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
-        val requestImageFile = image?.asRequestBody("image/jpeg".toMediaTypeOrNull())
-        val multipartBody = MultipartBody.Part.createFormData(
-            "photo",
-            image?.name,
-            (requestImageFile ?: " ") as RequestBody
-        )
+        if (image != null) {
+            val requestImageFile = image.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val multipartBody = MultipartBody.Part.createFormData(
+                "photo",
+                image.name,
+                requestImageFile
+            )
+            return apiService.updateProfile(userId, nameRequestBody, null, preferences, multipartBody)
+        }
 
-        return apiService.updateProfile(userId, nameRequestBody, null, preferences, multipartBody)
+        return apiService.updateProfile(userId, nameRequestBody, null, preferences, null)
     }
 
     suspend fun saveSession(user: UserModel) {

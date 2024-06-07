@@ -63,11 +63,29 @@ class ProfileFragment : Fragment() {
         observerViewModel()
 
         profileViewModel.editMode.observe(viewLifecycleOwner) {
-            if (!it) {
-                readView()
-            } else {
+            if (it) {
                 editView()
             }
+        }
+
+        binding.ivProfilePhoto.setOnClickListener {
+            if (profileViewModel.editMode.value == true)
+                startGallery()
+        }
+
+        binding.saveButton.setOnClickListener {
+            if (profileViewModel.editMode.value == true) save()
+        }
+
+        binding.editButton.setOnClickListener {
+            profileViewModel.toggleEditMode()
+            binding.editButton.visibility = View.GONE
+            binding.saveButton.visibility = View.VISIBLE
+            binding.editIcon.visibility = View.VISIBLE
+            binding.tvProfileName.visibility = View.GONE
+            binding.tvProfileNameEdit.visibility = View.VISIBLE
+            binding.preferenceContainer.visibility = View.GONE
+            binding.preferenceContainerEdit.visibility = View.VISIBLE
         }
 
         return root
@@ -106,31 +124,11 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun readView() {
-        binding.editButton.setOnClickListener {
-            profileViewModel.toggleEditMode()
-            binding.editButton.visibility = View.GONE
-            binding.saveButton.visibility = View.VISIBLE
-            binding.tvProfileName.visibility = View.GONE
-            binding.tvProfileNameEdit.visibility = View.VISIBLE
-            binding.preferenceContainer.visibility = View.GONE
-            binding.preferenceContainerEdit.visibility = View.VISIBLE
-        }
-    }
-
     private fun editView() {
         binding.tvProfileNameEdit.setText(binding.tvProfileName.text, TextView.BufferType.EDITABLE)
         binding.tvProfilePrefFirstEdit.setText(binding.tvProfilePrefFirst.text, TextView.BufferType.EDITABLE)
         binding.tvProfilePrefSecondEdit.setText(binding.tvProfilePrefSecond.text, TextView.BufferType.EDITABLE)
         binding.tvProfilePrefThirdEdit.setText(binding.tvProfilePrefThird.text, TextView.BufferType.EDITABLE)
-
-        binding.ivProfilePhoto.setOnClickListener {
-            startGallery()
-        }
-
-        binding.saveButton.setOnClickListener {
-            save()
-        }
     }
 
     private fun startGallery() {
@@ -159,11 +157,13 @@ class ProfileFragment : Fragment() {
                 tvProfilePrefSecondEdit.text.toString(),
                 tvProfilePrefThirdEdit.text.toString())
 
-            currentImageUri?.let { uri ->
-                val imageFile = uriToFile(uri, requireActivity()).reduceFile()
-                profileViewModel.updateProfile(userId, imageFile,
-                    tvProfileNameEdit.text.toString(), preferences)
-            } ?: {
+            if (currentImageUri != null) {
+                currentImageUri?.let { uri ->
+                    val imageFile = uriToFile(uri, requireActivity()).reduceFile()
+                    profileViewModel.updateProfile(userId, imageFile,
+                        tvProfileNameEdit.text.toString(), preferences)
+                }
+            } else {
                 profileViewModel.updateProfile(userId, null,
                     tvProfileNameEdit.text.toString(), preferences)
             }
@@ -174,6 +174,7 @@ class ProfileFragment : Fragment() {
             profileViewModel.toggleEditMode()
             binding.editButton.visibility = View.VISIBLE
             binding.saveButton.visibility = View.GONE
+            binding.editIcon.visibility = View.GONE
             binding.tvProfileName.visibility = View.VISIBLE
             binding.tvProfileNameEdit.visibility = View.GONE
             binding.preferenceContainer.visibility = View.VISIBLE

@@ -45,6 +45,6 @@ interface ApiService {
         @Part("name") name: RequestBody? = null,
         @Part("password") password: RequestBody? = null,
         @Part("preferences") preferences: List<String>? = null,
-        @Part("image") image: MultipartBody.Part? = null
+        @Part image: MultipartBody.Part? = null
     ) : UpdateProfileResponse
 }

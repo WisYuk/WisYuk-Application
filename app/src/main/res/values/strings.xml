@@ -80,4 +80,5 @@
     <string name="signup_success">Sign Up Success! Please login again!</string>
     <string name="login_success">Login Success! Welcome %1$s</string>
     <string name="save">Save</string>
+    <string name="edit_your_profile_picture">Edit your profile picture</string>
 </resources>
