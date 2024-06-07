@@ -17,10 +17,10 @@ data class ProfileResponse(
 data class Data(
 
 	@field:SerializedName("image")
-	val image: String,
+	val image: String? = null,
 
 	@field:SerializedName("preferences")
-	val preferences: List<String>,
+	val preferences: List<String> = emptyList(),
 
 	@field:SerializedName("name")
 	val name: String,

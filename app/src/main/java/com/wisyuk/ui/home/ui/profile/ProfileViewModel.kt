@@ -8,10 +8,13 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.wisyuk.data.pref.UserModel
 import com.wisyuk.data.repository.UserRepository
+import com.wisyuk.data.response.Data
 import com.wisyuk.data.response.ErrorResponse
 import com.wisyuk.data.response.ProfileResponse
+import com.wisyuk.data.response.UpdateProfileResponse
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import java.io.File
 
 class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
@@ -21,12 +24,27 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
     val isError: LiveData<Boolean> = _isError
 
     private val _message = MutableLiveData<String?>()
-    val message : MutableLiveData<String?> = _message
+    val message : LiveData<String?> = _message
 
-    private val _profileResponse = MutableLiveData<ProfileResponse>()
-    val profileResponse: LiveData<ProfileResponse> = _profileResponse
+    private val _editMode = MutableLiveData<Boolean>()
+    val editMode: LiveData<Boolean> = _editMode
+
+    private val _profileResponse = MutableLiveData<Data>()
+    val profileResponse: LiveData<Data> = _profileResponse
+
+    private val _updateResponse = MutableLiveData<UpdateProfileResponse>()
+    val updateResponse: LiveData<UpdateProfileResponse> = _updateResponse
+
+    init {
+        _editMode.value = false
+    }
+
     fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()
+    }
+
+    fun toggleEditMode() {
+        _editMode.value = _editMode.value == false
     }
 
     fun getProfile(userId: Int) {
@@ -34,10 +52,31 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = repository.getProfile(userId)
+
                 _message.value = response.message
                 _isLoading.value = false
                 _isError.value = false
-                _profileResponse.value = response
+                _profileResponse.value = response.data
+            } catch (e: HttpException) {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+                val errorMessage = errorBody.message
+                _message.value = errorMessage
+                _isLoading.value = false
+                _isError.value = true
+            }
+        }
+    }
+
+    fun updateProfile(userId: Int, image: File? = null, name: String, preferences: List<String>) {
+        _isLoading.value = true
+        viewModelScope.launch {
+            try {
+                val response = repository.updateProfile(userId, image, name, preferences)
+                _message.value = response.message
+                _isLoading.value = false
+                _isError.value = false
+                _updateResponse.value = response
             } catch (e: HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)

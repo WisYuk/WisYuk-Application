@@ -79,4 +79,5 @@
     <string name="i_m_happy_to_receive_a_news_from_wisyuk">I\'m happy to receive a news from WisYuk!</string>
     <string name="signup_success">Sign Up Success! Please login again!</string>
     <string name="login_success">Login Success! Welcome %1$s</string>
+    <string name="save">Save</string>
 </resources>

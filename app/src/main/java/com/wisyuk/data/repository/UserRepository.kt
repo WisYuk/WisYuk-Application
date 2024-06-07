@@ -4,10 +4,15 @@ import com.wisyuk.data.api.ApiService
 import com.wisyuk.data.pref.UserModel
 import com.wisyuk.data.pref.UserPreference
 import com.wisyuk.data.response.SignUpResponse
+import com.wisyuk.data.response.UpdateProfileResponse
 import com.wisyuk.utils.Utils.toInt
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.File
 
 class UserRepository private constructor(
     private val userPreference: UserPreference,
@@ -25,6 +30,18 @@ class UserRepository private constructor(
     suspend fun login(email: String, password: String) = apiService.login(email, password)
 
     suspend fun getProfile(userId: Int) = apiService.getProfile(userId)
+
+    suspend fun updateProfile(userId: Int, image: File? = null, name: String, preferences: List<String> ): UpdateProfileResponse {
+        val nameRequestBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
+        val requestImageFile = image?.asRequestBody("image/jpeg".toMediaTypeOrNull())
+        val multipartBody = MultipartBody.Part.createFormData(
+            "photo",
+            image?.name,
+            (requestImageFile ?: " ") as RequestBody
+        )
+
+        return apiService.updateProfile(userId, nameRequestBody, null, preferences, multipartBody)
+    }
 
     suspend fun saveSession(user: UserModel) {
         userPreference.saveSession(user)

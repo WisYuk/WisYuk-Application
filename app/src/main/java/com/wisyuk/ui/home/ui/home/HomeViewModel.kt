@@ -22,7 +22,7 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
     val isError: LiveData<Boolean> = _isError
 
     private val _message = MutableLiveData<String?>()
-    val message : MutableLiveData<String?> = _message
+    val message : LiveData<String?> = _message
 
     init {
         getTourism()
