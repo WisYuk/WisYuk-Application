@@ -71,6 +71,9 @@
     <string name="date_tour">Date Tour</string>
     <string name="continue_submit">Continue</string>
     <string name="select_date">Select date</string>
+    <string name="get_to_know_you">Get to Know You !</string>
+    <string name="what_you_prefer">What do you like in traveling ?</string>
+
     <string name="logout">Logout</string>
     <string name="welcome_title_guest">Welcome to WisYuk!</string>
     <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign up!</string>

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.WisYuk"
         tools:targetApi="31">
         <activity
+            android:name=".ui.preference.PreferenceActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.userdatemenu.DateActivity"
             android:exported="false" />
         <activity
