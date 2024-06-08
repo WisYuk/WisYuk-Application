@@ -74,4 +74,14 @@
     <string name="get_to_know_you">Get to Know You !</string>
     <string name="what_you_prefer">What do you like in traveling ?</string>
 
+    <string name="logout">Logout</string>
+    <string name="welcome_title_guest">Welcome to WisYuk!</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign up!</string>
+    <string name="close">Close</string>
+    <string name="oh_no_there_is_something_wrong">Oh no, there is something wrong!</string>
+    <string name="i_m_happy_to_receive_a_news_from_wisyuk">I\'m happy to receive a news from WisYuk!</string>
+    <string name="signup_success">Sign Up Success! Please login again!</string>
+    <string name="login_success">Login Success! Welcome %1$s</string>
+    <string name="save">Save</string>
+    <string name="edit_your_profile_picture">Edit your profile picture</string>
 </resources>

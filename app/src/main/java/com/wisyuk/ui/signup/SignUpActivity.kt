@@ -1,14 +1,21 @@
 package com.wisyuk.ui.signup
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.wisyuk.R
 import com.wisyuk.databinding.ActivitySignUpBinding
 import com.wisyuk.ui.ViewModelFactory
+import com.wisyuk.ui.login.LoginActivity
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
@@ -44,9 +51,16 @@ class SignUpActivity : AppCompatActivity() {
             val name = binding.etName.text.toString()
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
+            val isSubscribe = binding.promotionCheck.isChecked
 
-            viewModel.postData(name, email, password)
+            viewModel.postData(name, email, password, isSubscribe)
 
+            viewModel.signUpResponse.observe(this) {
+                val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+                startActivity(intent)
+                Toast.makeText(this, getString(R.string.signup_success), Toast.LENGTH_SHORT).show()
+                finish()
+            }
         }
     }
 
@@ -64,13 +78,36 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.back_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.back_button -> {
+                val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun showError(isError: Boolean) {
         if (isError) {
-            //
+            AlertDialog.Builder(this).apply {
+                setTitle(getString(R.string.oh_no_there_is_something_wrong))
+                setMessage(errorMessage)
+                setNegativeButton(getString(R.string.close)) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                create()
+                show()
+            }
         }
     }
 

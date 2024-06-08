@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -42,9 +43,16 @@ class HomeFragment : Fragment() {
 
         homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
             if (!user.isLogin) {
-                startActivity(Intent(
-                    requireActivity(), LoginActivity::class.java))
-                activity?.finish()
+//                startActivity(Intent(
+//                    requireActivity(), LoginActivity::class.java))
+//                activity?.finish()
+                binding.loginButton.visibility = View.VISIBLE
+                binding.logoutButton.visibility = View.GONE
+                binding.choosePlanTitle.text = getString(R.string.welcome_title_guest)
+            } else {
+                binding.loginButton.visibility = View.GONE
+                binding.logoutButton.visibility = View.VISIBLE
+                binding.choosePlanTitle.text = getString(R.string.welcome_title, user.name)
             }
         }
 
@@ -52,6 +60,17 @@ class HomeFragment : Fragment() {
         setupRecyclerView()
         observerViewModel()
         searchEngine()
+
+        binding.loginButton.setOnClickListener {
+            val intent = Intent(requireActivity(), LoginActivity::class.java)
+            startActivity(intent)
+        }
+        binding.logoutButton.setOnClickListener {
+            homeViewModel.logout()
+            val intent = Intent(requireActivity(), LoginActivity::class.java)
+            startActivity(intent)
+        }
+
         return root
     }
 
@@ -121,7 +140,7 @@ class HomeFragment : Fragment() {
 
     private fun showError(isError: Boolean) {
         if (isError) {
-            //
+            Toast.makeText(requireActivity(), errorMessage, Toast.LENGTH_SHORT).show()
         }
     }
 
