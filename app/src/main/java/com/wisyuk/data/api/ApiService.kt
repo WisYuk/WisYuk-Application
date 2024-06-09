@@ -5,6 +5,7 @@ import com.wisyuk.data.response.AddPaidPlanResponse
 import com.wisyuk.data.response.LoginResponse
 import com.wisyuk.data.response.ProfileResponse
 import com.wisyuk.data.response.SignUpResponse
+import com.wisyuk.data.response.TourismResponse
 import com.wisyuk.data.response.UpdateProfileResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -50,7 +51,7 @@ interface ApiService {
     ) : UpdateProfileResponse
 
     @Multipart
-    @POST("/add-paid-plan")
+    @POST("add-paid-plan")
     suspend fun addPaidPlan(
         //userID, tourismID, hotelID, rideID, tourGuideID, go_date, status, paymentMethodID
         @Part("userID") userID: RequestBody,
@@ -62,4 +63,10 @@ interface ApiService {
         @Part("status") status: RequestBody,
         @Part("paymentMethodID") paymentMethodID: RequestBody,
     ): AddPaidPlanResponse
+
+    @GET("view-favourite-plan/{userID}")
+    suspend fun getFavorite(
+        @Path("userId") userId: Int,
+    ) : TourismResponse
+
 }

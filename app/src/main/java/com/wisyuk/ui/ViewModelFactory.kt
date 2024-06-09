@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.wisyuk.data.repository.UserRepository
 import com.wisyuk.di.Injection
 import com.wisyuk.ui.home.detail_home.DetailViewModel
+import com.wisyuk.ui.home.ui.favorite.FavoriteViewModel
 import com.wisyuk.ui.home.ui.home.HomeViewModel
 import com.wisyuk.ui.home.ui.profile.ProfileViewModel
 import com.wisyuk.ui.login.LoginViewModel
@@ -34,6 +35,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(PaymentViewModel::class.java) -> {
                 PaymentViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
+                FavoriteViewModel(repository) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

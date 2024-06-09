@@ -99,6 +99,8 @@ class UserRepository private constructor(
         )
     }
 
+    suspend fun getFavorite(userID: Int) = apiService.getFavorite(userID)
+
     suspend fun saveSession(user: UserModel) {
         userPreference.saveSession(user)
     }
