@@ -1,6 +1,7 @@
 package com.wisyuk.data.api
 
 import androidx.datastore.preferences.core.Preferences
+import com.wisyuk.data.response.AddPaidPlanResponse
 import com.wisyuk.data.response.LoginResponse
 import com.wisyuk.data.response.ProfileResponse
 import com.wisyuk.data.response.SignUpResponse
@@ -47,4 +48,18 @@ interface ApiService {
         @Part("preferences") preferences: List<String>? = null,
         @Part image: MultipartBody.Part? = null
     ) : UpdateProfileResponse
+
+    @Multipart
+    @POST("/add-paid-plan")
+    suspend fun addPaidPlan(
+        //userID, tourismID, hotelID, rideID, tourGuideID, go_date, status, paymentMethodID
+        @Part("userID") userID: RequestBody,
+        @Part("tourismID") tourismID: RequestBody,
+        @Part("hotelID") hotelID: RequestBody,
+        @Part("rideID") rideID: RequestBody,
+        @Part("tourGuideID") tourGuideID: RequestBody,
+        @Part("go_date") goDate: RequestBody,
+        @Part("status") status: RequestBody,
+        @Part("paymentMethodID") paymentMethodID: RequestBody,
+    ): AddPaidPlanResponse
 }

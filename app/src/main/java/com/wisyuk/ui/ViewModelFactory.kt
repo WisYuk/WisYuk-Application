@@ -10,6 +10,7 @@ import com.wisyuk.ui.home.detail_home.DetailViewModel
 import com.wisyuk.ui.home.ui.home.HomeViewModel
 import com.wisyuk.ui.home.ui.profile.ProfileViewModel
 import com.wisyuk.ui.login.LoginViewModel
+import com.wisyuk.ui.payment.PaymentViewModel
 import com.wisyuk.ui.signup.SignUpViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.Factory {
@@ -31,6 +32,10 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
                 ProfileViewModel(repository) as T
             }
+            modelClass.isAssignableFrom(PaymentViewModel::class.java) -> {
+                PaymentViewModel(repository) as T
+            }
+
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }
