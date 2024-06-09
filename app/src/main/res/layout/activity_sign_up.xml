@@ -37,17 +37,17 @@
         android:id="@+id/et_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:autofillHints=""
         android:background="@drawable/custom_edit_text"
-        android:padding="8dp"
         android:hint="@string/enter_name"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <com.wisyuk.ui.customview.MyEmailEditText
         android:id="@+id/et_email"
@@ -113,5 +113,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_up_button" />
+
+    <ImageView
+        android:id="@+id/iv_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/maskot_signup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpTitle"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
