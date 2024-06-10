@@ -2,35 +2,44 @@ package com.wisyuk.data.response
 
 import com.google.gson.annotations.SerializedName
 
-data class TourismResponse (
-    @field:SerializedName("listTourism")
-    val listTourism: List<ListTourismItem> = emptyList(),
+data class TourismResponse(
 
-    @field:SerializedName("error")
-    val error: Boolean? = null,
+	@field:SerializedName("data")
+	val data: List<ListTourismItem>,
 
-    @field:SerializedName("message")
-    val message: String? = null
+	@field:SerializedName("status")
+	val status: String
 )
-
 
 data class ListTourismItem(
 
-    @field:SerializedName("imageUrl")
-    val imageUrl: String? = null,
+	@field:SerializedName("image")
+	val image: String,
 
-    @field:SerializedName("createdAt")
-    val createdAt: String? = null,
+	@field:SerializedName("updated_at")
+	val updatedAt: String,
 
-    @field:SerializedName("updatedAt")
-    val updatedAt: String? = null,
+	@field:SerializedName("price")
+	val price: Int,
 
-    @field:SerializedName("name")
-    val name: String? = null,
+	@field:SerializedName("latitude")
+	val latitude: String,
 
-    @field:SerializedName("description")
-    val description: String? = null,
+	@field:SerializedName("name")
+	val name: String,
 
-    @field:SerializedName("id")
-    val id: String,
+	@field:SerializedName("description")
+	val description: String,
+
+	@field:SerializedName("created_at")
+	val createdAt: String,
+
+	@field:SerializedName("id")
+	val id: Int,
+
+	@field:SerializedName("category")
+	val category: String,
+
+	@field:SerializedName("longitude")
+	val longitude: String
 )

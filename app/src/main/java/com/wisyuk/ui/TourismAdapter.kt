@@ -31,7 +31,7 @@ class TourismAdapter : ListAdapter<ListTourismItem, TourismAdapter.MyViewHolder>
     class MyViewHolder(private val binding: ItemTourismBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ListTourismItem) {
             Glide.with(itemView.context)
-                .load(item.imageUrl)
+                .load(item.image)
                 .into(binding.ivItemPhoto)
 
             binding.tvItemName.text = item.name

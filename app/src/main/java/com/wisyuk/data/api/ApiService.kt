@@ -3,6 +3,7 @@ package com.wisyuk.data.api
 import androidx.datastore.preferences.core.Preferences
 import com.wisyuk.data.response.AddPaidPlanResponse
 import com.wisyuk.data.response.AddPreferencesResponse
+import com.wisyuk.data.response.FavTourismResponse
 import com.wisyuk.data.response.LoginResponse
 import com.wisyuk.data.response.PreferencesResponse
 import com.wisyuk.data.response.ProfileResponse
@@ -69,7 +70,7 @@ interface ApiService {
     @GET("view-favourite-plan/{userID}")
     suspend fun getFavorite(
         @Path("userId") userId: Int,
-    ) : TourismResponse
+    ) : FavTourismResponse
 
     @GET("preferences")
     suspend fun getPreferences(): PreferencesResponse
@@ -81,4 +82,6 @@ interface ApiService {
         @Field("preferences") preferences: List<Int>
     ) : AddPreferencesResponse
 
+    @GET("tourisms")
+    suspend fun getTourisms() : TourismResponse
 }

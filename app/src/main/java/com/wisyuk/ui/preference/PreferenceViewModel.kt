@@ -41,7 +41,7 @@ class PreferenceViewModel(private val repository: UserRepository): ViewModel() {
 
 
     private fun getPreferences() {
-        _isLoading.value = false
+        _isLoading.value = true
         viewModelScope.launch {
             try {
                 val response = repository.getPreferences()
@@ -61,7 +61,7 @@ class PreferenceViewModel(private val repository: UserRepository): ViewModel() {
     }
 
     fun addPreferences(userId: Int, preferences: List<Int>) {
-        _isLoading.value = false
+        _isLoading.value = true
         viewModelScope.launch {
             try {
                 val response = repository.postPreferences(userId, preferences)
