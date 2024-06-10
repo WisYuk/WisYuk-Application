@@ -215,15 +215,14 @@ class ProfileFragment : Fragment() {
         with(binding) {
 
             val preferences = listOf<Int>(
-                itemPos1,
-                itemPos2,
-                itemPos3
+                itemPos1+1,
+                itemPos2+1,
+                itemPos3+1
             )
-
-            println("WEYNARD $preferences")
 
             if (currentImageUri != null) {
                 currentImageUri?.let { uri ->
+                    println("WEYNARD $uri")
                     val imageFile = uriToFile(uri, requireActivity()).reduceFile()
                     profileViewModel.updateProfile(userId, imageFile,
                         tvProfileNameEdit.text.toString(), preferences)
@@ -239,6 +238,7 @@ class ProfileFragment : Fragment() {
         profileViewModel.updateResponse.observe(viewLifecycleOwner) {
             profileViewModel.getProfile(userId)
             profileViewModel.toggleEditMode()
+            Toast.makeText(requireActivity(), "Edit Profile Success!", Toast.LENGTH_SHORT).show()
             binding.editButton.visibility = View.VISIBLE
             binding.saveButton.visibility = View.GONE
             binding.editIcon.visibility = View.GONE

@@ -109,9 +109,9 @@ class PreferenceActivity : AppCompatActivity() {
         }
         binding.continueButton.setOnClickListener {
             val prefs = listOf(
-                itemPos1,
-                itemPos2,
-                itemPos3
+                itemPos1+1,
+                itemPos2+1,
+                itemPos3+1
             )
 
             viewModel.addPreferences(userId, prefs)
