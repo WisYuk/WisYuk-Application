@@ -8,7 +8,7 @@ data class ProfileResponse(
 	val data: Data,
 
 	@field:SerializedName("message")
-	val message: String,
+	val message: String? = null,
 
 	@field:SerializedName("status")
 	val status: String

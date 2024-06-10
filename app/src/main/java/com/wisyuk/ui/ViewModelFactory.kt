@@ -12,6 +12,7 @@ import com.wisyuk.ui.home.ui.home.HomeViewModel
 import com.wisyuk.ui.home.ui.profile.ProfileViewModel
 import com.wisyuk.ui.login.LoginViewModel
 import com.wisyuk.ui.payment.PaymentViewModel
+import com.wisyuk.ui.preference.PreferenceViewModel
 import com.wisyuk.ui.signup.SignUpViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.Factory {
@@ -39,7 +40,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
                 FavoriteViewModel(repository) as T
             }
-
+            modelClass.isAssignableFrom(PreferenceViewModel::class.java) -> {
+                PreferenceViewModel(repository) as T
+            }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }

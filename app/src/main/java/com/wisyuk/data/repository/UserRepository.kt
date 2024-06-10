@@ -99,6 +99,8 @@ class UserRepository private constructor(
 
     suspend fun getPreferences() = apiService.getPreferences()
 
+    suspend fun postPreferences(userID: Int, preferences: List<Int>) = apiService.postPreferences(userID, preferences)
+
     suspend fun saveSession(user: UserModel) {
         userPreference.saveSession(user)
     }

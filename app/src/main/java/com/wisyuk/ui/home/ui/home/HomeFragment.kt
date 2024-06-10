@@ -16,6 +16,7 @@ import com.wisyuk.databinding.FragmentHomeBinding
 import com.wisyuk.ui.TourismAdapter
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.login.LoginActivity
+import com.wisyuk.ui.preference.PreferenceActivity
 import com.wisyuk.ui.userdatemenu.DateActivity
 
 class HomeFragment : Fragment() {
@@ -50,9 +51,17 @@ class HomeFragment : Fragment() {
                 binding.logoutButton.visibility = View.GONE
                 binding.choosePlanTitle.text = getString(R.string.welcome_title_guest)
             } else {
+                homeViewModel.checkProfile(user.id)
                 binding.loginButton.visibility = View.GONE
                 binding.logoutButton.visibility = View.VISIBLE
                 binding.choosePlanTitle.text = getString(R.string.welcome_title, user.name)
+            }
+        }
+
+        homeViewModel.noProfile.observe(viewLifecycleOwner) {
+            if (it) {
+                val intent = Intent(requireActivity(), PreferenceActivity::class.java)
+                startActivity(intent)
             }
         }
 

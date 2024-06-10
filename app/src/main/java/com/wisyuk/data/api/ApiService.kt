@@ -2,6 +2,7 @@ package com.wisyuk.data.api
 
 import androidx.datastore.preferences.core.Preferences
 import com.wisyuk.data.response.AddPaidPlanResponse
+import com.wisyuk.data.response.AddPreferencesResponse
 import com.wisyuk.data.response.LoginResponse
 import com.wisyuk.data.response.PreferencesResponse
 import com.wisyuk.data.response.ProfileResponse
@@ -72,5 +73,12 @@ interface ApiService {
 
     @GET("preferences")
     suspend fun getPreferences(): PreferencesResponse
+
+    @FormUrlEncoded
+    @POST("user-preferences")
+    suspend fun postPreferences(
+        @Field("userID") userID: Int,
+        @Field("preferences") preferences: List<Int>
+    ) : AddPreferencesResponse
 
 }
