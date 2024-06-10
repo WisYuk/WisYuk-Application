@@ -25,14 +25,10 @@ class UserRepository private constructor(
         password: String,
         promotion: Boolean = false
     ): SignUpResponse {
-        val nameRequestBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
-        val emailRequestBody = email.toRequestBody("text/plain".toMediaTypeOrNull())
-        val passwordRequestBody = password.toRequestBody("text/plain".toMediaTypeOrNull())
-
         return apiService.signup(
-            nameRequestBody,
-            emailRequestBody,
-            passwordRequestBody,
+            name,
+            email,
+            password,
             promotion.toInt()
         )
     }
@@ -45,7 +41,7 @@ class UserRepository private constructor(
         userId: Int,
         image: File? = null,
         name: String,
-        preferences: List<String>
+        preferences: List<Int>
     ): UpdateProfileResponse {
         val nameRequestBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
         if (image != null) {
@@ -100,6 +96,8 @@ class UserRepository private constructor(
     }
 
     suspend fun getFavorite(userID: Int) = apiService.getFavorite(userID)
+
+    suspend fun getPreferences() = apiService.getPreferences()
 
     suspend fun saveSession(user: UserModel) {
         userPreference.saveSession(user)

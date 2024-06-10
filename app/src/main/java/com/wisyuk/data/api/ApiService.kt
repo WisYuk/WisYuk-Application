@@ -3,6 +3,7 @@ package com.wisyuk.data.api
 import androidx.datastore.preferences.core.Preferences
 import com.wisyuk.data.response.AddPaidPlanResponse
 import com.wisyuk.data.response.LoginResponse
+import com.wisyuk.data.response.PreferencesResponse
 import com.wisyuk.data.response.ProfileResponse
 import com.wisyuk.data.response.SignUpResponse
 import com.wisyuk.data.response.TourismResponse
@@ -19,13 +20,13 @@ import retrofit2.http.Part
 import retrofit2.http.Path
 
 interface ApiService {
-    @Multipart
-    @POST("/signup")
+    @FormUrlEncoded
+    @POST("signup")
     suspend fun signup(
-        @Part("name") name: RequestBody,
-        @Part("email") email: RequestBody,
-        @Part("password") password: RequestBody,
-        @Part("promotion") promotion: Int,
+        @Field("name") name: String,
+        @Field("email") email: String,
+        @Field("password") password: String,
+        @Field("promotion") promotion: Int,
     ): SignUpResponse
 
     @FormUrlEncoded
@@ -46,7 +47,7 @@ interface ApiService {
         @Path("userId") userId: Int,
         @Part("name") name: RequestBody? = null,
         @Part("password") password: RequestBody? = null,
-        @Part("preferences") preferences: List<String>? = null,
+        @Part("preferences") preferences: List<Int>? = null,
         @Part image: MultipartBody.Part? = null
     ) : UpdateProfileResponse
 
@@ -68,5 +69,8 @@ interface ApiService {
     suspend fun getFavorite(
         @Path("userId") userId: Int,
     ) : TourismResponse
+
+    @GET("preferences")
+    suspend fun getPreferences(): PreferencesResponse
 
 }

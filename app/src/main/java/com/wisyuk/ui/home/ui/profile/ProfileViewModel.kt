@@ -10,7 +10,7 @@ import com.wisyuk.data.pref.UserModel
 import com.wisyuk.data.repository.UserRepository
 import com.wisyuk.data.response.Data
 import com.wisyuk.data.response.ErrorResponse
-import com.wisyuk.data.response.ProfileResponse
+import com.wisyuk.data.response.PreferencesItem
 import com.wisyuk.data.response.UpdateProfileResponse
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -35,6 +35,9 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
     private val _updateResponse = MutableLiveData<UpdateProfileResponse>()
     val updateResponse: LiveData<UpdateProfileResponse> = _updateResponse
 
+    private val _preferencesResponse = MutableLiveData<List<PreferencesItem>>()
+    val preferencesResponse: LiveData<List<PreferencesItem>> = _preferencesResponse
+
     init {
         _editMode.value = false
     }
@@ -45,6 +48,26 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
 
     fun toggleEditMode() {
         _editMode.value = _editMode.value == false
+    }
+
+    fun getPreferences() {
+        _isLoading.value = true
+        viewModelScope.launch {
+            try {
+                val response = repository.getPreferences()
+                _message.value = response.status
+                _isLoading.value = false
+                _isError.value = false
+                _preferencesResponse.value = response.data
+            } catch (e: HttpException) {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+                val errorMessage = errorBody.message
+                _message.value = errorMessage
+                _isLoading.value = false
+                _isError.value = true
+            }
+        }
     }
 
     fun getProfile(userId: Int) {
@@ -68,7 +91,7 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
         }
     }
 
-    fun updateProfile(userId: Int, image: File? = null, name: String, preferences: List<String>) {
+    fun updateProfile(userId: Int, image: File? = null, name: String, preferences: List<Int>) {
         _isLoading.value = true
         viewModelScope.launch {
             try {

@@ -9,12 +9,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.wisyuk.R
+import com.wisyuk.data.response.PreferencesItem
 import com.wisyuk.databinding.FragmentProfileBinding
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.login.LoginActivity
@@ -37,6 +40,10 @@ class ProfileFragment : Fragment() {
     private var errorMessage: String = ""
     private var userId by Delegates.notNull<Int>()
     private var currentImageUri: Uri? = null
+    private var prefItems = emptyList<String>()
+    private var itemPos1 = -1
+    private var itemPos2 = -1
+    private var itemPos3 = -1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -126,9 +133,62 @@ class ProfileFragment : Fragment() {
 
     private fun editView() {
         binding.tvProfileNameEdit.setText(binding.tvProfileName.text, TextView.BufferType.EDITABLE)
-        binding.tvProfilePrefFirstEdit.setText(binding.tvProfilePrefFirst.text, TextView.BufferType.EDITABLE)
-        binding.tvProfilePrefSecondEdit.setText(binding.tvProfilePrefSecond.text, TextView.BufferType.EDITABLE)
-        binding.tvProfilePrefThirdEdit.setText(binding.tvProfilePrefThird.text, TextView.BufferType.EDITABLE)
+        profileViewModel.getPreferences()
+        profileViewModel.preferencesResponse.observe(viewLifecycleOwner)  { pref ->
+            prefItems = pref.map { it.name }
+            val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_dropdown_item, prefItems)
+            binding.tvProfilePrefFirstEdit.adapter = adapter
+            binding.tvProfilePrefSecondEdit.adapter = adapter
+            binding.tvProfilePrefThirdEdit.adapter = adapter
+
+            val selectedItem1 = binding.tvProfilePrefFirst.text.toString()
+            val initPos1 = prefItems.indexOf(selectedItem1)
+            if (initPos1 != -1) {
+                binding.tvProfilePrefFirstEdit.setSelection(initPos1)
+            }
+
+            val selectedItem2 = binding.tvProfilePrefSecond.text.toString()
+            val initPos2 = prefItems.indexOf(selectedItem2)
+            if (initPos2 != -1) {
+                binding.tvProfilePrefSecondEdit.setSelection(initPos2)
+            }
+
+            val selectedItem3 = binding.tvProfilePrefThird.text.toString()
+            val initPos3 = prefItems.indexOf(selectedItem3)
+            if (initPos3 != -1) {
+                binding.tvProfilePrefThirdEdit.setSelection(initPos3)
+            }
+
+            binding.tvProfilePrefFirstEdit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                    itemPos1 = position
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    itemPos1 = -1
+                }
+            }
+
+            binding.tvProfilePrefSecondEdit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                    itemPos2 = position
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    itemPos2 = -1
+                }
+            }
+
+            binding.tvProfilePrefThirdEdit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                    itemPos3 = position
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    itemPos3 = -1
+                }
+            }
+        }
     }
 
     private fun startGallery() {
@@ -151,11 +211,16 @@ class ProfileFragment : Fragment() {
     }
 
     private fun save() {
+
         with(binding) {
-            val preferences = listOf<String>(
-                tvProfilePrefFirstEdit.text.toString(),
-                tvProfilePrefSecondEdit.text.toString(),
-                tvProfilePrefThirdEdit.text.toString())
+
+            val preferences = listOf<Int>(
+                itemPos1,
+                itemPos2,
+                itemPos3
+            )
+
+            println("WEYNARD $preferences")
 
             if (currentImageUri != null) {
                 currentImageUri?.let { uri ->
@@ -167,10 +232,12 @@ class ProfileFragment : Fragment() {
                 profileViewModel.updateProfile(userId, null,
                     tvProfileNameEdit.text.toString(), preferences)
             }
+//            Toast.makeText(requireActivity(), "Edit Profile Success!", Toast.LENGTH_SHORT).show()
+
         }
 
-
         profileViewModel.updateResponse.observe(viewLifecycleOwner) {
+            profileViewModel.getProfile(userId)
             profileViewModel.toggleEditMode()
             binding.editButton.visibility = View.VISIBLE
             binding.saveButton.visibility = View.GONE
