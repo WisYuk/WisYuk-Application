@@ -3,6 +3,7 @@ package com.wisyuk.data.api
 import androidx.datastore.preferences.core.Preferences
 import com.wisyuk.data.response.AddPaidPlanResponse
 import com.wisyuk.data.response.AddPreferencesResponse
+import com.wisyuk.data.response.DetailTourismResponse
 import com.wisyuk.data.response.FavTourismResponse
 import com.wisyuk.data.response.LoginResponse
 import com.wisyuk.data.response.PreferencesResponse
@@ -84,4 +85,9 @@ interface ApiService {
 
     @GET("tourisms")
     suspend fun getTourisms() : TourismResponse
+
+    @GET("tourism-detail/{tourismID}")
+    suspend fun getDetailTourism(
+        @Path("tourismID") tourismID: Int
+    ) : DetailTourismResponse
 }

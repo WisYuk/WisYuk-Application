@@ -222,11 +222,10 @@ class ProfileFragment : Fragment() {
 
             if (currentImageUri != null) {
                 currentImageUri?.let { uri ->
-                    println("WEYNARD $uri")
                     val imageFile = uriToFile(uri, requireActivity()).reduceFile()
                     profileViewModel.updateProfile(userId, imageFile,
                         tvProfileNameEdit.text.toString(), preferences)
-                }
+                } ?: Toast.makeText(requireActivity(), "Failed upload", Toast.LENGTH_SHORT).show()
             } else {
                 profileViewModel.updateProfile(userId, null,
                     tvProfileNameEdit.text.toString(), preferences)
@@ -239,6 +238,7 @@ class ProfileFragment : Fragment() {
             profileViewModel.getProfile(userId)
             profileViewModel.toggleEditMode()
             Toast.makeText(requireActivity(), "Edit Profile Success!", Toast.LENGTH_SHORT).show()
+            currentImageUri = null
             binding.editButton.visibility = View.VISIBLE
             binding.saveButton.visibility = View.GONE
             binding.editIcon.visibility = View.GONE

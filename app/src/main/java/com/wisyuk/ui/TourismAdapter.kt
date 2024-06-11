@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.wisyuk.data.response.ListTourismItem
 import com.wisyuk.databinding.ItemTourismBinding
 import com.wisyuk.ui.home.detail_home.DetailActivity
+import com.wisyuk.ui.home.detail_home.DetailActivity.Companion.TOURISM
 
 class TourismAdapter : ListAdapter<ListTourismItem, TourismAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
@@ -40,13 +41,14 @@ class TourismAdapter : ListAdapter<ListTourismItem, TourismAdapter.MyViewHolder>
 
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailActivity::class.java)
-                intent.putExtra(USER_ID, item.id)
+                intent.putExtra(TOURISM, item)
 
                 val optionsCompat: ActivityOptionsCompat =
                     ActivityOptionsCompat.makeSceneTransitionAnimation(
                         itemView.context as Activity,
                         Pair(binding.ivItemPhoto, "photo"),
                         Pair(binding.tvItemName, "name"),
+                        Pair(binding.tvItemDate, "date"),
                         Pair(binding.tvItemDescription, "description")
                     )
 
@@ -71,8 +73,6 @@ class TourismAdapter : ListAdapter<ListTourismItem, TourismAdapter.MyViewHolder>
                 return oldItem == newItem
             }
         }
-
-        private const val USER_ID = "userId"
 
     }
 
