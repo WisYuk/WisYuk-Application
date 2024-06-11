@@ -21,6 +21,7 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
     @FormUrlEncoded
@@ -85,6 +86,11 @@ interface ApiService {
 
     @GET("tourisms")
     suspend fun getTourisms() : TourismResponse
+
+    @GET("search-tourism")
+    suspend fun getTourisms(
+        @Query("tourismName") tourismName: String
+    ) : TourismResponse
 
     @GET("tourism-detail/{tourismID}")
     suspend fun getDetailTourism(

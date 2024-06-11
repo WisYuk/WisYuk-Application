@@ -12,6 +12,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.wisyuk.R
@@ -19,6 +20,7 @@ import com.wisyuk.data.response.ListTourismItem
 import com.wisyuk.databinding.ActivityDetailBinding
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.login.LoginActivity
+import com.wisyuk.utils.Utils.dateFormatted
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
@@ -33,6 +35,7 @@ class DetailActivity : AppCompatActivity() {
     private var itemPosHotel = -1
     private var itemPosRide = -1
     private var itemPosTourGuide = -1
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
@@ -61,7 +64,7 @@ class DetailActivity : AppCompatActivity() {
         if (tourism != null) {
             Glide.with(this).load(tourism.image).into(binding.ivDetailPhoto)
             binding.tvDetailName.text = tourism.name
-            binding.tvDetailDate.text = tourism.createdAt
+            binding.tvDetailDate.text = tourism.createdAt.dateFormatted()
             binding.tvDetailDescription.text = tourism.description
             viewModel.getDetailTourism(tourism.id)
         }

@@ -9,12 +9,15 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
 import com.wisyuk.BuildConfig
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 
@@ -26,6 +29,14 @@ object Utils {
 
     fun isPasswordValid(password: String): Boolean {
         return password.length >= 8
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun String.dateFormatted(): String {
+        val zonedDateTime = ZonedDateTime.parse(this)
+        val formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy")
+        val formattedDate = zonedDateTime.format(formatter)
+        return formattedDate
     }
 
     fun Boolean.toInt() = if (this) 1 else 0

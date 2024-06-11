@@ -104,6 +104,8 @@ class UserRepository private constructor(
 
     suspend fun getTourisms() = apiService.getTourisms()
 
+    suspend fun getTourisms(query: String) = apiService.getTourisms(query)
+
     suspend fun getDetailTourism(tourismID: Int) = apiService.getDetailTourism(tourismID)
 
     suspend fun saveSession(user: UserModel) {

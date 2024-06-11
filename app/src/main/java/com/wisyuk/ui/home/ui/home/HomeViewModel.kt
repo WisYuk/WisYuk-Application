@@ -57,7 +57,7 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
         }
     }
 
-    fun getTourism() {
+    private fun getTourism() {
         _isLoading.value = true
         viewModelScope.launch {
             try {
@@ -78,7 +78,23 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
     }
 
     fun getTourism(query: String) {
-        //...
+        _isLoading.value = true
+        viewModelScope.launch {
+            try {
+                val response = repository.getTourisms(query)
+                _message.value = response.status
+                _isLoading.value = false
+                _isError.value = false
+                _listTourism.value = response.data
+            } catch (e: HttpException) {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+                val errorMessage = errorBody.message
+                _message.value = errorMessage
+                _isLoading.value = false
+                _isError.value = true
+            }
+        }
     }
 
     fun logout() {
