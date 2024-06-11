@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.fragment.app.viewModels
 import android.os.Bundle
-import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -160,7 +159,7 @@ class ProfileFragment : Fragment() {
             }
 
             binding.tvProfilePrefFirstEdit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                     itemPos1 = pref.find {it.name == prefItems[position] }?.id ?: -1
                 }
 
@@ -170,7 +169,7 @@ class ProfileFragment : Fragment() {
             }
 
             binding.tvProfilePrefSecondEdit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                     itemPos2 = pref.find {it.name == prefItems[position] }?.id ?: -1
                 }
 
@@ -180,7 +179,7 @@ class ProfileFragment : Fragment() {
             }
 
             binding.tvProfilePrefThirdEdit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                     itemPos3 = pref.find {it.name == prefItems[position] }?.id ?: -1
                 }
 

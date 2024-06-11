@@ -12,6 +12,7 @@ import com.wisyuk.data.response.Data
 import com.wisyuk.data.response.ErrorResponse
 import com.wisyuk.data.response.PreferencesItem
 import com.wisyuk.data.response.UpdateProfileResponse
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.File
@@ -44,6 +45,12 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
 
     fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()
+    }
+
+    private fun saveSession(user: UserModel) : Job {
+        return viewModelScope.launch {
+            repository.saveSession(user)
+        }
     }
 
     fun toggleEditMode() {
@@ -100,6 +107,16 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
                 _isLoading.value = false
                 _isError.value = false
                 _updateResponse.value = response
+                val email = getSession().value?.email ?: ""
+                val saveSessionJob = saveSession(
+                    UserModel(
+                        email,
+                        name,
+                        userId,
+                        true
+                    )
+                )
+                saveSessionJob.join()
             } catch (e: HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
