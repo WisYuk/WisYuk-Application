@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.wisyuk.R
+import com.wisyuk.data.response.DataHotelsItem
 import com.wisyuk.data.response.ListTourismItem
 import com.wisyuk.databinding.ActivityDetailBinding
 import com.wisyuk.ui.ViewModelFactory
@@ -32,9 +33,9 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private var errorMessage = ""
-    private var itemPosHotel = -1
-    private var itemPosRide = -1
-    private var itemPosTourGuide = -1
+    private var itemHotelId = -1
+    private var itemRideId = -1
+    private var itemTourGuideId = -1
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,11 +98,11 @@ class DetailActivity : AppCompatActivity() {
                     position: Int,
                     id: Long
                 ) {
-                    itemPosHotel = position
+                    itemHotelId = hotel.find {it.name == items[position] }?.id ?: -1
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    itemPosHotel = -1
+                    itemHotelId = -1
                 }
             }
         }
@@ -118,11 +119,11 @@ class DetailActivity : AppCompatActivity() {
                     position: Int,
                     id: Long
                 ) {
-                    itemPosRide = position
+                    itemRideId = ride.find {it.name == items[position] }?.id ?: -1
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    itemPosRide = -1
+                    itemRideId = -1
                 }
             }
         }
@@ -139,11 +140,11 @@ class DetailActivity : AppCompatActivity() {
                     position: Int,
                     id: Long
                 ) {
-                    itemPosTourGuide = position
+                    itemTourGuideId = tourGuide.find {it.name == items[position] }?.id ?: -1
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    itemPosTourGuide = -1
+                    itemTourGuideId = -1
                 }
             }
         }

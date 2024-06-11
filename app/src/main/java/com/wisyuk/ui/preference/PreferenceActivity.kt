@@ -18,6 +18,7 @@ import com.wisyuk.databinding.ActivityPreferenceBinding
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.home.MainActivity
 import com.wisyuk.ui.login.LoginActivity
+import java.nio.file.Files.find
 import kotlin.properties.Delegates
 
 class PreferenceActivity : AppCompatActivity() {
@@ -79,7 +80,7 @@ class PreferenceActivity : AppCompatActivity() {
 
             binding.spinnerFirst.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    itemPos1 = position
+                    itemPos1 = pref.find {it.name == prefItems[position] }?.id ?: -1
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -89,7 +90,7 @@ class PreferenceActivity : AppCompatActivity() {
 
             binding.spinnerSecond.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    itemPos2 = position
+                    itemPos2 = pref.find {it.name == prefItems[position] }?.id ?: -1
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -99,7 +100,7 @@ class PreferenceActivity : AppCompatActivity() {
 
             binding.spinnerThird.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    itemPos3 = position
+                    itemPos3 = pref.find {it.name == prefItems[position] }?.id ?: -1
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -109,9 +110,9 @@ class PreferenceActivity : AppCompatActivity() {
         }
         binding.continueButton.setOnClickListener {
             val prefs = listOf(
-                itemPos1+1,
-                itemPos2+1,
-                itemPos3+1
+                itemPos1,
+                itemPos2,
+                itemPos3
             )
 
             viewModel.addPreferences(userId, prefs)

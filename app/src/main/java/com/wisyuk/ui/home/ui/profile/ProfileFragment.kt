@@ -161,7 +161,7 @@ class ProfileFragment : Fragment() {
 
             binding.tvProfilePrefFirstEdit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    itemPos1 = position
+                    itemPos1 = pref.find {it.name == prefItems[position] }?.id ?: -1
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -171,7 +171,7 @@ class ProfileFragment : Fragment() {
 
             binding.tvProfilePrefSecondEdit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    itemPos2 = position
+                    itemPos2 = pref.find {it.name == prefItems[position] }?.id ?: -1
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -181,7 +181,7 @@ class ProfileFragment : Fragment() {
 
             binding.tvProfilePrefThirdEdit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    itemPos3 = position
+                    itemPos3 = pref.find {it.name == prefItems[position] }?.id ?: -1
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -215,9 +215,9 @@ class ProfileFragment : Fragment() {
         with(binding) {
 
             val preferences = listOf<Int>(
-                itemPos1+1,
-                itemPos2+1,
-                itemPos3+1
+                itemPos1,
+                itemPos2,
+                itemPos3
             )
 
             if (currentImageUri != null) {
