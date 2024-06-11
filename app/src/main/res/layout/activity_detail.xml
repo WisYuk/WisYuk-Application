@@ -146,14 +146,14 @@
                     android:textSize="@dimen/heading2"/>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/add_button_hotel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/add_to_plan"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/price_container_hotel" />
+<!--            <Button-->
+<!--                android:id="@+id/add_button_hotel"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:text="@string/add_to_plan"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/price_container_hotel" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -216,14 +216,14 @@
                     android:textSize="@dimen/heading2"/>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/add_button_ride"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/add_to_plan"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/price_container_ride" />
+<!--            <Button-->
+<!--                android:id="@+id/add_button_ride"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:text="@string/add_to_plan"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/price_container_ride" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -286,14 +286,14 @@
                     android:textSize="@dimen/heading2"/>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/add_button_tour_guide"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/add_to_plan"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/price_container_tour_guide" />
+<!--            <Button-->
+<!--                android:id="@+id/add_button_tour_guide"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:text="@string/add_to_plan"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/price_container_tour_guide" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

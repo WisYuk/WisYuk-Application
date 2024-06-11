@@ -1,5 +1,6 @@
 package com.wisyuk.ui.home.detail_home
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -92,13 +93,16 @@ class DetailActivity : AppCompatActivity() {
             binding.spinnerHotel.adapter = adapter
 
             binding.spinnerHotel.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                @SuppressLint("SetTextI18n")
                 override fun onItemSelected(
                     parent: AdapterView<*>,
                     view: View,
                     position: Int,
                     id: Long
                 ) {
-                    itemHotelId = hotel.find {it.name == items[position] }?.id ?: -1
+                    val item = hotel.find {it.name == items[position] }
+                    itemHotelId = item?.id ?: -1
+                    binding.priceValueHotel.text = "Rp ${item?.price}"
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -113,13 +117,16 @@ class DetailActivity : AppCompatActivity() {
             binding.spinnerRide.adapter = adapter
 
             binding.spinnerRide.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                @SuppressLint("SetTextI18n")
                 override fun onItemSelected(
                     parent: AdapterView<*>,
                     view: View,
                     position: Int,
                     id: Long
                 ) {
-                    itemRideId = ride.find {it.name == items[position] }?.id ?: -1
+                    val item = ride.find {it.name == items[position] }
+                    itemRideId = item?.id ?: -1
+                    binding.priceValueRide.text = "Rp ${item?.price}"
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -134,13 +141,16 @@ class DetailActivity : AppCompatActivity() {
             binding.spinnerTourGuide.adapter = adapter
 
             binding.spinnerTourGuide.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                @SuppressLint("SetTextI18n")
                 override fun onItemSelected(
                     parent: AdapterView<*>,
                     view: View,
                     position: Int,
                     id: Long
                 ) {
-                    itemTourGuideId = tourGuide.find {it.name == items[position] }?.id ?: -1
+                    val item = tourGuide.find {it.name == items[position] }
+                    itemTourGuideId = item?.id ?: -1
+                    binding.priceValueTourGuide.text = "Rp ${item?.price}"
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
