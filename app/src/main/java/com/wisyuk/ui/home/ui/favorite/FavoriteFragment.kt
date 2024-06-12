@@ -9,20 +9,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.wisyuk.R
-import com.wisyuk.data.response.FavTourismItem
-import com.wisyuk.data.response.ListTourismItem
+import com.wisyuk.data.response.PlanTourismItem
 import com.wisyuk.databinding.FragmentFavoriteBinding
-import com.wisyuk.databinding.FragmentProfileBinding
-import com.wisyuk.ui.FavTourismAdapter
-import com.wisyuk.ui.TourismAdapter
+import com.wisyuk.ui.PlanAdapter
 import com.wisyuk.ui.ViewModelFactory
-import com.wisyuk.ui.home.ui.profile.ProfileViewModel
 import com.wisyuk.ui.login.LoginActivity
-import com.wisyuk.ui.userdatemenu.DateActivity
 import kotlin.properties.Delegates
 
 class FavoriteFragment : Fragment() {
@@ -92,8 +85,8 @@ class FavoriteFragment : Fragment() {
         }
     }
 
-    private fun setData(data: List<FavTourismItem>) {
-        val adapter = FavTourismAdapter()
+    private fun setData(data: List<PlanTourismItem>) {
+        val adapter = PlanAdapter()
         adapter.submitList(data)
         binding.rvPlan.adapter = adapter
     }

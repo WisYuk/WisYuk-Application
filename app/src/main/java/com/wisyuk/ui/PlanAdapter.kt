@@ -1,6 +1,5 @@
 package com.wisyuk.ui
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
@@ -9,12 +8,12 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.wisyuk.data.response.FavTourismItem
+import com.wisyuk.data.response.PlanTourismItem
 import com.wisyuk.databinding.ItemTourismBinding
 import com.wisyuk.ui.home.detail_home.DetailActivity
 import com.wisyuk.utils.Utils.dateFormatted
 
-class FavTourismAdapter : ListAdapter<FavTourismItem, FavTourismAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class PlanAdapter : ListAdapter<PlanTourismItem, PlanAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemTourismBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -30,7 +29,7 @@ class FavTourismAdapter : ListAdapter<FavTourismItem, FavTourismAdapter.MyViewHo
     }
     class MyViewHolder(private val binding: ItemTourismBinding) : RecyclerView.ViewHolder(binding.root) {
         @RequiresApi(Build.VERSION_CODES.O)
-        fun bind(item: FavTourismItem) {
+        fun bind(item: PlanTourismItem) {
 
             binding.tvItemName.text = item.name
             binding.tvItemDate.text = item.goAt.dateFormatted() // ?
@@ -44,17 +43,17 @@ class FavTourismAdapter : ListAdapter<FavTourismItem, FavTourismAdapter.MyViewHo
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<FavTourismItem>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<PlanTourismItem>() {
             override fun areItemsTheSame(
-                oldItem: FavTourismItem,
-                newItem: FavTourismItem
+                oldItem: PlanTourismItem,
+                newItem: PlanTourismItem
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
-                oldItem: FavTourismItem,
-                newItem: FavTourismItem
+                oldItem: PlanTourismItem,
+                newItem: PlanTourismItem
             ): Boolean {
                 return oldItem == newItem
             }

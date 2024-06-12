@@ -1,13 +1,12 @@
 package com.wisyuk.data.api
 
-import androidx.datastore.preferences.core.Preferences
 import com.wisyuk.data.response.AddFavResponse
 import com.wisyuk.data.response.AddPaidPlanResponse
 import com.wisyuk.data.response.AddPreferencesResponse
 import com.wisyuk.data.response.DetailFavResponse
 import com.wisyuk.data.response.DetailTourismResponse
-import com.wisyuk.data.response.FavTourismResponse
 import com.wisyuk.data.response.LoginResponse
+import com.wisyuk.data.response.PlanResponse
 import com.wisyuk.data.response.PreferencesResponse
 import com.wisyuk.data.response.ProfileResponse
 import com.wisyuk.data.response.SignUpResponse
@@ -82,10 +81,15 @@ interface ApiService {
         @Field("go_date") goDate: String
     ) : AddFavResponse
 
+    @GET("/view-paid-plan/{userID}")
+    suspend fun getPaidPlans(
+        @Path("userID") userID: Int,
+    ) : PlanResponse
+
     @GET("view-favourite-plan/{userID}")
     suspend fun getFavorite(
         @Path("userID") userID: Int,
-    ) : FavTourismResponse
+    ) : PlanResponse
 
     @GET("view-detail-favourite-plan/{userID}/{tourismID}/{goAt}")
     suspend fun getDetailFavoritePlan(

@@ -9,15 +9,14 @@ import com.google.gson.Gson
 import com.wisyuk.data.pref.UserModel
 import com.wisyuk.data.repository.UserRepository
 import com.wisyuk.data.response.ErrorResponse
-import com.wisyuk.data.response.FavTourismItem
-import com.wisyuk.data.response.ListTourismItem
+import com.wisyuk.data.response.PlanTourismItem
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class FavoriteViewModel(private val repository: UserRepository) : ViewModel() {
 
-    private val _listFavorite = MutableLiveData<List<FavTourismItem>>()
-    val listFavorite: LiveData<List<FavTourismItem>> = _listFavorite
+    private val _listFavorite = MutableLiveData<List<PlanTourismItem>>()
+    val listFavorite: LiveData<List<PlanTourismItem>> = _listFavorite
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -28,17 +27,11 @@ class FavoriteViewModel(private val repository: UserRepository) : ViewModel() {
     private val _message = MutableLiveData<String?>()
     val message : LiveData<String?> = _message
 
-    init {
-        getTourism()
-    }
 
     fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()
     }
 
-    fun getTourism() {
-        //...
-    }
 
     fun getTourism(userId: Int) {
         _isLoading.value = true

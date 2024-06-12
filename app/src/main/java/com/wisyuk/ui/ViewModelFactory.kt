@@ -9,6 +9,7 @@ import com.wisyuk.di.Injection
 import com.wisyuk.ui.home.detail_home.DetailViewModel
 import com.wisyuk.ui.home.ui.favorite.FavoriteViewModel
 import com.wisyuk.ui.home.ui.home.HomeViewModel
+import com.wisyuk.ui.home.ui.plans.PlanViewModel
 import com.wisyuk.ui.home.ui.profile.ProfileViewModel
 import com.wisyuk.ui.login.LoginViewModel
 import com.wisyuk.ui.payment.PaymentViewModel
@@ -39,6 +40,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
                 FavoriteViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(PlanViewModel::class.java) -> {
+                PlanViewModel(repository) as T
             }
             modelClass.isAssignableFrom(PreferenceViewModel::class.java) -> {
                 PreferenceViewModel(repository) as T
