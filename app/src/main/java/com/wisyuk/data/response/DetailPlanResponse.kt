@@ -2,16 +2,16 @@ package com.wisyuk.data.response
 
 import com.google.gson.annotations.SerializedName
 
-data class DetailFavResponse(
+data class DetailPlanResponse(
 
 	@field:SerializedName("data")
-	val data: List<DataFavItem>,
+	val data: List<PlanDataItem>,
 
 	@field:SerializedName("status")
 	val status: String
 )
 
-data class DataFavItem(
+data class PlanDataItem(
 
 	@field:SerializedName("tourism_description")
 	val tourismDescription: String,

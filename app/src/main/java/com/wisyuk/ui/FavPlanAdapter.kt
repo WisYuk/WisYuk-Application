@@ -10,10 +10,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.wisyuk.data.response.PlanTourismItem
 import com.wisyuk.databinding.ItemTourismBinding
-import com.wisyuk.ui.yourplan.detail_plan.DetailPlanActivity
+import com.wisyuk.ui.home.detail_home.DetailActivity
+import com.wisyuk.ui.home.detail_home.DetailActivity.Companion.TOURISM
 import com.wisyuk.utils.Utils.dateFormatted
 
-class PlanAdapter : ListAdapter<PlanTourismItem, PlanAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class FavPlanAdapter : ListAdapter<PlanTourismItem, FavPlanAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemTourismBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -35,8 +36,8 @@ class PlanAdapter : ListAdapter<PlanTourismItem, PlanAdapter.MyViewHolder>(DIFF_
             binding.tvItemDate.text = item.goAt.dateFormatted() // ?
 
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, DetailPlanActivity::class.java)
-                intent.putExtra(DetailPlanActivity.TOURISM, item)
+                val intent = Intent(itemView.context, DetailActivity::class.java)
+                intent.putExtra(TOURISM, item)
                 itemView.context.startActivity(intent)
             }
         }

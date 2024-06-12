@@ -16,8 +16,10 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
+import java.time.LocalDate
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 import java.util.Date
 import java.util.Locale
 
@@ -46,6 +48,18 @@ object Utils {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val formattedDate = zonedDateTime.format(formatter)
         return formattedDate
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun calculateReminder(goAt: String) : Int {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val targetDate = LocalDate.parse(goAt, formatter)
+
+        val today = LocalDate.now()
+
+        val daysBetween = ChronoUnit.DAYS.between(today, targetDate)
+
+        return daysBetween.toInt()
     }
 
     fun Boolean.toInt() = if (this) 1 else 0

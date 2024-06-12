@@ -8,13 +8,11 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.wisyuk.data.pref.UserModel
 import com.wisyuk.data.repository.UserRepository
-import com.wisyuk.data.response.DataFavItem
+import com.wisyuk.data.response.PlanDataItem
 import com.wisyuk.data.response.DataHotelsItem
 import com.wisyuk.data.response.DataRidesItem
 import com.wisyuk.data.response.DataTourGuidesItem
-import com.wisyuk.data.response.DetailFavResponse
 import com.wisyuk.data.response.ErrorResponse
-import com.wisyuk.data.response.ListTourismItem
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
@@ -37,8 +35,8 @@ class DetailViewModel(private val repository: UserRepository) : ViewModel() {
     private val _message = MutableLiveData<String?>()
     val message : LiveData<String?> = _message
 
-    private val _favoriteData = MutableLiveData<DataFavItem>()
-    val favoriteData : LiveData<DataFavItem> = _favoriteData
+    private val _favoriteData = MutableLiveData<PlanDataItem>()
+    val favoriteData : LiveData<PlanDataItem> = _favoriteData
 
     fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()

@@ -109,6 +109,9 @@ class UserRepository private constructor(
 
     suspend fun getFavorite(userID: Int) = apiService.getFavorite(userID)
 
+    suspend fun getDetailPaidPlan(userID: Int, tourismID: Int, goAt: String)
+        = apiService.getDetailPaidPlan(userID, tourismID, goAt)
+
     suspend fun getDetaiLFavoritePlan(userID: Int, tourismID: Int, goAt: String)
         = apiService.getDetailFavoritePlan(userID, tourismID, goAt)
     suspend fun getPreferences() = apiService.getPreferences()

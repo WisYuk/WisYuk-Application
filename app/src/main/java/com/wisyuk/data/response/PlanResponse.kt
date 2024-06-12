@@ -1,6 +1,8 @@
 package com.wisyuk.data.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class PlanResponse(
 
@@ -11,6 +13,7 @@ data class PlanResponse(
 	val status: String
 )
 
+@Parcelize
 data class PlanTourismItem(
 
 	@field:SerializedName("go_at")
@@ -18,4 +21,4 @@ data class PlanTourismItem(
 
 	@field:SerializedName("name")
 	val name: String
-)
+) : Parcelable

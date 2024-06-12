@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wisyuk.data.response.PlanTourismItem
 import com.wisyuk.databinding.FragmentFavoriteBinding
+import com.wisyuk.ui.FavPlanAdapter
 import com.wisyuk.ui.PlanAdapter
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.login.LoginActivity
@@ -86,7 +87,7 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun setData(data: List<PlanTourismItem>) {
-        val adapter = PlanAdapter()
+        val adapter = FavPlanAdapter()
         adapter.submitList(data)
         binding.rvPlan.adapter = adapter
     }

@@ -15,6 +15,7 @@ import com.wisyuk.ui.login.LoginViewModel
 import com.wisyuk.ui.payment.PaymentViewModel
 import com.wisyuk.ui.preference.PreferenceViewModel
 import com.wisyuk.ui.signup.SignUpViewModel
+import com.wisyuk.ui.yourplan.detail_plan.DetailPlanViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
@@ -43,6 +44,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(PlanViewModel::class.java) -> {
                 PlanViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(DetailPlanViewModel::class.java) -> {
+                DetailPlanViewModel(repository) as T
             }
             modelClass.isAssignableFrom(PreferenceViewModel::class.java) -> {
                 PreferenceViewModel(repository) as T

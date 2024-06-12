@@ -3,7 +3,7 @@ package com.wisyuk.data.api
 import com.wisyuk.data.response.AddFavResponse
 import com.wisyuk.data.response.AddPaidPlanResponse
 import com.wisyuk.data.response.AddPreferencesResponse
-import com.wisyuk.data.response.DetailFavResponse
+import com.wisyuk.data.response.DetailPlanResponse
 import com.wisyuk.data.response.DetailTourismResponse
 import com.wisyuk.data.response.LoginResponse
 import com.wisyuk.data.response.PlanResponse
@@ -91,12 +91,19 @@ interface ApiService {
         @Path("userID") userID: Int,
     ) : PlanResponse
 
+    @GET("view-detail-paid-plan/{userID}/{tourismID/{goAt}")
+    suspend fun getDetailPaidPlan(
+        @Path("userID") userID: Int,
+        @Path("tourismID") tourismID: Int,
+        @Path("goAt") goAt: String
+    ) : DetailPlanResponse
+
     @GET("view-detail-favourite-plan/{userID}/{tourismID}/{goAt}")
     suspend fun getDetailFavoritePlan(
         @Path("userID") userID: Int,
         @Path("tourismID") tourismID: Int,
         @Path("goAt") goAt: String
-    ) : DetailFavResponse
+    ) : DetailPlanResponse
 
     @GET("preferences")
     suspend fun getPreferences(): PreferencesResponse
