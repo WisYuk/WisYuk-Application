@@ -79,7 +79,7 @@ class PreferenceActivity : AppCompatActivity() {
             binding.spinnerThird.adapter = adapter
 
             binding.spinnerFirst.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                     itemPos1 = pref.find {it.name == prefItems[position] }?.id ?: -1
                 }
 
@@ -89,7 +89,7 @@ class PreferenceActivity : AppCompatActivity() {
             }
 
             binding.spinnerSecond.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                     itemPos2 = pref.find {it.name == prefItems[position] }?.id ?: -1
                 }
 
@@ -99,7 +99,7 @@ class PreferenceActivity : AppCompatActivity() {
             }
 
             binding.spinnerThird.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                     itemPos3 = pref.find {it.name == prefItems[position] }?.id ?: -1
                 }
 

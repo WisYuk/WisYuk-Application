@@ -1,8 +1,10 @@
 package com.wisyuk.data.api
 
 import androidx.datastore.preferences.core.Preferences
+import com.wisyuk.data.response.AddFavResponse
 import com.wisyuk.data.response.AddPaidPlanResponse
 import com.wisyuk.data.response.AddPreferencesResponse
+import com.wisyuk.data.response.DetailFavResponse
 import com.wisyuk.data.response.DetailTourismResponse
 import com.wisyuk.data.response.FavTourismResponse
 import com.wisyuk.data.response.LoginResponse
@@ -69,10 +71,28 @@ interface ApiService {
         @Part("paymentMethodID") paymentMethodID: RequestBody,
     ): AddPaidPlanResponse
 
+    @FormUrlEncoded
+    @POST("add-favourite-plan")
+    suspend fun addFavouritePlan(
+        @Field("userID") userID: Int,
+        @Field("tourismID") tourismID: Int,
+        @Field("hotelID") hotelID: Int,
+        @Field("rideID") rideID: Int,
+        @Field("tourGuideID") tourGuideID: Int,
+        @Field("go_date") goDate: String
+    ) : AddFavResponse
+
     @GET("view-favourite-plan/{userID}")
     suspend fun getFavorite(
-        @Path("userId") userId: Int,
+        @Path("userID") userID: Int,
     ) : FavTourismResponse
+
+    @GET("view-detail-favourite-plan/{userID}/{tourismID}/{goAt}")
+    suspend fun getDetailFavoritePlan(
+        @Path("userID") userID: Int,
+        @Path("tourismID") tourismID: Int,
+        @Path("goAt") goAt: String
+    ) : DetailFavResponse
 
     @GET("preferences")
     suspend fun getPreferences(): PreferencesResponse

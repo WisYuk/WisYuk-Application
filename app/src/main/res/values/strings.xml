@@ -85,4 +85,5 @@
     <string name="save">Save</string>
     <string name="edit_your_profile_picture">Edit your profile picture</string>
     <string name="preference_added">Preference added!</string>
+    <string name="favorite_added">Favorite added</string>
 </resources>

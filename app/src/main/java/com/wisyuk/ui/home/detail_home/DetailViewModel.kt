@@ -8,9 +8,11 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.wisyuk.data.pref.UserModel
 import com.wisyuk.data.repository.UserRepository
+import com.wisyuk.data.response.DataFavItem
 import com.wisyuk.data.response.DataHotelsItem
 import com.wisyuk.data.response.DataRidesItem
 import com.wisyuk.data.response.DataTourGuidesItem
+import com.wisyuk.data.response.DetailFavResponse
 import com.wisyuk.data.response.ErrorResponse
 import com.wisyuk.data.response.ListTourismItem
 import kotlinx.coroutines.launch
@@ -33,10 +35,24 @@ class DetailViewModel(private val repository: UserRepository) : ViewModel() {
     val isError: LiveData<Boolean> = _isError
 
     private val _message = MutableLiveData<String?>()
-    val message : MutableLiveData<String?> = _message
+    val message : LiveData<String?> = _message
+
+    private val _favoriteData = MutableLiveData<DataFavItem>()
+    val favoriteData : LiveData<DataFavItem> = _favoriteData
 
     fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()
+    }
+
+    fun getFavData(userId: Int, tourismId: Int, goAt: String) {
+        viewModelScope.launch {
+            try {
+                val response = repository.getDetaiLFavoritePlan(userId, tourismId, goAt)
+                _favoriteData.value = response.data[0]
+            } catch (_: HttpException) {
+
+            }
+        }
     }
 
     fun getDetailTourism(tourismId: Int) {
@@ -50,6 +66,25 @@ class DetailViewModel(private val repository: UserRepository) : ViewModel() {
                 _dataTourGuides.value = response.dataTourGuides
                 _dataRides.value = response.dataRides
                 _dataHotels.value = response.dataHotels
+            } catch (e: HttpException) {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+                val errorMessage = errorBody.message
+                _message.value = errorMessage
+                _isLoading.value = false
+                _isError.value = true
+            }
+        }
+    }
+
+    fun addFavorite(userId: Int, tourismId: Int, hotelId: Int, rideId: Int, tourGuideId: Int, goDate: String) {
+        _isLoading.value = true
+        viewModelScope.launch {
+            try {
+                val response = repository.addFavouritePlan(userId, tourismId, hotelId, rideId, tourGuideId, goDate)
+                _message.value = response.message
+                _isLoading.value = false
+                _isError.value = false
             } catch (e: HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)

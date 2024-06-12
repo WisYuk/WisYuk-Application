@@ -39,6 +39,15 @@ object Utils {
         return formattedDate
     }
 
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun String.dateFormattedGoAt(): String {
+        val zonedDateTime = ZonedDateTime.parse(this)
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val formattedDate = zonedDateTime.format(formatter)
+        return formattedDate
+    }
+
     fun Boolean.toInt() = if (this) 1 else 0
 
     private const val FILENAME_FORMAT = "yyyyMMdd_HHmmss"
