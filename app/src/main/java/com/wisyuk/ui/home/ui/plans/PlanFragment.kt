@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.wisyuk.data.response.PlanTourismItem
+import com.wisyuk.data.response.ListTourismItem
 import com.wisyuk.databinding.FragmentPlanBinding
 import com.wisyuk.ui.PlanAdapter
 import com.wisyuk.ui.ViewModelFactory
@@ -85,7 +85,7 @@ class PlanFragment : Fragment() {
         }
     }
 
-    private fun setData(data: List<PlanTourismItem>) {
+    private fun setData(data: List<ListTourismItem>) {
         val adapter = PlanAdapter()
         adapter.submitList(data)
         binding.rvPlan.adapter = adapter

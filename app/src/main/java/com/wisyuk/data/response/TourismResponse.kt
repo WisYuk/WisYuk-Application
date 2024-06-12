@@ -20,13 +20,13 @@ data class ListTourismItem(
 	val image: String,
 
 	@field:SerializedName("updated_at")
-	val updatedAt: String,
+	val updatedAt: String? = null,
 
 	@field:SerializedName("price")
-	val price: Int,
+	val price: Int? = null,
 
 	@field:SerializedName("latitude")
-	val latitude: String,
+	val latitude: String? = null,
 
 	@field:SerializedName("name")
 	val name: String,
@@ -35,14 +35,17 @@ data class ListTourismItem(
 	val description: String,
 
 	@field:SerializedName("created_at")
-	val createdAt: String,
+	val createdAt: String? = null,
 
 	@field:SerializedName("id")
 	val id: Int,
 
 	@field:SerializedName("category")
-	val category: String,
+	val category: String? = null,
 
 	@field:SerializedName("longitude")
-	val longitude: String
+	val longitude: String? = null,
+
+	@field:SerializedName("go_at")
+	val goAt: String? = null
 ) : Parcelable

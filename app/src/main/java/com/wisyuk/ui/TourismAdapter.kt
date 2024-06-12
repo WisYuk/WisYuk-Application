@@ -42,8 +42,11 @@ class TourismAdapter : ListAdapter<ListTourismItem, TourismAdapter.MyViewHolder>
 
             binding.tvItemName.text = item.name
             binding.tvItemDescription.text = item.description
-            binding.tvItemDate.text = item.createdAt.dateFormatted() // ?
-
+            if (item.goAt != null) {
+                binding.tvItemDate.text = item.goAt.dateFormatted()
+            } else {
+                binding.tvItemDate.text = item.createdAt?.dateFormatted() // ?
+            }
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailActivity::class.java)
                 intent.putExtra(TOURISM, item)

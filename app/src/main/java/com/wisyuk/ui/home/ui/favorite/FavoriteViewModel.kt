@@ -9,14 +9,14 @@ import com.google.gson.Gson
 import com.wisyuk.data.pref.UserModel
 import com.wisyuk.data.repository.UserRepository
 import com.wisyuk.data.response.ErrorResponse
-import com.wisyuk.data.response.PlanTourismItem
+import com.wisyuk.data.response.ListTourismItem
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class FavoriteViewModel(private val repository: UserRepository) : ViewModel() {
 
-    private val _listFavorite = MutableLiveData<List<PlanTourismItem>>()
-    val listFavorite: LiveData<List<PlanTourismItem>> = _listFavorite
+    private val _listFavorite = MutableLiveData<List<ListTourismItem>>()
+    val listFavorite: LiveData<List<ListTourismItem>> = _listFavorite
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading

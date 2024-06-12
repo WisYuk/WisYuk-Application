@@ -6,7 +6,6 @@ import com.wisyuk.data.response.AddPreferencesResponse
 import com.wisyuk.data.response.DetailPlanResponse
 import com.wisyuk.data.response.DetailTourismResponse
 import com.wisyuk.data.response.LoginResponse
-import com.wisyuk.data.response.PlanResponse
 import com.wisyuk.data.response.PreferencesResponse
 import com.wisyuk.data.response.ProfileResponse
 import com.wisyuk.data.response.SignUpResponse
@@ -84,14 +83,14 @@ interface ApiService {
     @GET("/view-paid-plan/{userID}")
     suspend fun getPaidPlans(
         @Path("userID") userID: Int,
-    ) : PlanResponse
+    ) : TourismResponse
 
     @GET("view-favourite-plan/{userID}")
     suspend fun getFavorite(
         @Path("userID") userID: Int,
-    ) : PlanResponse
+    ) : TourismResponse
 
-    @GET("view-detail-paid-plan/{userID}/{tourismID/{goAt}")
+    @GET("view-detail-paid-plan/{userID}/{tourismID}/{goAt}")
     suspend fun getDetailPaidPlan(
         @Path("userID") userID: Int,
         @Path("tourismID") tourismID: Int,

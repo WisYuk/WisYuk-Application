@@ -5,22 +5,18 @@ import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
 import com.wisyuk.R
 import com.wisyuk.data.response.ListTourismItem
-import com.wisyuk.data.response.PlanTourismItem
 import com.wisyuk.databinding.ActivityDetailPlanBinding
 import com.wisyuk.ui.ViewModelFactory
-import com.wisyuk.ui.home.detail_home.DetailActivity
-import com.wisyuk.ui.home.detail_home.DetailViewModel
 import com.wisyuk.ui.login.LoginActivity
 import com.wisyuk.utils.Utils.calculateReminder
 import com.wisyuk.utils.Utils.dateFormatted
+import com.wisyuk.utils.Utils.dateFormattedGoAt
 
 class DetailPlanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailPlanBinding
@@ -42,7 +38,7 @@ class DetailPlanActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val tourism = if (Build.VERSION.SDK_INT >= 33) {
-            intent.getParcelableExtra(TOURISM, PlanTourismItem::class.java)
+            intent.getParcelableExtra(TOURISM, ListTourismItem::class.java)
         } else {
             @Suppress("DEPRECATION")
             intent.getParcelableExtra(TOURISM)
@@ -57,9 +53,10 @@ class DetailPlanActivity : AppCompatActivity() {
             }
             userID = user.id
             if (tourism != null) {
-                goAt = tourism.goAt
+                tourismID = tourism.id
+                goAt = tourism.goAt ?: ""
             }
-//            viewModel.getDetailTourism()
+            viewModel.getDetailTourism(userID, tourismID, goAt.dateFormattedGoAt())
         }
         setupView()
         setupAction()
@@ -90,6 +87,7 @@ class DetailPlanActivity : AppCompatActivity() {
     private fun observerViewModel() {
         viewModel.data.observe(this) {
             with(binding) {
+                Glide.with(this@DetailPlanActivity).load(it.tourismImage).into(ivDetailPhoto)
                 tvDetailName.text = it.tourismName
                 tvDetailDescription.text = it.tourismDescription
                 tvDetailDate.text = goAt.dateFormatted()
@@ -100,7 +98,7 @@ class DetailPlanActivity : AppCompatActivity() {
                 selectedTourGuide.text = it.tourGuideName
                 dateTourGuide.text = goAt.dateFormatted()
 
-                val reminderDays = calculateReminder(goAt)
+                val reminderDays = calculateReminder(goAt.dateFormattedGoAt())
                 reminderHotel.text = getString(R.string.reminder_date, reminderDays.toString())
                 reminderRide.text = getString(R.string.reminder_date, reminderDays.toString())
                 reminderTourGuide.text = getString(R.string.reminder_date, reminderDays.toString())
