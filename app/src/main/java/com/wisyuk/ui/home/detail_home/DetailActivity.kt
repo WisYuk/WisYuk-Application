@@ -15,10 +15,13 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
 import com.wisyuk.R
 import com.wisyuk.data.response.DataHotelsItem
 import com.wisyuk.data.response.ListTourismItem
+import com.wisyuk.data.response.PlanDataItem
 import com.wisyuk.databinding.ActivityDetailBinding
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.home.MainActivity
@@ -69,12 +72,19 @@ class DetailActivity : AppCompatActivity() {
             if (tourism != null) {
                 Glide.with(this).load(tourism.image).into(binding.ivDetailPhoto)
                 binding.tvDetailName.text = tourism.name
-                binding.tvDetailDate.text = tourism.createdAt.dateFormatted()
+
+                if (tourism.goAt != null) {
+                    goAt = tourism.goAt
+                    binding.tvDetailDate.text = goAt.dateFormatted()
+                } else {
+                    goAt = tourism.createdAt.toString()
+                    binding.tvDetailDate.text = goAt.dateFormatted()
+                }
                 binding.tvDetailDescription.text = tourism.description
                 tourismID = tourism.id
                 viewModel.getDetailTourism(tourismID)
-                goAt = tourism.createdAt.dateFormattedGoAt()
-                viewModel.getFavData(userID, tourismID, goAt)
+
+                viewModel.getFavData(userID, tourismID, goAt.dateFormattedGoAt())
             }
         }
 
@@ -99,6 +109,7 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setupAction() {
 
         var hotelName: String? = null
@@ -228,14 +239,19 @@ class DetailActivity : AppCompatActivity() {
 
         binding.favoriteButton.setOnClickListener{
             if (!isFavorite) {
-                viewModel.addFavorite(userID, tourismID, itemHotelId, itemRideId, itemTourGuideId, goAt)
+                viewModel.addFavorite(userID, tourismID, itemHotelId, itemRideId, itemTourGuideId, goAt.dateFormattedGoAt())
                 Toast.makeText(this, getString(R.string.favorite_added), Toast.LENGTH_SHORT).show()
-                viewModel.getFavData(userID, tourismID, goAt)
             }
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun observerViewModel() {
+        viewModel.addResponse.observe(this) {
+            if (it != null) {
+                viewModel.getFavData(userID, tourismID, goAt.dateFormattedGoAt())
+            }
+        }
         viewModel.isLoading.observe(this) {
             showLoading(it)
         }

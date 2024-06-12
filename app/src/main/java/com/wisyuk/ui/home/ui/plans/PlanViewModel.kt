@@ -9,14 +9,14 @@ import com.google.gson.Gson
 import com.wisyuk.data.pref.UserModel
 import com.wisyuk.data.repository.UserRepository
 import com.wisyuk.data.response.ErrorResponse
-import com.wisyuk.data.response.PlanTourismItem
+import com.wisyuk.data.response.ListTourismItem
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class PlanViewModel(private val repository: UserRepository) : ViewModel() {
 
-    private val _listPaid = MutableLiveData<List<PlanTourismItem>>()
-    val listPaid: LiveData<List<PlanTourismItem>> = _listPaid
+    private val _listPaid = MutableLiveData<List<ListTourismItem>>()
+    val listPaid: LiveData<List<ListTourismItem>> = _listPaid
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading

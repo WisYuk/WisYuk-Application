@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.wisyuk.data.pref.UserModel
 import com.wisyuk.data.repository.UserRepository
+import com.wisyuk.data.response.AddFavResponse
 import com.wisyuk.data.response.PlanDataItem
 import com.wisyuk.data.response.DataHotelsItem
 import com.wisyuk.data.response.DataRidesItem
@@ -37,6 +38,9 @@ class DetailViewModel(private val repository: UserRepository) : ViewModel() {
 
     private val _favoriteData = MutableLiveData<PlanDataItem>()
     val favoriteData : LiveData<PlanDataItem> = _favoriteData
+
+    private val _addResponse = MutableLiveData<AddFavResponse>()
+    val addResponse : LiveData<AddFavResponse> = _addResponse
 
     fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()
@@ -83,6 +87,7 @@ class DetailViewModel(private val repository: UserRepository) : ViewModel() {
                 _message.value = response.message
                 _isLoading.value = false
                 _isError.value = false
+                _addResponse.value = response
             } catch (e: HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)

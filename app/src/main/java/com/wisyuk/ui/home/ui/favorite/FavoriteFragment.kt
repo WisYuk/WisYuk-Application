@@ -11,10 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.wisyuk.data.response.PlanTourismItem
+import com.wisyuk.data.response.ListTourismItem
 import com.wisyuk.databinding.FragmentFavoriteBinding
-import com.wisyuk.ui.FavPlanAdapter
-import com.wisyuk.ui.PlanAdapter
+import com.wisyuk.ui.TourismAdapter
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.login.LoginActivity
 import kotlin.properties.Delegates
@@ -86,8 +85,8 @@ class FavoriteFragment : Fragment() {
         }
     }
 
-    private fun setData(data: List<PlanTourismItem>) {
-        val adapter = FavPlanAdapter()
+    private fun setData(data: List<ListTourismItem>) {
+        val adapter = TourismAdapter()
         adapter.submitList(data)
         binding.rvPlan.adapter = adapter
     }
