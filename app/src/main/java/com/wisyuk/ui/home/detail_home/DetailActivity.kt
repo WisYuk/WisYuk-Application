@@ -26,6 +26,7 @@ import com.wisyuk.databinding.ActivityDetailBinding
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.home.MainActivity
 import com.wisyuk.ui.login.LoginActivity
+import com.wisyuk.ui.payment.PaymentActivity
 import com.wisyuk.utils.Utils.dateFormatted
 import com.wisyuk.utils.Utils.dateFormattedGoAt
 
@@ -228,7 +229,9 @@ class DetailActivity : AppCompatActivity() {
         }
 
         binding.continuePaymentButton.setOnClickListener {
-            //...
+            val intent = Intent(this@DetailActivity, PaymentActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         binding.backButton.setOnClickListener {

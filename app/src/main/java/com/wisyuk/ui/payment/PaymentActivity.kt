@@ -8,9 +8,11 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.wisyuk.R
@@ -19,6 +21,7 @@ import com.wisyuk.databinding.ActivityPaymentBinding
 import com.wisyuk.databinding.ActivitySignUpBinding
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.login.LoginActivity
+import com.wisyuk.ui.paymentmethod.PaymentMethodActivity
 import com.wisyuk.ui.signup.SignUpViewModel
 
 class PaymentActivity : AppCompatActivity() {
@@ -27,6 +30,25 @@ class PaymentActivity : AppCompatActivity() {
         ViewModelFactory.getInstance(this)
     }
     private var errorMessage: String = ""
+    private val resultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == PaymentMethodActivity.RESULT_CODE && result.data != null) {
+            val selectedValueId =
+                result.data?.getIntExtra(PaymentMethodActivity.PAYMENT_METHOD_ID, 0)
+            val selectedValueName =
+                result.data?.getStringExtra(PaymentMethodActivity.PAYMENT_METHOD_NAME)
+
+            if (selectedValueName != null) setMethod(selectedValueName)
+        }
+    }
+
+    private fun setMethod(selectedValue: String) {
+        binding.btMethodChoose.text = selectedValue
+        binding.btPayment.isEnabled = true
+        binding.btPayment.setBackgroundColor(ContextCompat.getColor(this, R.color.md_theme_primary))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPaymentBinding.inflate(layoutInflater)
@@ -36,6 +58,7 @@ class PaymentActivity : AppCompatActivity() {
         setupAction()
         observerViewModel()
     }
+
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -50,6 +73,11 @@ class PaymentActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
+        binding.btMethodChoose.setOnClickListener {
+            val paymentMethodIntent =
+                Intent(this@PaymentActivity, PaymentMethodActivity::class.java)
+            resultLauncher.launch(paymentMethodIntent)
+        }
         binding.btPayment.setOnClickListener {
             // TODO : When Data Available, Change this
             val userID = "1"
@@ -61,7 +89,16 @@ class PaymentActivity : AppCompatActivity() {
             val status = "1"
             val paymentMethodID = "1"
 
-            viewModel.addPaidPlan(userID, tourismID, hotelID, rideID, tourGuideID, goDate, status, paymentMethodID)
+            viewModel.addPaidPlan(
+                userID,
+                tourismID,
+                hotelID,
+                rideID,
+                tourGuideID,
+                goDate,
+                status,
+                paymentMethodID
+            )
 
             viewModel.paymentResponse.observe(this) {
                 val intent = Intent(this@PaymentActivity, LoginActivity::class.java)

@@ -6,6 +6,7 @@ import com.wisyuk.data.response.AddPreferencesResponse
 import com.wisyuk.data.response.DetailPlanResponse
 import com.wisyuk.data.response.DetailTourismResponse
 import com.wisyuk.data.response.LoginResponse
+import com.wisyuk.data.response.PaymentMethodResponse
 import com.wisyuk.data.response.PreferencesResponse
 import com.wisyuk.data.response.ProfileResponse
 import com.wisyuk.data.response.SignUpResponse
@@ -126,4 +127,7 @@ interface ApiService {
     suspend fun getDetailTourism(
         @Path("tourismID") tourismID: Int
     ) : DetailTourismResponse
+
+    @GET("payment-methods")
+    suspend fun getPaymentMethod(): PaymentMethodResponse
 }

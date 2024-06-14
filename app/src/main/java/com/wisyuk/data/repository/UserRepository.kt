@@ -17,7 +17,7 @@ import java.io.File
 class UserRepository private constructor(
     private val userPreference: UserPreference,
     private val apiService: ApiService
-) {
+){
 
     suspend fun signUp(
         name: String,
@@ -124,6 +124,7 @@ class UserRepository private constructor(
 
     suspend fun getDetailTourism(tourismID: Int) = apiService.getDetailTourism(tourismID)
 
+    suspend fun getPaymentMethod() = apiService.getPaymentMethod()
     suspend fun saveSession(user: UserModel) {
         userPreference.saveSession(user)
     }

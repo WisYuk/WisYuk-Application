@@ -267,7 +267,7 @@
             android:drawableLeft="@drawable/baseline_account_circle_24"
             app:strokeWidth="2dp"
             app:cornerRadius="24dp"
-            android:text="@string/ovo"/>
+            android:text="@string/choose_payment_method"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bt_payment"

@@ -86,4 +86,5 @@
     <string name="edit_your_profile_picture">Edit your profile picture</string>
     <string name="preference_added">Preference added!</string>
     <string name="favorite_added">Favorite added</string>
+    <string name="choose_payment_method">Choose Payment Method</string>
 </resources>

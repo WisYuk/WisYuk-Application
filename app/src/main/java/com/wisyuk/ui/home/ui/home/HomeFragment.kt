@@ -83,8 +83,6 @@ class HomeFragment : Fragment() {
         return root
     }
 
-
-
     private fun setupRecyclerView() {
         val layoutManager = LinearLayoutManager(requireActivity())
         binding.rvTour.layoutManager = layoutManager
