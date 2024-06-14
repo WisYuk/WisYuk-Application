@@ -5,12 +5,11 @@
     android:layout_height="wrap_content"
     android:padding="16dp">
 
-    <com.google.android.material.button.MaterialButton
+    <TextView
         android:id="@+id/bt_payment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#0000"
-        android:drawableLeft="@drawable/baseline_account_circle_24"
         android:paddingVertical="8dp"
         android:text="@string/ovo"
         android:textAlignment="textStart"
