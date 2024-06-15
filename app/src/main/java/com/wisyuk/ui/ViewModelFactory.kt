@@ -13,6 +13,7 @@ import com.wisyuk.ui.home.ui.plans.PlanViewModel
 import com.wisyuk.ui.home.ui.profile.ProfileViewModel
 import com.wisyuk.ui.login.LoginViewModel
 import com.wisyuk.ui.payment.PaymentViewModel
+import com.wisyuk.ui.paymentmethod.PaymentMethodViewModel
 import com.wisyuk.ui.preference.PreferenceViewModel
 import com.wisyuk.ui.signup.SignUpViewModel
 import com.wisyuk.ui.yourplan.detail_plan.DetailPlanViewModel
@@ -50,6 +51,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(PreferenceViewModel::class.java) -> {
                 PreferenceViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(PaymentMethodViewModel::class.java) -> {
+                PaymentMethodViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

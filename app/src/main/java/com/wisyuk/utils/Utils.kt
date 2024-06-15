@@ -128,4 +128,15 @@ object Utils {
         bitmap?.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
         return file
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun String?.dateFormat_ddmmmyyyy(): String? {
+        return if (this.isNullOrEmpty()) {
+            null
+        } else {
+            val originalDate = LocalDate.parse(this)
+            val formatter = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH)
+            originalDate.format(formatter)
+        }
+    }
 }

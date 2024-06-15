@@ -86,4 +86,8 @@
     <string name="edit_your_profile_picture">Edit your profile picture</string>
     <string name="preference_added">Preference added!</string>
     <string name="favorite_added">Favorite added</string>
+    <string name="choose_payment_method">Choose Payment Method</string>
+    <string name="date_hotel_explain">*The hotel date will be spanned from the previous day until the next day based on the date showed above</string>
+    <string name="okay_button">Back</string>
+    <string name="back_to_home">Back to home</string>
 </resources>

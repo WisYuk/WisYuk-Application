@@ -1,4 +1,4 @@
-package com.wisyuk.ui.payment
+package com.wisyuk.ui.paymentmethod
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,10 +10,12 @@ import com.wisyuk.data.pref.UserModel
 import com.wisyuk.data.repository.UserRepository
 import com.wisyuk.data.response.AddPaidPlanResponse
 import com.wisyuk.data.response.ErrorResponse
+import com.wisyuk.data.response.PaymentMethodItem
+import com.wisyuk.data.response.PaymentMethodResponse
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
-class PaymentViewModel(private val repository: UserRepository) : ViewModel() {
+class PaymentMethodViewModel(private val repository: UserRepository): ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
@@ -23,17 +25,17 @@ class PaymentViewModel(private val repository: UserRepository) : ViewModel() {
     private val _message = MutableLiveData<String?>()
     val message : LiveData<String?> = _message
 
-    private val _paymentResponse = MutableLiveData<AddPaidPlanResponse>()
-    val paymentResponse: LiveData<AddPaidPlanResponse> = _paymentResponse
+    private val _paymentMethod = MutableLiveData<List<PaymentMethodItem>>()
+    val paymentMethod: LiveData<List<PaymentMethodItem>> = _paymentMethod
 
-    fun addPaidPlan(userID: Int, tourismID: Int, hotelID: Int, rideID: Int, tourGuideID: Int, goDate: String, status: Int, paymentMethodID: Int) {
+    fun fetchPaymentMethod(){
         _isLoading.value = true
+
 
         viewModelScope.launch {
             try {
-                val response = repository.addPaidPlan(userID, tourismID, hotelID, rideID, tourGuideID, goDate, status, paymentMethodID)
-                _paymentResponse.value = response
-                _message.value = response.message
+                val response = repository.getPaymentMethod()
+                _paymentMethod.value = response.data ?: emptyList()
                 _isLoading.value = false
                 _isError.value = false
             } catch (e: HttpException) {
@@ -46,7 +48,6 @@ class PaymentViewModel(private val repository: UserRepository) : ViewModel() {
             }
         }
     }
-
     fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()
     }
