@@ -59,7 +59,6 @@ class SignUpActivity : AppCompatActivity() {
                 val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
                 startActivity(intent)
                 Toast.makeText(this, getString(R.string.signup_success), Toast.LENGTH_SHORT).show()
-                finish()
             }
         }
     }
