@@ -1,6 +1,6 @@
 package com.wisyuk.data.api
 
-import com.wisyuk.data.response.AddFavResponse
+import com.wisyuk.data.response.FavoriteResponse
 import com.wisyuk.data.response.AddPaidPlanResponse
 import com.wisyuk.data.response.AddPreferencesResponse
 import com.wisyuk.data.response.DetailPlanResponse
@@ -14,6 +14,7 @@ import com.wisyuk.data.response.TourismResponse
 import com.wisyuk.data.response.UpdateProfileResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -78,7 +79,7 @@ interface ApiService {
         @Field("rideID") rideID: Int,
         @Field("tourGuideID") tourGuideID: Int,
         @Field("go_date") goDate: String
-    ) : AddFavResponse
+    ) : FavoriteResponse
 
     @GET("/view-paid-plan/{userID}")
     suspend fun getPaidPlans(
@@ -129,4 +130,11 @@ interface ApiService {
 
     @GET("payment-methods")
     suspend fun getPaymentMethod(): PaymentMethodResponse
+
+    @DELETE("delete-favourite")
+    suspend fun deleteFavouritePlan(
+        @Field("userID") userID: Int,
+        @Field("tourismID") tourismID: Int,
+        @Field("go_date") goDate: String
+    )  : FavoriteResponse
 }

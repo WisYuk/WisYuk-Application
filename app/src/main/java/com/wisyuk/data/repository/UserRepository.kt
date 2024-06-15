@@ -115,6 +115,8 @@ class UserRepository private constructor(
     suspend fun getDetailTourism(tourismID: Int) = apiService.getDetailTourism(tourismID)
 
     suspend fun getPaymentMethod() = apiService.getPaymentMethod()
+
+    suspend fun deleteFavouritePlan(userID: Int, tourismID: Int, goAt: String) = apiService.deleteFavouritePlan(userID, tourismID, goAt)
     suspend fun saveSession(user: UserModel) {
         userPreference.saveSession(user)
     }

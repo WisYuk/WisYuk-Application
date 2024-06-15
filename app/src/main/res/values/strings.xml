@@ -91,4 +91,5 @@
     <string name="okay_button">Back</string>
     <string name="back_to_home">Back to home</string>
     <string name="icon_calender">Icon Calender</string>
+    <string name="favorite_deleted">Favorite removed!</string>
 </resources>

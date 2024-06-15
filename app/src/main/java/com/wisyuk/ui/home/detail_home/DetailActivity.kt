@@ -141,6 +141,9 @@ class DetailActivity : AppCompatActivity() {
                 hotelName = it.hotelName
                 rideName = it.rideName
                 tourGuideName = it.tourGuideName
+            } else {
+                binding.favoriteButton.setImageResource(R.drawable.baseline_favorite_border_24)
+                isFavorite = false
             }
         }
 
@@ -280,6 +283,9 @@ class DetailActivity : AppCompatActivity() {
             if (!isFavorite) {
                 viewModel.addFavorite(userID, tourismID, itemHotelId, itemRideId, itemTourGuideId, goAt.dateFormattedGoAt())
                 Toast.makeText(this, getString(R.string.favorite_added), Toast.LENGTH_SHORT).show()
+            } else {
+                viewModel.deleteFavorite(userID, tourismID, goAt.dateFormattedGoAt())
+                Toast.makeText(this, getString(R.string.favorite_deleted), Toast.LENGTH_SHORT).show()
             }
         }
     }
