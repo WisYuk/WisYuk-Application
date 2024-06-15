@@ -3,8 +3,10 @@ package com.wisyuk.ui.payment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
+import com.wisyuk.data.pref.UserModel
 import com.wisyuk.data.repository.UserRepository
 import com.wisyuk.data.response.AddPaidPlanResponse
 import com.wisyuk.data.response.ErrorResponse
@@ -24,9 +26,8 @@ class PaymentViewModel(private val repository: UserRepository) : ViewModel() {
     private val _paymentResponse = MutableLiveData<AddPaidPlanResponse>()
     val paymentResponse: LiveData<AddPaidPlanResponse> = _paymentResponse
 
-    fun addPaidPlan(userID: String, tourismID: String, hotelID: String, rideID: String, tourGuideID: String, goDate: String, status: String, paymentMethodID: String) {
+    fun addPaidPlan(userID: Int, tourismID: Int, hotelID: Int, rideID: Int, tourGuideID: Int, goDate: String, status: Int, paymentMethodID: Int) {
         _isLoading.value = true
-
 
         viewModelScope.launch {
             try {
@@ -44,5 +45,9 @@ class PaymentViewModel(private val repository: UserRepository) : ViewModel() {
                 _isError.value = true
             }
         }
+    }
+
+    fun getSession(): LiveData<UserModel> {
+        return repository.getSession().asLiveData()
     }
 }

@@ -44,9 +44,6 @@ class HomeFragment : Fragment() {
 
         homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
             if (!user.isLogin) {
-//                startActivity(Intent(
-//                    requireActivity(), LoginActivity::class.java))
-//                activity?.finish()
                 binding.loginButton.visibility = View.VISIBLE
                 binding.logoutButton.visibility = View.GONE
                 binding.choosePlanTitle.text = getString(R.string.welcome_title_guest)

@@ -79,6 +79,14 @@
                     android:textColor="@color/gray"
                     android:textSize="@dimen/normal" />
 
+                <TextView
+                    android:id="@+id/tv_plan_hotel_date_explain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date_hotel_explain"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/normal" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -73,7 +73,6 @@ class PaymentMethodActivity : AppCompatActivity() {
 
     private fun observeViewModel() {
         viewModel.paymentMethod.observe(this) {
-            Log.d("Tes", it.toString())
             if (it != null) setData(it)
         }
         viewModel.isLoading.observe(this) {

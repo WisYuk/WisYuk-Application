@@ -65,34 +65,24 @@ class UserRepository private constructor(
     }
 
     suspend fun addPaidPlan(
-        userID: String,
-        tourismID: String,
-        hotelID: String,
-        rideID: String,
-        tourGuideID: String,
+        userID: Int,
+        tourismID: Int,
+        hotelID: Int,
+        rideID: Int,
+        tourGuideID: Int,
         go_date: String,
-        status: String,
-        paymentMethodID: String
+        status: Int,
+        paymentMethodID: Int
     ): AddPaidPlanResponse {
-        val userIDRequestBody = userID.toRequestBody("text/plain".toMediaTypeOrNull())
-        val tourismIDRequestBody = tourismID.toRequestBody("text/plain".toMediaTypeOrNull())
-        val hotelIDRequestBody = hotelID.toRequestBody("text/plain".toMediaTypeOrNull())
-        val rideIDRequestBody = rideID.toRequestBody("text/plain".toMediaTypeOrNull())
-        val tourGuideIDRequestBody = tourGuideID.toRequestBody("text/plain".toMediaTypeOrNull())
-        val goDateRequestBody = go_date.toRequestBody("text/plain".toMediaTypeOrNull())
-        val statusRequestBody = status.toString().toRequestBody("text/plain".toMediaTypeOrNull())
-        val paymentMethodIDRequestBody =
-            paymentMethodID.toRequestBody("text/plain".toMediaTypeOrNull())
-
         return apiService.addPaidPlan(
-            userIDRequestBody,
-            tourismIDRequestBody,
-            hotelIDRequestBody,
-            rideIDRequestBody,
-            tourGuideIDRequestBody,
-            goDateRequestBody,
-            statusRequestBody,
-            paymentMethodIDRequestBody
+            userID,
+            tourismID,
+            hotelID,
+            rideID,
+            tourGuideID,
+            go_date,
+            status,
+            paymentMethodID
         )
     }
 

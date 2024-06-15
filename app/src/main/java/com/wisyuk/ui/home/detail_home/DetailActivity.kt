@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -19,6 +20,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
 import com.wisyuk.R
+import com.wisyuk.data.extras.BookingDetails
 import com.wisyuk.data.response.DataHotelsItem
 import com.wisyuk.data.response.ListTourismItem
 import com.wisyuk.data.response.PlanDataItem
@@ -47,6 +49,7 @@ class DetailActivity : AppCompatActivity() {
     private var tourismID = -1
     private var goAt = ""
     private var isFavorite = false
+    private var photoUrl = ""
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +57,7 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        showLoading(false)
         val tourism = if (Build.VERSION.SDK_INT >= 33) {
             intent.getParcelableExtra<ListTourismItem>(TOURISM, ListTourismItem::class.java)
         } else {
@@ -72,6 +76,9 @@ class DetailActivity : AppCompatActivity() {
 
             if (tourism != null) {
                 Glide.with(this).load(tourism.image).into(binding.ivDetailPhoto)
+                Log.d("Check", tourism.image)
+                photoUrl = tourism.image
+                Log.d("Check2", photoUrl)
                 binding.tvDetailName.text = tourism.name
 
                 if (tourism.goAt != null) {
@@ -89,14 +96,16 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
-
         setupView()
         setupAction()
         observerViewModel()
 
     }
 
-
+    override fun onResume() {
+        super.onResume()
+        showLoading(false)
+    }
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -117,6 +126,14 @@ class DetailActivity : AppCompatActivity() {
         var rideName: String? = null
         var tourGuideName: String? = null
 
+        //Parcelable Neccesities
+        var hotelTitle: String? = null
+        var rideTitle: String? = null
+        var tourGuideTitle: String? = null
+        var hotelPrice: Int? = null
+        var ridePrice: Int? = null
+        var tourGuidePrice: Int? = null
+
         viewModel.favoriteData.observe(this) {
             if (it != null) {
                 binding.favoriteButton.setImageResource(R.drawable.baseline_favorite_24)
@@ -125,10 +142,7 @@ class DetailActivity : AppCompatActivity() {
                 rideName = it.rideName
                 tourGuideName = it.tourGuideName
             }
-
         }
-
-
 
         viewModel.dataHotels.observe(this) { hotel ->
             val items = hotel.map { it.name }
@@ -143,7 +157,6 @@ class DetailActivity : AppCompatActivity() {
                 }
             }
 
-
             binding.spinnerHotel.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 @SuppressLint("SetTextI18n")
                 override fun onItemSelected(
@@ -155,6 +168,8 @@ class DetailActivity : AppCompatActivity() {
                     val item = hotel.find {it.name == items[position] }
                     itemHotelId = item?.id ?: -1
                     binding.priceValueHotel.text = "Rp ${item?.price}"
+                    hotelPrice = item?.price
+                    hotelTitle = item?.name
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -188,6 +203,8 @@ class DetailActivity : AppCompatActivity() {
                     val item = ride.find {it.name == items[position] }
                     itemRideId = item?.id ?: -1
                     binding.priceValueRide.text = "Rp ${item?.price}"
+                    ridePrice = item?.price
+                    rideTitle = item?.name
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -220,6 +237,8 @@ class DetailActivity : AppCompatActivity() {
                     val item = tourGuide.find {it.name == items[position] }
                     itemTourGuideId = item?.id ?: -1
                     binding.priceValueTourGuide.text = "Rp ${item?.price}"
+                    tourGuidePrice = item?.price
+                    tourGuideTitle = item?.name
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -229,9 +248,26 @@ class DetailActivity : AppCompatActivity() {
         }
 
         binding.continuePaymentButton.setOnClickListener {
+            Log.d("Tes", photoUrl + " " + tourismID )
+            val bookingDetails = BookingDetails(
+                tourismID,
+                photoUrl,
+                hotelName = hotelTitle,
+                itemHotelId,
+                hotelPrice ?: 0,
+                rideName = rideTitle,
+                itemRideId,
+                ridePrice ?: 0,
+                tourGuideName = tourGuideTitle,
+                itemTourGuideId,
+                tourGuidePrice ?: 0,
+                date = goAt.dateFormattedGoAt()
+            )
+
             val intent = Intent(this@DetailActivity, PaymentActivity::class.java)
+            intent.putExtra("PREV_ACTIVITY_CLASS", DetailActivity::class.java)
+            intent.putExtra("BOOKING_DETAILS", bookingDetails)
             startActivity(intent)
-            finish()
         }
 
         binding.backButton.setOnClickListener {

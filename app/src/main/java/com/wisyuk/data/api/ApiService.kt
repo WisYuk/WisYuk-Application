@@ -56,18 +56,17 @@ interface ApiService {
         @Part image: MultipartBody.Part? = null
     ) : UpdateProfileResponse
 
-    @Multipart
+    @FormUrlEncoded
     @POST("add-paid-plan")
     suspend fun addPaidPlan(
-        //userID, tourismID, hotelID, rideID, tourGuideID, go_date, status, paymentMethodID
-        @Part("userID") userID: RequestBody,
-        @Part("tourismID") tourismID: RequestBody,
-        @Part("hotelID") hotelID: RequestBody,
-        @Part("rideID") rideID: RequestBody,
-        @Part("tourGuideID") tourGuideID: RequestBody,
-        @Part("go_date") goDate: RequestBody,
-        @Part("status") status: RequestBody,
-        @Part("paymentMethodID") paymentMethodID: RequestBody,
+        @Field("userID") userID: Int,
+        @Field("tourismID") tourismID: Int,
+        @Field("hotelID") hotelID: Int,
+        @Field("rideID") rideID: Int,
+        @Field("tourGuideID") tourGuideID: Int,
+        @Field("go_date") goDate: String,
+        @Field("status") status: Int,
+        @Field("paymentMethodID") paymentMethodID: Int,
     ): AddPaidPlanResponse
 
     @FormUrlEncoded
