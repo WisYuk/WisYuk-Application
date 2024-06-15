@@ -79,6 +79,11 @@ class ProfileFragment : Fragment() {
                 startGallery()
         }
 
+        binding.editIcon.setOnClickListener{
+            if (profileViewModel.editMode.value == true)
+                startGallery()
+        }
+
         binding.saveButton.setOnClickListener {
             if (profileViewModel.editMode.value == true) save()
         }

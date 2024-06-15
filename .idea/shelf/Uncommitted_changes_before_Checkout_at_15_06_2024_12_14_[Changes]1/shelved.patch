@@ -1,0 +1,605 @@
+Index: .idea/deploymentTargetSelector.xml
+===================================================================
+diff --git a/.idea/deploymentTargetSelector.xml b/.idea/deploymentTargetSelector.xml
+deleted file mode 100644
+--- a/.idea/deploymentTargetSelector.xml	
++++ /dev/null	
+@@ -1,10 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="deploymentTargetSelector">
+-    <selectionStates>
+-      <SelectionState runConfigName="app">
+-        <option name="selectionMode" value="DROPDOWN" />
+-      </SelectionState>
+-    </selectionStates>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_profile.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".ui.home.ui.profile.ProfileFragment\">\r\n\r\n    <ProgressBar\r\n        android:id=\"@+id/progressBar\"\r\n        android:theme=\"@style/Custom.BlackWhite\"\r\n        style=\"?android:attr/progressBarStyle\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:visibility=\"gone\"\r\n        android:elevation=\"2dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        tools:visibility=\"visible\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/tv_title\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:paddingTop=\"24dp\"\r\n        android:paddingBottom=\"176dp\"\r\n        android:text=\"@string/profile\"\r\n        android:textAlignment=\"center\"\r\n        android:textColor=\"@color/black\"\r\n        android:background=\"@color/md_theme_primary\"\r\n        android:textSize=\"@dimen/profile\"\r\n        android:textStyle=\"bold\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <de.hdodenhof.circleimageview.CircleImageView\r\n        android:id=\"@+id/iv_profile_photo\"\r\n        android:layout_width=\"150dp\"\r\n        android:layout_height=\"150dp\"\r\n        android:layout_centerInParent=\"true\"\r\n        android:layout_marginTop=\"-75dp\"\r\n        android:src=\"@drawable/baseline_account_circle_24\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/tv_title\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/tv_title\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/tv_title\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/edit_icon\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"0dp\"\r\n        android:layout_marginBottom=\"0dp\"\r\n        android:contentDescription=\"@string/edit_your_profile_picture\"\r\n        android:visibility=\"gone\"\r\n        android:src=\"@drawable/baseline_edit_24\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/iv_profile_photo\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/iv_profile_photo\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/tv_profile_name\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"@string/app_name\"\r\n        android:textSize=\"@dimen/heading1\"\r\n        android:textStyle=\"bold\"\r\n        android:layout_marginBottom=\"16dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/iv_profile_photo\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        />\r\n\r\n    <EditText\r\n        android:id=\"@+id/tv_profile_name_edit\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"@string/app_name\"\r\n        android:textSize=\"@dimen/heading1\"\r\n        android:textStyle=\"bold\"\r\n        android:layout_marginBottom=\"16dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:visibility=\"gone\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/iv_profile_photo\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        />\r\n\r\n\r\n    <TextView\r\n        android:id=\"@+id/tv_profile_email\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"48dp\"\r\n        android:layout_marginEnd=\"16dp\"\r\n        android:text=\"@string/email\"\r\n        android:textSize=\"@dimen/heading1\"\r\n        android:textStyle=\"bold\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/tv_title\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/tv_title\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/iv_profile_photo\" />\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/linearLayout\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:layout_marginEnd=\"16dp\"\r\n        android:background=\"@drawable/profile_box\"\r\n        android:orientation=\"horizontal\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/tv_profile_email\">\r\n\r\n        <ImageView\r\n            android:layout_width=\"40dp\"\r\n            android:layout_height=\"40dp\"\r\n            android:contentDescription=\"@string/email\"\r\n            android:paddingHorizontal=\"8dp\"\r\n            android:src=\"@drawable/baseline_mail_outline_24\"\r\n            app:layout_constraintEnd_toStartOf=\"@+id/tv_profile_email_box\"\r\n            app:layout_constraintStart_toStartOf=\"@+id/tv_profile_email\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/tv_profile_email\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/tv_profile_email_box\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:paddingHorizontal=\"16dp\"\r\n            android:paddingVertical=\"9dp\"\r\n            android:text=\"@string/email_dummy\"\r\n            android:textColor=\"@color/gray\"\r\n            android:textSize=\"@dimen/heading2\" />\r\n    </LinearLayout>\r\n\r\n    <TextView\r\n        android:id=\"@+id/tv_profile_pref\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginEnd=\"16dp\"\r\n        android:text=\"@string/your_preferences\"\r\n        android:textSize=\"@dimen/heading1\"\r\n        android:textStyle=\"bold\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/linearLayout\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/linearLayout\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/linearLayout\" />\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/preference_container\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"vertical\"\r\n        android:paddingHorizontal=\"16dp\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/tv_profile_pref\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/tv_profile_pref_first\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:background=\"@drawable/profile_box\"\r\n            android:paddingHorizontal=\"16dp\"\r\n            android:paddingVertical=\"9dp\"\r\n            android:text=\"@string/preferences_dummy\"\r\n            android:textColor=\"@color/dark_gray\"\r\n            android:textSize=\"@dimen/heading2\"\r\n            android:textStyle=\"bold\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/tv_profile_pref_second\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:background=\"@drawable/profile_box\"\r\n            android:paddingHorizontal=\"16dp\"\r\n            android:paddingVertical=\"9dp\"\r\n            android:text=\"@string/preferences_dummy\"\r\n            android:textColor=\"@color/dark_gray\"\r\n            android:textSize=\"@dimen/heading2\"\r\n            android:textStyle=\"bold\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/tv_profile_pref_third\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:background=\"@drawable/profile_box\"\r\n            android:paddingHorizontal=\"16dp\"\r\n            android:paddingVertical=\"9dp\"\r\n            android:text=\"@string/preferences_dummy\"\r\n            android:textColor=\"@color/dark_gray\"\r\n            android:textSize=\"@dimen/heading2\"\r\n            android:textStyle=\"bold\" />\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/preference_container_edit\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"vertical\"\r\n        android:visibility=\"gone\"\r\n        android:paddingHorizontal=\"16dp\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/tv_profile_pref\">\r\n\r\n        <Spinner\r\n            android:id=\"@+id/tv_profile_pref_first_edit\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:background=\"@drawable/profile_box\"\r\n            android:paddingHorizontal=\"16dp\"\r\n            android:paddingVertical=\"9dp\"\r\n            android:text=\"@string/preferences_dummy\"\r\n            android:textColor=\"@color/dark_gray\"\r\n            android:textSize=\"@dimen/heading2\"\r\n            android:textStyle=\"bold\" />\r\n\r\n\r\n        <Spinner\r\n            android:id=\"@+id/tv_profile_pref_second_edit\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:background=\"@drawable/profile_box\"\r\n            android:paddingHorizontal=\"16dp\"\r\n            android:paddingVertical=\"9dp\"\r\n            android:text=\"@string/preferences_dummy\"\r\n            android:textColor=\"@color/dark_gray\"\r\n            android:textSize=\"@dimen/heading2\"\r\n            android:textStyle=\"bold\" />\r\n\r\n        <Spinner\r\n            android:id=\"@+id/tv_profile_pref_third_edit\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:background=\"@drawable/profile_box\"\r\n            android:paddingHorizontal=\"16dp\"\r\n            android:paddingVertical=\"9dp\"\r\n            android:text=\"@string/preferences_dummy\"\r\n            android:textColor=\"@color/dark_gray\"\r\n            android:textSize=\"@dimen/heading2\"\r\n            android:textStyle=\"bold\" />\r\n    </LinearLayout>\r\n\r\n    <com.google.android.material.button.MaterialButton\r\n        android:id=\"@+id/edit_button\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"24dp\"\r\n        android:layout_marginEnd=\"16dp\"\r\n        android:text=\"@string/edit\"\r\n        app:cornerRadius=\"24dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/preference_container\" />\r\n\r\n    <com.google.android.material.button.MaterialButton\r\n        android:id=\"@+id/save_button\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"24dp\"\r\n        android:layout_marginEnd=\"16dp\"\r\n        android:text=\"@string/save\"\r\n        app:cornerRadius=\"24dp\"\r\n        android:visibility=\"gone\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/preference_container_edit\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_profile.xml b/app/src/main/res/layout/fragment_profile.xml
+--- a/app/src/main/res/layout/fragment_profile.xml	
++++ b/app/src/main/res/layout/fragment_profile.xml	
+@@ -1,277 +1,288 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     tools:context=".ui.home.ui.profile.ProfileFragment">
+ 
+-    <ProgressBar
+-        android:id="@+id/progressBar"
+-        android:theme="@style/Custom.BlackWhite"
+-        style="?android:attr/progressBarStyle"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:visibility="gone"
+-        android:elevation="2dp"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        tools:visibility="visible" />
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:layout_height="wrap_content"
++        android:layout_width="match_parent">
++
++">
++
++        <ProgressBar
++            android:id="@+id/progressBar"
++            android:theme="@style/Custom.BlackWhite"
++            style="?android:attr/progressBarStyle"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:visibility="gone"
++            android:elevation="2dp"
++            app:layout_constraintBottom_toBottomOf="parent"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent"
++            tools:visibility="visible" />
+ 
+-    <TextView
+-        android:id="@+id/tv_title"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:paddingTop="24dp"
+-        android:paddingBottom="176dp"
+-        android:text="@string/profile"
+-        android:textAlignment="center"
+-        android:textColor="@color/black"
+-        android:background="@color/md_theme_primary"
+-        android:textSize="@dimen/profile"
+-        android:textStyle="bold"
+-        app:layout_constraintTop_toTopOf="parent" />
++        <TextView
++            android:id="@+id/tv_title"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:paddingTop="24dp"
++            android:paddingBottom="176dp"
++            android:text="@string/profile"
++            android:textAlignment="center"
++            android:textColor="@color/black"
++            android:background="@color/md_theme_primary"
++            android:textSize="@dimen/profile"
++            android:textStyle="bold"
++            app:layout_constraintTop_toTopOf="parent" />
+ 
+-    <de.hdodenhof.circleimageview.CircleImageView
+-        android:id="@+id/iv_profile_photo"
+-        android:layout_width="150dp"
+-        android:layout_height="150dp"
+-        android:layout_centerInParent="true"
+-        android:layout_marginTop="-75dp"
+-        android:src="@drawable/baseline_account_circle_24"
+-        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+-        app:layout_constraintStart_toStartOf="@+id/tv_title"
+-        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
++        <de.hdodenhof.circleimageview.CircleImageView
++            android:id="@+id/iv_profile_photo"
++            android:layout_width="150dp"
++            android:layout_height="150dp"
++            android:layout_centerInParent="true"
++            android:layout_marginTop="-75dp"
++            android:src="@drawable/baseline_account_circle_24"
++            app:layout_constraintEnd_toEndOf="@+id/tv_title"
++            app:layout_constraintStart_toStartOf="@+id/tv_title"
++            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+ 
+-    <ImageView
+-        android:id="@+id/edit_icon"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginEnd="0dp"
+-        android:layout_marginBottom="0dp"
+-        android:contentDescription="@string/edit_your_profile_picture"
+-        android:visibility="gone"
+-        android:src="@drawable/baseline_edit_24"
+-        app:layout_constraintBottom_toBottomOf="@+id/iv_profile_photo"
+-        app:layout_constraintEnd_toEndOf="@+id/iv_profile_photo" />
++        <ImageView
++            android:id="@+id/edit_icon"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_marginEnd="0dp"
++            android:layout_marginBottom="0dp"
++            android:contentDescription="@string/edit_your_profile_picture"
++            android:visibility="gone"
++            android:src="@drawable/baseline_edit_24"
++            app:layout_constraintBottom_toBottomOf="@+id/iv_profile_photo"
++            app:layout_constraintEnd_toEndOf="@+id/iv_profile_photo" />
+ 
+-    <TextView
+-        android:id="@+id/tv_profile_name"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="@string/app_name"
+-        android:textSize="@dimen/heading1"
+-        android:textStyle="bold"
+-        android:layout_marginBottom="16dp"
+-        android:layout_marginTop="8dp"
+-        app:layout_constraintTop_toBottomOf="@id/iv_profile_photo"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        />
++        <TextView
++            android:id="@+id/tv_profile_name"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="@string/app_name"
++            android:textSize="@dimen/heading1"
++            android:textStyle="bold"
++            android:layout_marginBottom="16dp"
++            android:layout_marginTop="8dp"
++            app:layout_constraintTop_toBottomOf="@id/iv_profile_photo"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintEnd_toEndOf="parent"
++            />
+ 
+-    <EditText
+-        android:id="@+id/tv_profile_name_edit"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="@string/app_name"
+-        android:textSize="@dimen/heading1"
+-        android:textStyle="bold"
+-        android:layout_marginBottom="16dp"
+-        android:layout_marginTop="8dp"
+-        android:visibility="gone"
+-        app:layout_constraintTop_toBottomOf="@id/iv_profile_photo"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        />
++        <EditText
++            android:id="@+id/tv_profile_name_edit"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="@string/app_name"
++            android:textSize="@dimen/heading1"
++            android:textStyle="bold"
++            android:layout_marginBottom="16dp"
++            android:layout_marginTop="8dp"
++            android:visibility="gone"
++            app:layout_constraintTop_toBottomOf="@id/iv_profile_photo"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintEnd_toEndOf="parent"
++            />
+ 
+ 
+-    <TextView
+-        android:id="@+id/tv_profile_email"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="16dp"
+-        android:layout_marginTop="48dp"
+-        android:layout_marginEnd="16dp"
+-        android:text="@string/email"
+-        android:textSize="@dimen/heading1"
+-        android:textStyle="bold"
+-        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+-        app:layout_constraintStart_toStartOf="@+id/tv_title"
+-        app:layout_constraintTop_toBottomOf="@+id/iv_profile_photo" />
++        <TextView
++            android:id="@+id/tv_profile_email"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginStart="16dp"
++            android:layout_marginTop="48dp"
++            android:layout_marginEnd="16dp"
++            android:text="@string/email"
++            android:textSize="@dimen/heading1"
++            android:textStyle="bold"
++            app:layout_constraintEnd_toEndOf="@+id/tv_title"
++            app:layout_constraintStart_toStartOf="@+id/tv_title"
++            app:layout_constraintTop_toBottomOf="@+id/iv_profile_photo" />
+ 
+-    <LinearLayout
+-        android:id="@+id/linearLayout"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="16dp"
+-        android:layout_marginTop="8dp"
+-        android:layout_marginEnd="16dp"
+-        android:background="@drawable/profile_box"
+-        android:orientation="horizontal"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_email">
++        <LinearLayout
++            android:id="@+id/linearLayout"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginStart="16dp"
++            android:layout_marginTop="8dp"
++            android:layout_marginEnd="16dp"
++            android:background="@drawable/profile_box"
++            android:orientation="horizontal"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toBottomOf="@+id/tv_profile_email">
+ 
+-        <ImageView
+-            android:layout_width="40dp"
+-            android:layout_height="40dp"
+-            android:contentDescription="@string/email"
+-            android:paddingHorizontal="8dp"
+-            android:src="@drawable/baseline_mail_outline_24"
+-            app:layout_constraintEnd_toStartOf="@+id/tv_profile_email_box"
+-            app:layout_constraintStart_toStartOf="@+id/tv_profile_email"
+-            app:layout_constraintTop_toBottomOf="@+id/tv_profile_email" />
++            <ImageView
++                android:layout_width="40dp"
++                android:layout_height="40dp"
++                android:contentDescription="@string/email"
++                android:paddingHorizontal="8dp"
++                android:src="@drawable/baseline_mail_outline_24"
++                app:layout_constraintEnd_toStartOf="@+id/tv_profile_email_box"
++                app:layout_constraintStart_toStartOf="@+id/tv_profile_email"
++                app:layout_constraintTop_toBottomOf="@+id/tv_profile_email" />
+ 
+-        <TextView
+-            android:id="@+id/tv_profile_email_box"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:paddingHorizontal="16dp"
+-            android:paddingVertical="9dp"
+-            android:text="@string/email_dummy"
+-            android:textColor="@color/gray"
+-            android:textSize="@dimen/heading2" />
+-    </LinearLayout>
++            <TextView
++                android:id="@+id/tv_profile_email_box"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:paddingHorizontal="16dp"
++                android:paddingVertical="9dp"
++                android:text="@string/email_dummy"
++                android:textColor="@color/gray"
++                android:textSize="@dimen/heading2" />
++        </LinearLayout>
+ 
+-    <TextView
+-        android:id="@+id/tv_profile_pref"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="16dp"
+-        android:layout_marginTop="16dp"
+-        android:layout_marginEnd="16dp"
+-        android:text="@string/your_preferences"
+-        android:textSize="@dimen/heading1"
+-        android:textStyle="bold"
+-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
++        <TextView
++            android:id="@+id/tv_profile_pref"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginStart="16dp"
++            android:layout_marginTop="16dp"
++            android:layout_marginEnd="16dp"
++            android:text="@string/your_preferences"
++            android:textSize="@dimen/heading1"
++            android:textStyle="bold"
++            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
++            app:layout_constraintStart_toStartOf="@+id/linearLayout"
++            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+ 
+-    <LinearLayout
+-        android:id="@+id/preference_container"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:orientation="vertical"
+-        android:paddingHorizontal="16dp"
+-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_pref">
++        <LinearLayout
++            android:id="@+id/preference_container"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:orientation="vertical"
++            android:paddingHorizontal="16dp"
++            app:layout_constraintTop_toBottomOf="@+id/tv_profile_pref">
+ 
+-        <TextView
+-            android:id="@+id/tv_profile_pref_first"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_marginTop="8dp"
+-            android:background="@drawable/profile_box"
+-            android:paddingHorizontal="16dp"
+-            android:paddingVertical="9dp"
+-            android:text="@string/preferences_dummy"
+-            android:textColor="@color/dark_gray"
+-            android:textSize="@dimen/heading2"
+-            android:textStyle="bold" />
++            <TextView
++                android:id="@+id/tv_profile_pref_first"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="8dp"
++                android:background="@drawable/profile_box"
++                android:paddingHorizontal="16dp"
++                android:paddingVertical="9dp"
++                android:text="@string/preferences_dummy"
++                android:textColor="@color/dark_gray"
++                android:textSize="@dimen/heading2"
++                android:textStyle="bold" />
+ 
+-        <TextView
+-            android:id="@+id/tv_profile_pref_second"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_marginTop="8dp"
+-            android:background="@drawable/profile_box"
+-            android:paddingHorizontal="16dp"
+-            android:paddingVertical="9dp"
+-            android:text="@string/preferences_dummy"
+-            android:textColor="@color/dark_gray"
+-            android:textSize="@dimen/heading2"
+-            android:textStyle="bold" />
++            <TextView
++                android:id="@+id/tv_profile_pref_second"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="8dp"
++                android:background="@drawable/profile_box"
++                android:paddingHorizontal="16dp"
++                android:paddingVertical="9dp"
++                android:text="@string/preferences_dummy"
++                android:textColor="@color/dark_gray"
++                android:textSize="@dimen/heading2"
++                android:textStyle="bold" />
+ 
+-        <TextView
+-            android:id="@+id/tv_profile_pref_third"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_marginTop="8dp"
+-            android:background="@drawable/profile_box"
+-            android:paddingHorizontal="16dp"
+-            android:paddingVertical="9dp"
+-            android:text="@string/preferences_dummy"
+-            android:textColor="@color/dark_gray"
+-            android:textSize="@dimen/heading2"
+-            android:textStyle="bold" />
+-    </LinearLayout>
++            <TextView
++                android:id="@+id/tv_profile_pref_third"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="8dp"
++                android:background="@drawable/profile_box"
++                android:paddingHorizontal="16dp"
++                android:paddingVertical="9dp"
++                android:text="@string/preferences_dummy"
++                android:textColor="@color/dark_gray"
++                android:textSize="@dimen/heading2"
++                android:textStyle="bold" />
++        </LinearLayout>
+ 
+-    <LinearLayout
+-        android:id="@+id/preference_container_edit"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:orientation="vertical"
+-        android:visibility="gone"
+-        android:paddingHorizontal="16dp"
+-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_pref">
++        <LinearLayout
++            android:id="@+id/preference_container_edit"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:orientation="vertical"
++            android:visibility="gone"
++            android:paddingHorizontal="16dp"
++            app:layout_constraintTop_toBottomOf="@+id/tv_profile_pref">
+ 
+-        <Spinner
+-            android:id="@+id/tv_profile_pref_first_edit"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_marginTop="8dp"
+-            android:background="@drawable/profile_box"
+-            android:paddingHorizontal="16dp"
+-            android:paddingVertical="9dp"
+-            android:text="@string/preferences_dummy"
+-            android:textColor="@color/dark_gray"
+-            android:textSize="@dimen/heading2"
+-            android:textStyle="bold" />
++            <Spinner
++                android:id="@+id/tv_profile_pref_first_edit"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="8dp"
++                android:background="@drawable/custom_dropdown"
++                android:padding="8dp"
++                android:paddingHorizontal="16dp"
++                android:paddingVertical="9dp"
++                android:text="@string/preferences_dummy"
++                android:textColor="@color/dark_gray"
++                android:textSize="@dimen/heading2"
++                android:textStyle="bold" />
+ 
+ 
+-        <Spinner
+-            android:id="@+id/tv_profile_pref_second_edit"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_marginTop="8dp"
+-            android:background="@drawable/profile_box"
+-            android:paddingHorizontal="16dp"
+-            android:paddingVertical="9dp"
+-            android:text="@string/preferences_dummy"
+-            android:textColor="@color/dark_gray"
+-            android:textSize="@dimen/heading2"
+-            android:textStyle="bold" />
++            <Spinner
++                android:id="@+id/tv_profile_pref_second_edit"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="8dp"
++                android:background="@drawable/custom_dropdown"
++                android:padding="8dp"
++                android:paddingHorizontal="16dp"
++                android:paddingVertical="9dp"
++                android:text="@string/preferences_dummy"
++                android:textColor="@color/dark_gray"
++                android:textSize="@dimen/heading2"
++                android:textStyle="bold" />
+ 
+-        <Spinner
+-            android:id="@+id/tv_profile_pref_third_edit"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_marginTop="8dp"
+-            android:background="@drawable/profile_box"
+-            android:paddingHorizontal="16dp"
+-            android:paddingVertical="9dp"
+-            android:text="@string/preferences_dummy"
+-            android:textColor="@color/dark_gray"
+-            android:textSize="@dimen/heading2"
+-            android:textStyle="bold" />
+-    </LinearLayout>
++            <Spinner
++                android:id="@+id/tv_profile_pref_third_edit"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="8dp"
++                android:background="@drawable/custom_dropdown"
++                android:padding="8dp"
++                android:paddingHorizontal="16dp"
++                android:paddingVertical="9dp"
++                android:text="@string/preferences_dummy"
++                android:textColor="@color/dark_gray"
++                android:textSize="@dimen/heading2"
++                android:textStyle="bold" />
++        </LinearLayout>
+ 
+-    <com.google.android.material.button.MaterialButton
+-        android:id="@+id/edit_button"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="16dp"
+-        android:layout_marginTop="24dp"
+-        android:layout_marginEnd="16dp"
+-        android:text="@string/edit"
+-        app:cornerRadius="24dp"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/preference_container" />
++        <com.google.android.material.button.MaterialButton
++            android:id="@+id/edit_button"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginStart="16dp"
++            android:layout_marginTop="24dp"
++            android:layout_marginEnd="16dp"
++            android:text="@string/edit"
++            app:cornerRadius="24dp"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toBottomOf="@+id/preference_container" />
+ 
+-    <com.google.android.material.button.MaterialButton
+-        android:id="@+id/save_button"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="16dp"
+-        android:layout_marginTop="24dp"
+-        android:layout_marginEnd="16dp"
+-        android:text="@string/save"
+-        app:cornerRadius="24dp"
+-        android:visibility="gone"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/preference_container_edit" />
++        <com.google.android.material.button.MaterialButton
++            android:id="@+id/save_button"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginStart="16dp"
++            android:layout_marginTop="24dp"
++            android:layout_marginEnd="16dp"
++            android:text="@string/save"
++            app:cornerRadius="24dp"
++            android:visibility="gone"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toBottomOf="@+id/preference_container_edit" />
+ 
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
++    </androidx.constraintlayout.widget.ConstraintLayout>
++
++</ScrollView>
+Index: app/src/main/res/layout/activity_detail.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<ScrollView xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main\"\r\n    android:layout_height=\"match_parent\"\r\n    android:layout_width=\"match_parent\">\r\n\r\n    <androidx.constraintlayout.widget.ConstraintLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        tools:context=\".ui.home.detail_home.DetailActivity\">\r\n\r\n        <ProgressBar\r\n            android:id=\"@+id/progressBar\"\r\n            android:theme=\"@style/Custom.BlackWhite\"\r\n            style=\"?android:attr/progressBarStyle\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:visibility=\"gone\"\r\n            android:elevation=\"2dp\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            tools:visibility=\"visible\" />\r\n\r\n        <androidx.constraintlayout.widget.ConstraintLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginStart=\"8dp\"\r\n            android:layout_marginTop=\"16dp\"\r\n            android:layout_marginEnd=\"8dp\"\r\n            android:paddingTop=\"8dp\"\r\n            app:layout_constraintBottom_toTopOf=\"@+id/iv_detail_photo\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\">\r\n\r\n            <ImageButton\r\n                android:id=\"@+id/back_button\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:background=\"#0000\"\r\n                android:contentDescription=\"@string/back\"\r\n                android:layout_marginStart=\"8dp\"\r\n                android:src=\"@drawable/baseline_arrow_back_24\"\r\n                app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                app:layout_constraintStart_toStartOf=\"parent\"\r\n                app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n            <ImageButton\r\n                android:id=\"@+id/favorite_button\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:background=\"#0000\"\r\n                android:layout_marginEnd=\"8dp\"\r\n                android:contentDescription=\"@string/favorite\"\r\n                android:src=\"@drawable/baseline_favorite_border_24\"\r\n                app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                app:layout_constraintEnd_toEndOf=\"parent\"\r\n                app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n        </androidx.constraintlayout.widget.ConstraintLayout>\r\n\r\n\r\n        <ImageView\r\n            android:id=\"@+id/iv_detail_photo\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"200dp\"\r\n            android:layout_marginTop=\"24dp\"\r\n            android:contentDescription=\"@string/tourism_preview_photo\"\r\n            android:transitionName=\"photo\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            app:srcCompat=\"@drawable/baseline_image_24\"\r\n            tools:layout_editor_absoluteX=\"-4dp\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/tv_detail_name\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginStart=\"8dp\"\r\n            android:layout_marginEnd=\"8dp\"\r\n            android:layout_marginTop=\"16dp\"\r\n            android:text=\"@string/title_tour\"\r\n            android:textStyle=\"bold\"\r\n            android:textSize=\"@dimen/heading1\"\r\n            android:transitionName=\"name\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/iv_detail_photo\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/tv_detail_date\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:layout_marginStart=\"8dp\"\r\n            android:layout_marginEnd=\"8dp\"\r\n            android:textSize=\"@dimen/normal\"\r\n            android:text=\"@string/date_item\"\r\n            android:transitionName=\"date\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/tv_detail_name\" />\r\n\r\n\r\n        <TextView\r\n            android:id=\"@+id/tv_detail_description\"\r\n            android:layout_width=\"0dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginStart=\"8dp\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:layout_marginEnd=\"8dp\"\r\n            android:text=\"@string/description_item\"\r\n            android:transitionName=\"description\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/tv_detail_date\" />\r\n\r\n        <androidx.constraintlayout.widget.ConstraintLayout\r\n            android:id=\"@+id/hotel_container\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"0dp\"\r\n            android:layout_marginTop=\"16dp\"\r\n            android:padding=\"8dp\"\r\n            app:layout_constraintTop_toBottomOf=\"@id/tv_detail_description\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            >\r\n\r\n            <TextView\r\n                android:id=\"@+id/tv_hotel_title\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"8dp\"\r\n                android:text=\"@string/hotel\"\r\n                android:textSize=\"@dimen/heading1\"\r\n                android:textStyle=\"bold\"\r\n                app:layout_constraintStart_toStartOf=\"parent\"\r\n                app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/spinner_hotel\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"16dp\"\r\n                android:background=\"@android:drawable/btn_dropdown\"\r\n                android:spinnerMode=\"dropdown\"\r\n                app:layout_constraintEnd_toEndOf=\"parent\"\r\n                app:layout_constraintStart_toStartOf=\"parent\"\r\n                app:layout_constraintTop_toBottomOf=\"@id/tv_hotel_title\" />\r\n\r\n            <TextView\r\n                android:id=\"@+id/additional_note_hotel\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"@string/note_hotel\"\r\n                android:textSize=\"@dimen/normal\"\r\n                app:layout_constraintEnd_toEndOf=\"parent\"\r\n                app:layout_constraintStart_toStartOf=\"parent\"\r\n                app:layout_constraintTop_toBottomOf=\"@+id/spinner_hotel\" />\r\n\r\n            <LinearLayout\r\n                android:id=\"@+id/price_container_hotel\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:orientation=\"horizontal\"\r\n                android:layout_marginTop=\"8dp\"\r\n                app:layout_constraintTop_toBottomOf=\"@id/additional_note_hotel\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/price_title_hotel\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:text=\"@string/price\"\r\n                    android:textSize=\"@dimen/heading2\"\r\n                    android:textStyle=\"bold\"/>\r\n\r\n                <TextView\r\n                    android:id=\"@+id/price_value_hotel\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:text=\"@string/price_value\"\r\n                    android:textAlignment=\"viewEnd\"\r\n                    android:textStyle=\"bold\"\r\n                    android:textSize=\"@dimen/heading2\"/>\r\n            </LinearLayout>\r\n\r\n<!--            <Button-->\r\n<!--                android:id=\"@+id/add_button_hotel\"-->\r\n<!--                android:layout_width=\"wrap_content\"-->\r\n<!--                android:layout_height=\"wrap_content\"-->\r\n<!--                android:layout_marginTop=\"8dp\"-->\r\n<!--                android:text=\"@string/add_to_plan\"-->\r\n<!--                app:layout_constraintStart_toStartOf=\"parent\"-->\r\n<!--                app:layout_constraintTop_toBottomOf=\"@+id/price_container_hotel\" />-->\r\n\r\n        </androidx.constraintlayout.widget.ConstraintLayout>\r\n\r\n        <androidx.constraintlayout.widget.ConstraintLayout\r\n            android:id=\"@+id/ride_container\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"0dp\"\r\n            android:layout_marginTop=\"16dp\"\r\n            android:padding=\"8dp\"\r\n            app:layout_constraintTop_toBottomOf=\"@id/hotel_container\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            >\r\n\r\n            <TextView\r\n                android:id=\"@+id/tv_ride_title\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"8dp\"\r\n                android:text=\"@string/ride\"\r\n                android:textSize=\"@dimen/heading1\"\r\n                android:textStyle=\"bold\"\r\n                app:layout_constraintStart_toStartOf=\"parent\"\r\n                app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/spinner_ride\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"16dp\"\r\n                android:background=\"@android:drawable/btn_dropdown\"\r\n                android:spinnerMode=\"dropdown\"\r\n                app:layout_constraintEnd_toEndOf=\"parent\"\r\n                app:layout_constraintStart_toStartOf=\"parent\"\r\n                app:layout_constraintTop_toBottomOf=\"@id/tv_ride_title\" />\r\n\r\n            <LinearLayout\r\n                android:id=\"@+id/price_container_ride\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:orientation=\"horizontal\"\r\n                android:layout_marginTop=\"8dp\"\r\n                app:layout_constraintTop_toBottomOf=\"@id/spinner_ride\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/price_title_ride\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:text=\"@string/price\"\r\n                    android:textSize=\"@dimen/heading2\"\r\n                    android:textStyle=\"bold\"/>\r\n\r\n                <TextView\r\n                    android:id=\"@+id/price_value_ride\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:text=\"@string/price_value\"\r\n                    android:textAlignment=\"viewEnd\"\r\n                    android:textStyle=\"bold\"\r\n                    android:textSize=\"@dimen/heading2\"/>\r\n            </LinearLayout>\r\n\r\n<!--            <Button-->\r\n<!--                android:id=\"@+id/add_button_ride\"-->\r\n<!--                android:layout_width=\"wrap_content\"-->\r\n<!--                android:layout_height=\"wrap_content\"-->\r\n<!--                android:layout_marginTop=\"8dp\"-->\r\n<!--                android:text=\"@string/add_to_plan\"-->\r\n<!--                app:layout_constraintStart_toStartOf=\"parent\"-->\r\n<!--                app:layout_constraintTop_toBottomOf=\"@+id/price_container_ride\" />-->\r\n\r\n        </androidx.constraintlayout.widget.ConstraintLayout>\r\n\r\n        <androidx.constraintlayout.widget.ConstraintLayout\r\n            android:id=\"@+id/tour_guide_container\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"0dp\"\r\n            android:layout_marginTop=\"16dp\"\r\n            android:padding=\"8dp\"\r\n            app:layout_constraintTop_toBottomOf=\"@id/ride_container\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            >\r\n\r\n            <TextView\r\n                android:id=\"@+id/tv_tour_guide_title\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"8dp\"\r\n                android:text=\"@string/local_tour_guide\"\r\n                android:textSize=\"@dimen/heading1\"\r\n                android:textStyle=\"bold\"\r\n                app:layout_constraintStart_toStartOf=\"parent\"\r\n                app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n            <Spinner\r\n                android:id=\"@+id/spinner_tour_guide\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"16dp\"\r\n                android:background=\"@android:drawable/btn_dropdown\"\r\n                android:spinnerMode=\"dropdown\"\r\n                app:layout_constraintEnd_toEndOf=\"parent\"\r\n                app:layout_constraintStart_toStartOf=\"parent\"\r\n                app:layout_constraintTop_toBottomOf=\"@id/tv_tour_guide_title\" />\r\n\r\n            <LinearLayout\r\n                android:id=\"@+id/price_container_tour_guide\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:orientation=\"horizontal\"\r\n                android:layout_marginTop=\"8dp\"\r\n                app:layout_constraintTop_toBottomOf=\"@id/spinner_tour_guide\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/price_title_tour_guide\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:text=\"@string/price\"\r\n                    android:textSize=\"@dimen/heading2\"\r\n                    android:textStyle=\"bold\"/>\r\n\r\n                <TextView\r\n                    android:id=\"@+id/price_value_tour_guide\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:text=\"@string/price_value\"\r\n                    android:textAlignment=\"viewEnd\"\r\n                    android:textStyle=\"bold\"\r\n                    android:textSize=\"@dimen/heading2\"/>\r\n            </LinearLayout>\r\n\r\n<!--            <Button-->\r\n<!--                android:id=\"@+id/add_button_tour_guide\"-->\r\n<!--                android:layout_width=\"wrap_content\"-->\r\n<!--                android:layout_height=\"wrap_content\"-->\r\n<!--                android:layout_marginTop=\"8dp\"-->\r\n<!--                android:text=\"@string/add_to_plan\"-->\r\n<!--                app:layout_constraintStart_toStartOf=\"parent\"-->\r\n<!--                app:layout_constraintTop_toBottomOf=\"@+id/price_container_tour_guide\" />-->\r\n\r\n        </androidx.constraintlayout.widget.ConstraintLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"48dp\"\r\n            android:padding=\"16dp\"\r\n            app:layout_constraintTop_toBottomOf=\"@id/tour_guide_container\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            android:background=\"?colorSurfaceDim\">\r\n\r\n            <Button\r\n                android:id=\"@+id/continue_payment_button\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"@string/continue_payment\"/>\r\n\r\n        </LinearLayout>\r\n\r\n\r\n    </androidx.constraintlayout.widget.ConstraintLayout>\r\n</ScrollView>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_detail.xml b/app/src/main/res/layout/activity_detail.xml
+--- a/app/src/main/res/layout/activity_detail.xml	
++++ b/app/src/main/res/layout/activity_detail.xml	
+@@ -143,7 +143,8 @@
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="16dp"
+-                android:background="@android:drawable/btn_dropdown"
++                android:background="@drawable/custom_dropdown"
++                android:padding="8dp"
+                 android:spinnerMode="dropdown"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+@@ -223,7 +224,8 @@
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="16dp"
+-                android:background="@android:drawable/btn_dropdown"
++                android:background="@drawable/custom_dropdown"
++                android:padding="8dp"
+                 android:spinnerMode="dropdown"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+@@ -293,7 +295,8 @@
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="16dp"
+-                android:background="@android:drawable/btn_dropdown"
++                android:background="@drawable/custom_dropdown"
++                android:padding="8dp"
+                 android:spinnerMode="dropdown"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"

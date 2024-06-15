@@ -1,0 +1,271 @@
+Index: app/src/main/java/com/wisyuk/data/response/LoginResponse.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wisyuk.data.response\r\n\r\nimport com.google.gson.annotations.SerializedName\r\n\r\ndata class LoginResponse(\r\n\r\n\t@field:SerializedName(\"message\")\r\n\tval message: String,\r\n\r\n\t@field:SerializedName(\"user\")\r\n\tval user: User,\r\n\r\n\t@field:SerializedName(\"status\")\r\n\tval status: String\r\n)\r\n\r\ndata class User(\r\n\r\n\t@field:SerializedName(\"image\")\r\n\tval image: String,\r\n\r\n\t@field:SerializedName(\"password\")\r\n\tval password: String,\r\n\r\n\t@field:SerializedName(\"updated_at\")\r\n\tval updatedAt: String,\r\n\r\n\t@field:SerializedName(\"name\")\r\n\tval name: String,\r\n\r\n\t@field:SerializedName(\"bool_promotion\")\r\n\tval boolPromotion: Int,\r\n\r\n\t@field:SerializedName(\"created_at\")\r\n\tval createdAt: String,\r\n\r\n\t@field:SerializedName(\"id\")\r\n\tval id: Int,\r\n\r\n\t@field:SerializedName(\"email\")\r\n\tval email: String\r\n)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wisyuk/data/response/LoginResponse.kt b/app/src/main/java/com/wisyuk/data/response/LoginResponse.kt
+--- a/app/src/main/java/com/wisyuk/data/response/LoginResponse.kt	(revision 053b54a8fbfae6b76b7c7f13bcd665a5bd8f7a69)
++++ b/app/src/main/java/com/wisyuk/data/response/LoginResponse.kt	(date 1717660605205)
+@@ -17,7 +17,7 @@
+ data class User(
+ 
+ 	@field:SerializedName("image")
+-	val image: String,
++	val image: String? = null,
+ 
+ 	@field:SerializedName("password")
+ 	val password: String,
+Index: app/src/main/java/com/wisyuk/ui/login/LoginActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wisyuk.ui.login\r\n\r\nimport android.content.Intent\r\nimport android.os.Build\r\nimport android.os.Bundle\r\nimport android.view.View\r\nimport android.view.WindowInsets\r\nimport android.view.WindowManager\r\nimport androidx.activity.viewModels\r\nimport androidx.appcompat.app.AlertDialog\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport com.wisyuk.R\r\nimport com.wisyuk.databinding.ActivityLoginBinding\r\nimport com.wisyuk.ui.ViewModelFactory\r\nimport com.wisyuk.ui.home.MainActivity\r\nimport com.wisyuk.ui.signup.SignUpActivity\r\n\r\nclass LoginActivity : AppCompatActivity() {\r\n    private lateinit var binding: ActivityLoginBinding\r\n    private val viewModel by viewModels<LoginViewModel> {\r\n        ViewModelFactory.getInstance(this)\r\n    }\r\n\r\n    private var errorMessage: String = \"\"\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        binding = ActivityLoginBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n\r\n        setupView()\r\n        setupAction()\r\n        observerViewModel()\r\n    }\r\n\r\n    private fun setupView() {\r\n        @Suppress(\"DEPRECATION\")\r\n        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {\r\n            window.insetsController?.hide(WindowInsets.Type.statusBars())\r\n        } else {\r\n            window.setFlags(\r\n                WindowManager.LayoutParams.FLAG_FULLSCREEN,\r\n                WindowManager.LayoutParams.FLAG_FULLSCREEN\r\n            )\r\n        }\r\n        supportActionBar?.hide()\r\n    }\r\n\r\n    private fun setupAction() {\r\n        binding.loginButton.setOnClickListener {\r\n            val email = binding.etEmail.text.toString()\r\n            val password = binding.etPassword.text.toString()\r\n            viewModel.login(email, password)\r\n\r\n            viewModel.loginResponse.observe(this) {\r\n                val intent = Intent(this, MainActivity::class.java)\r\n                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK\r\n                startActivity(intent)\r\n                finish()\r\n            }\r\n\r\n        }\r\n\r\n        binding.signUpButton.setOnClickListener {\r\n            val intent = Intent(this, SignUpActivity::class.java)\r\n            startActivity(intent)\r\n            finish()\r\n        }\r\n    }\r\n    private fun observerViewModel() {\r\n        viewModel.isLoading.observe(this) {\r\n            showLoading(it)\r\n        }\r\n        viewModel.isError.observe(this) {\r\n            showError(it)\r\n        }\r\n        viewModel.message.observe(this) {\r\n            if (it != null) {\r\n                errorMessage = it\r\n            }\r\n        }\r\n    }\r\n\r\n    private fun showLoading(isLoading: Boolean) {\r\n        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE\r\n    }\r\n\r\n    private fun showError(isError: Boolean) {\r\n        if (isError) {\r\n            AlertDialog.Builder(this).apply {\r\n                setTitle(getString(R.string.oh_no_there_is_something_wrong))\r\n                setMessage(errorMessage)\r\n                setNegativeButton(getString(R.string.close)) { dialog, _ ->\r\n                    dialog.dismiss()\r\n                }\r\n                create()\r\n                show()\r\n            }\r\n        }\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wisyuk/ui/login/LoginActivity.kt b/app/src/main/java/com/wisyuk/ui/login/LoginActivity.kt
+--- a/app/src/main/java/com/wisyuk/ui/login/LoginActivity.kt	(revision 053b54a8fbfae6b76b7c7f13bcd665a5bd8f7a69)
++++ b/app/src/main/java/com/wisyuk/ui/login/LoginActivity.kt	(date 1717660605206)
+@@ -3,9 +3,12 @@
+ import android.content.Intent
+ import android.os.Build
+ import android.os.Bundle
++import android.view.Menu
++import android.view.MenuItem
+ import android.view.View
+ import android.view.WindowInsets
+ import android.view.WindowManager
++import android.widget.Toast
+ import androidx.activity.viewModels
+ import androidx.appcompat.app.AlertDialog
+ import androidx.appcompat.app.AppCompatActivity
+@@ -42,7 +45,6 @@
+                 WindowManager.LayoutParams.FLAG_FULLSCREEN
+             )
+         }
+-        supportActionBar?.hide()
+     }
+ 
+     private fun setupAction() {
+@@ -55,6 +57,7 @@
+                 val intent = Intent(this, MainActivity::class.java)
+                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                 startActivity(intent)
++                Toast.makeText(this, getString(R.string.login_success, it.user.name), Toast.LENGTH_SHORT).show()
+                 finish()
+             }
+ 
+@@ -80,6 +83,22 @@
+         }
+     }
+ 
++
++    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
++        menuInflater.inflate(R.menu.back_menu, menu)
++        return super.onCreateOptionsMenu(menu)
++    }
++
++    override fun onOptionsItemSelected(item: MenuItem): Boolean {
++        when (item.itemId) {
++            R.id.back_button -> {
++                val intent = Intent(this@LoginActivity, MainActivity::class.java)
++                startActivity(intent)
++            }
++        }
++        return super.onOptionsItemSelected(item)
++    }
++
+     private fun showLoading(isLoading: Boolean) {
+         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+     }
+Index: app/src/main/java/com/wisyuk/ui/signup/SignUpActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wisyuk.ui.signup\r\n\r\nimport android.os.Build\r\nimport android.os.Bundle\r\nimport android.view.View\r\nimport android.view.WindowInsets\r\nimport android.view.WindowManager\r\nimport androidx.activity.viewModels\r\nimport androidx.appcompat.app.AlertDialog\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport com.wisyuk.R\r\nimport com.wisyuk.databinding.ActivitySignUpBinding\r\nimport com.wisyuk.ui.ViewModelFactory\r\n\r\nclass SignUpActivity : AppCompatActivity() {\r\n    private lateinit var binding: ActivitySignUpBinding\r\n    private val viewModel by viewModels<SignUpViewModel> {\r\n        ViewModelFactory.getInstance(this)\r\n    }\r\n    private var errorMessage: String = \"\"\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        binding = ActivitySignUpBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n\r\n        setupView()\r\n        setupAction()\r\n        observerViewModel()\r\n    }\r\n\r\n    private fun setupView() {\r\n        @Suppress(\"DEPRECATION\")\r\n        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {\r\n            window.insetsController?.hide(WindowInsets.Type.statusBars())\r\n        } else {\r\n            window.setFlags(\r\n                WindowManager.LayoutParams.FLAG_FULLSCREEN,\r\n                WindowManager.LayoutParams.FLAG_FULLSCREEN\r\n            )\r\n        }\r\n        supportActionBar?.hide()\r\n    }\r\n\r\n    private fun setupAction() {\r\n        binding.signUpButton.setOnClickListener {\r\n            val name = binding.etName.text.toString()\r\n            val email = binding.etEmail.text.toString()\r\n            val password = binding.etPassword.text.toString()\r\n            val isSubscribe = binding.promotionCheck.isChecked\r\n\r\n            viewModel.postData(name, email, password, isSubscribe)\r\n\r\n            viewModel.signUpResponse.observe(this) {\r\n                finish()\r\n            }\r\n        }\r\n    }\r\n\r\n    private fun observerViewModel() {\r\n        viewModel.isLoading.observe(this) {\r\n            showLoading(it)\r\n        }\r\n        viewModel.isError.observe(this) {\r\n            showError(it)\r\n        }\r\n        viewModel.message.observe(this) {\r\n            if (it != null) {\r\n                errorMessage = it\r\n            }\r\n        }\r\n    }\r\n\r\n    private fun showLoading(isLoading: Boolean) {\r\n        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE\r\n    }\r\n\r\n    private fun showError(isError: Boolean) {\r\n        if (isError) {\r\n            AlertDialog.Builder(this).apply {\r\n                setTitle(getString(R.string.oh_no_there_is_something_wrong))\r\n                setMessage(errorMessage)\r\n                setNegativeButton(getString(R.string.close)) { dialog, _ ->\r\n                    dialog.dismiss()\r\n                }\r\n                create()\r\n                show()\r\n            }\r\n        }\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wisyuk/ui/signup/SignUpActivity.kt b/app/src/main/java/com/wisyuk/ui/signup/SignUpActivity.kt
+--- a/app/src/main/java/com/wisyuk/ui/signup/SignUpActivity.kt	(revision 053b54a8fbfae6b76b7c7f13bcd665a5bd8f7a69)
++++ b/app/src/main/java/com/wisyuk/ui/signup/SignUpActivity.kt	(date 1717660605207)
+@@ -1,16 +1,21 @@
+ package com.wisyuk.ui.signup
+ 
++import android.content.Intent
+ import android.os.Build
+ import android.os.Bundle
++import android.view.Menu
++import android.view.MenuItem
+ import android.view.View
+ import android.view.WindowInsets
+ import android.view.WindowManager
++import android.widget.Toast
+ import androidx.activity.viewModels
+ import androidx.appcompat.app.AlertDialog
+ import androidx.appcompat.app.AppCompatActivity
+ import com.wisyuk.R
+ import com.wisyuk.databinding.ActivitySignUpBinding
+ import com.wisyuk.ui.ViewModelFactory
++import com.wisyuk.ui.login.LoginActivity
+ 
+ class SignUpActivity : AppCompatActivity() {
+     private lateinit var binding: ActivitySignUpBinding
+@@ -51,6 +56,9 @@
+             viewModel.postData(name, email, password, isSubscribe)
+ 
+             viewModel.signUpResponse.observe(this) {
++                val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
++                startActivity(intent)
++                Toast.makeText(this, getString(R.string.signup_success), Toast.LENGTH_SHORT).show()
+                 finish()
+             }
+         }
+@@ -70,6 +78,21 @@
+         }
+     }
+ 
++    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
++        menuInflater.inflate(R.menu.back_menu, menu)
++        return super.onCreateOptionsMenu(menu)
++    }
++
++    override fun onOptionsItemSelected(item: MenuItem): Boolean {
++        when (item.itemId) {
++            R.id.back_button -> {
++                val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
++                startActivity(intent)
++            }
++        }
++        return super.onOptionsItemSelected(item)
++    }
++
+     private fun showLoading(isLoading: Boolean) {
+         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+     }
+Index: app/src/main/java/com/wisyuk/ui/login/LoginViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wisyuk.ui.login\r\n\r\nimport androidx.lifecycle.LiveData\r\nimport androidx.lifecycle.MutableLiveData\r\nimport androidx.lifecycle.ViewModel\r\nimport androidx.lifecycle.viewModelScope\r\nimport com.google.gson.Gson\r\nimport com.wisyuk.data.pref.UserModel\r\nimport com.wisyuk.data.repository.UserRepository\r\nimport com.wisyuk.data.response.ErrorResponse\r\nimport com.wisyuk.data.response.LoginResponse\r\nimport kotlinx.coroutines.Job\r\nimport kotlinx.coroutines.launch\r\nimport retrofit2.HttpException\r\n\r\nclass LoginViewModel(private val repository: UserRepository) : ViewModel() {\r\n    private val _isLoading = MutableLiveData<Boolean>()\r\n    val isLoading: LiveData<Boolean> = _isLoading\r\n\r\n    private val _isError = MutableLiveData<Boolean>()\r\n    val isError: LiveData<Boolean> = _isError\r\n\r\n    private val _message = MutableLiveData<String?>()\r\n    val message : MutableLiveData<String?> = _message\r\n\r\n    private val _loginResponse = MutableLiveData<LoginResponse>()\r\n    val loginResponse: LiveData<LoginResponse> = _loginResponse\r\n\r\n    fun login(email: String, password: String) {\r\n        _isLoading.value = true\r\n        viewModelScope.launch {\r\n            try {\r\n                val response = repository.login(email, password)\r\n                val result = response.user\r\n                val saveSessionJob = saveSession(\r\n                    UserModel(\r\n                        email,\r\n                        result.image,\r\n                        result.name,\r\n                        true\r\n                    )\r\n                )\r\n                saveSessionJob.join()\r\n                _message.value = response.message\r\n                _isLoading.value = false\r\n                _isError.value = false\r\n                _loginResponse.value = response\r\n            } catch (e: HttpException) {\r\n                val jsonInString = e.response()?.errorBody()?.string()\r\n                val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)\r\n                val errorMessage = errorBody.message\r\n                _message.value = errorMessage\r\n                _isLoading.value = false\r\n                _isError.value = true\r\n            }\r\n\r\n        }\r\n\r\n    }\r\n\r\n    private fun saveSession(user: UserModel) : Job {\r\n        return viewModelScope.launch {\r\n            repository.saveSession(user)\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wisyuk/ui/login/LoginViewModel.kt b/app/src/main/java/com/wisyuk/ui/login/LoginViewModel.kt
+--- a/app/src/main/java/com/wisyuk/ui/login/LoginViewModel.kt	(revision 053b54a8fbfae6b76b7c7f13bcd665a5bd8f7a69)
++++ b/app/src/main/java/com/wisyuk/ui/login/LoginViewModel.kt	(date 1717660605207)
+@@ -35,7 +35,6 @@
+                 val saveSessionJob = saveSession(
+                     UserModel(
+                         email,
+-                        result.image,
+                         result.name,
+                         true
+                     )
+Index: app/src/main/java/com/wisyuk/data/pref/UserModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wisyuk.data.pref\r\n\r\ndata class UserModel (\r\n    val email: String,\r\n    val image: String,\r\n    val name: String,\r\n    val isLogin: Boolean = false\r\n)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wisyuk/data/pref/UserModel.kt b/app/src/main/java/com/wisyuk/data/pref/UserModel.kt
+--- a/app/src/main/java/com/wisyuk/data/pref/UserModel.kt	(revision 053b54a8fbfae6b76b7c7f13bcd665a5bd8f7a69)
++++ b/app/src/main/java/com/wisyuk/data/pref/UserModel.kt	(date 1717660605195)
+@@ -2,7 +2,6 @@
+ 
+ data class UserModel (
+     val email: String,
+-    val image: String,
+     val name: String,
+     val isLogin: Boolean = false
+ )
+\ No newline at end of file
+Index: app/src/main/java/com/wisyuk/data/api/ApiService.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wisyuk.data.api\r\n\r\nimport com.wisyuk.data.response.LoginResponse\r\nimport com.wisyuk.data.response.ProfileResponse\r\nimport com.wisyuk.data.response.SignUpResponse\r\nimport okhttp3.RequestBody\r\nimport retrofit2.http.Field\r\nimport retrofit2.http.FormUrlEncoded\r\nimport retrofit2.http.GET\r\nimport retrofit2.http.Multipart\r\nimport retrofit2.http.POST\r\nimport retrofit2.http.Part\r\nimport retrofit2.http.Path\r\nimport retrofit2.http.Query\r\n\r\ninterface ApiService {\r\n    @Multipart\r\n    @POST(\"/signup\")\r\n    suspend fun signup(\r\n        @Part(\"name\") name: RequestBody,\r\n        @Part(\"email\") email: RequestBody,\r\n        @Part(\"password\") password: RequestBody,\r\n        @Part(\"promotion\") promotion: Int,\r\n    ): SignUpResponse\r\n\r\n    @FormUrlEncoded\r\n    @POST(\"login\")\r\n    suspend fun login(\r\n        @Field(\"email\") email: String,\r\n        @Field(\"password\") password: String\r\n    ) : LoginResponse\r\n\r\n    @GET(\"profile/{userId}\")\r\n    suspend fun getProfile(\r\n        @Path(\"userId\") userId: String,\r\n    ) : ProfileResponse\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wisyuk/data/api/ApiService.kt b/app/src/main/java/com/wisyuk/data/api/ApiService.kt
+--- a/app/src/main/java/com/wisyuk/data/api/ApiService.kt	(revision 053b54a8fbfae6b76b7c7f13bcd665a5bd8f7a69)
++++ b/app/src/main/java/com/wisyuk/data/api/ApiService.kt	(date 1717647313376)
+@@ -11,7 +11,6 @@
+ import retrofit2.http.POST
+ import retrofit2.http.Part
+ import retrofit2.http.Path
+-import retrofit2.http.Query
+ 
+ interface ApiService {
+     @Multipart
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">WisYuk</string>\r\n    <string name=\"login_title_header\">Login</string>\r\n    <string name=\"enter_email\">Email</string>\r\n    <string name=\"email_format_is_not_correct\">Email format is not correct</string>\r\n    <string name=\"enter_password\">Password</string>\r\n    <string name=\"password_can_t_be_lower_than_8_characters\">Password can\\'t be lower than 8 characters</string>\r\n    <string name=\"login\">Login</string>\r\n    <string name=\"sign_up_header_title\">Sign Up</string>\r\n    <string name=\"enter_name\">Name</string>\r\n    <string name=\"sign_up\">Sign Up</string>\r\n    <string name=\"forgot_password\">Forgot Password?</string>\r\n    <string name=\"i_already_have_an_account\">I already have an account</string>\r\n    <string name=\"welcome\">Welcome</string>\r\n    <string name=\"search_tour\">Search Tour</string>\r\n    <string name=\"welcome_title\">Where do you want to go, %1$s?</string>\r\n    <string name=\"welcome_to_wisyuk\">Welcome to WisYuk</string>\r\n    <string name=\"recommendation_today\">Recommendations Today</string>\r\n    <string name=\"tourism_preview_photo\">Tourism Preview Photo</string>\r\n    <string name=\"tourism_title\">Tourism Title</string>\r\n    <string name=\"description_item\">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>\r\n    <string name=\"date_item\">Jan 00, 1971</string>\r\n    <string name=\"title_tour\">Title Tour</string>\r\n    <string name=\"hotel\">Hotel</string>\r\n    <string name=\"note_hotel\">*akomodasi hotel selama tiga hari terhitung sejak satu hari sebelum tanggal tertera sampai satu hari setelah tanggal tertentu</string>\r\n    <string name=\"price\">Price</string>\r\n    <string name=\"price_value\">Rp100</string>\r\n    <string name=\"add_to_plan\">Add to Plan</string>\r\n    <string name=\"ride\">Ride</string>\r\n    <string name=\"local_tour_guide\">Local Tour Guide</string>\r\n    <string name=\"continue_payment\">Lanjutkan ke pembayaran</string>\r\n    <string name=\"dummy_selected_hotel\">Hotel Hidayat</string>\r\n    <string name=\"dummy_selected_ride\">Suzuki Ertiga Jaya</string>\r\n    <string name=\"dummy_selected_tour_guide\">Alex</string>\r\n    <string name=\"title_activity_home\">HomeActivity</string>\r\n    <string name=\"title_home\">Home</string>\r\n    <string name=\"title_plan\">Plans</string>\r\n    <string name=\"title_favorite\">Favorites</string>\r\n    <string name=\"title_profile\">Profile</string>\r\n    <string name=\"back\">Back</string>\r\n    <string name=\"favorite\">Favorite</string>\r\n\r\n    <string name=\"payment_confirmation\">Payment Confirmation</string>\r\n    <string name=\"payment_confirmation_photo\">Payment Confirmation Photo</string>\r\n    <string name=\"tv_plan_hotel_name\">Dummy Hotel Name</string>\r\n    <string name=\"tv_plan_hotel_date\">Dummy Date</string>\r\n    <string name=\"tv_plan_date\">Dec 25, 2022</string>\r\n    <string name=\"no_payment_method\">Choose Payment Method</string>\r\n    <string name=\"pay\">Process Payment</string>\r\n    <string name=\"ovo\">OVO</string>\r\n    <string name=\"total_price\">Total Price</string>\r\n    <string name=\"payment_method\">Payment Method</string>\r\n    <string name=\"shopeepay\">Shopeepay</string>\r\n    <string name=\"gopay\">Gopay</string>\r\n    <string name=\"bca\">BCA</string>\r\n    <string name=\"bri\">BRI</string>\r\n    <string name=\"profile\">Profile</string>\r\n    <string name=\"email\">Email</string>\r\n    <string name=\"email_dummy\">email@gmail.com</string>\r\n    <string name=\"your_preferences\">Your Preferences</string>\r\n    <string name=\"preferences_dummy\">Preferences</string>\r\n    <string name=\"edit\">Edit</string>\r\n    <string name=\"your_plan\">Your Plans</string>\r\n    <string name=\"transaction_success\">Transaction Success</string>\r\n    <string name=\"transaction_failed\">Transaction Failed</string>\r\n    <string name=\"reminder_date\">(2 Day left)</string>\r\n    <string name=\"title_filter_date\">Filter Date</string>\r\n\r\n    <string name=\"your_tour\">Your Tour</string>\r\n    <string name=\"when_do_you_want_to_go_tour\">When do you want to go tour?</string>\r\n    <string name=\"date_tour\">Date Tour</string>\r\n    <string name=\"continue_submit\">Continue</string>\r\n    <string name=\"select_date\">Select date</string>\r\n    <string name=\"logout\">Logout</string>\r\n    <string name=\"welcome_title_guest\">Welcome to WisYuk!</string>\r\n    <string name=\"don_t_have_an_account_sign_up\">Don\\'t have an account? Sign up!</string>\r\n    <string name=\"close\">Close</string>\r\n    <string name=\"oh_no_there_is_something_wrong\">Oh no, there is something wrong!</string>\r\n    <string name=\"i_m_happy_to_receive_a_news_from_wisyuk\">I\\'m happy to receive a news from WisYuk!</string>\r\n\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision 053b54a8fbfae6b76b7c7f13bcd665a5bd8f7a69)
++++ b/app/src/main/res/values/strings.xml	(date 1717660605209)
+@@ -77,5 +77,6 @@
+     <string name="close">Close</string>
+     <string name="oh_no_there_is_something_wrong">Oh no, there is something wrong!</string>
+     <string name="i_m_happy_to_receive_a_news_from_wisyuk">I\'m happy to receive a news from WisYuk!</string>
+-
++    <string name="signup_success">Sign Up Success! Please login again!</string>
++    <string name="login_success">Login Success! Welcome %1$s</string>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/java/com/wisyuk/data/repository/UserRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wisyuk.data.repository\r\n\r\nimport com.wisyuk.data.api.ApiService\r\nimport com.wisyuk.data.pref.UserModel\r\nimport com.wisyuk.data.pref.UserPreference\r\nimport com.wisyuk.data.response.SignUpResponse\r\nimport com.wisyuk.utils.Utils.toInt\r\nimport kotlinx.coroutines.flow.Flow\r\nimport okhttp3.MediaType.Companion.toMediaTypeOrNull\r\nimport okhttp3.RequestBody\r\nimport okhttp3.RequestBody.Companion.toRequestBody\r\n\r\nclass UserRepository private constructor(\r\n    private val userPreference: UserPreference,\r\n    private val apiService: ApiService\r\n) {\r\n\r\n    suspend fun signUp(name: String, email: String, password: String, promotion: Boolean = false): SignUpResponse {\r\n        val nameRequestBody = name.toRequestBody(\"text/plain\".toMediaTypeOrNull())\r\n        val emailRequestBody = email.toRequestBody(\"text/plain\".toMediaTypeOrNull())\r\n        val passwordRequestBody = password.toRequestBody(\"text/plain\".toMediaTypeOrNull())\r\n\r\n        return apiService.signup(nameRequestBody, emailRequestBody, passwordRequestBody, promotion.toInt())\r\n    }\r\n\r\n    suspend fun login(email: String, password: String) = apiService.login(email, password)\r\n    suspend fun saveSession(user: UserModel) {\r\n        userPreference.saveSession(user)\r\n    }\r\n\r\n    fun getSession(): Flow<UserModel> {\r\n        return userPreference.getSession()\r\n    }\r\n\r\n    suspend fun logout() {\r\n        userPreference.logout()\r\n    }\r\n\r\n    companion object {\r\n        @Volatile\r\n        private var instance: UserRepository? = null\r\n        fun getInstance(\r\n            userPreference: UserPreference,\r\n            apiService: ApiService\r\n        ): UserRepository =\r\n            instance ?: synchronized(this) {\r\n                instance ?: UserRepository(userPreference, apiService)\r\n            }.also { instance = it }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wisyuk/data/repository/UserRepository.kt b/app/src/main/java/com/wisyuk/data/repository/UserRepository.kt
+--- a/app/src/main/java/com/wisyuk/data/repository/UserRepository.kt	(revision 053b54a8fbfae6b76b7c7f13bcd665a5bd8f7a69)
++++ b/app/src/main/java/com/wisyuk/data/repository/UserRepository.kt	(date 1717647313378)
+@@ -7,7 +7,6 @@
+ import com.wisyuk.utils.Utils.toInt
+ import kotlinx.coroutines.flow.Flow
+ import okhttp3.MediaType.Companion.toMediaTypeOrNull
+-import okhttp3.RequestBody
+ import okhttp3.RequestBody.Companion.toRequestBody
+ 
+ class UserRepository private constructor(
+Index: app/src/main/java/com/wisyuk/data/pref/UserPreference.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wisyuk.data.pref\r\n\r\nimport android.content.Context\r\nimport androidx.datastore.core.DataStore\r\nimport androidx.datastore.preferences.core.Preferences\r\nimport androidx.datastore.preferences.core.booleanPreferencesKey\r\nimport androidx.datastore.preferences.core.edit\r\nimport androidx.datastore.preferences.core.stringPreferencesKey\r\nimport androidx.datastore.preferences.preferencesDataStore\r\nimport kotlinx.coroutines.flow.Flow\r\nimport kotlinx.coroutines.flow.map\r\n\r\nval Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = \"session\")\r\nclass UserPreference private constructor(private val dataStore: DataStore<Preferences>){\r\n    suspend fun saveSession(user: UserModel) {\r\n        dataStore.edit { preferences ->\r\n            preferences[EMAIL_KEY] = user.email\r\n            preferences[IMAGE_KEY] = user.image\r\n            preferences[NAME_KEY] = user.name\r\n            preferences[IS_LOGIN_KEY] = true\r\n        }\r\n    }\r\n\r\n    fun getSession(): Flow<UserModel> {\r\n        return dataStore.data.map { preferences ->\r\n            UserModel(\r\n                preferences[EMAIL_KEY] ?: \"\",\r\n                preferences[IMAGE_KEY] ?: \"\",\r\n                preferences[NAME_KEY] ?: \"\",\r\n                preferences[IS_LOGIN_KEY] ?: false\r\n            )\r\n        }\r\n    }\r\n\r\n    suspend fun logout(){\r\n        dataStore.edit { preferences ->\r\n            preferences.clear()\r\n        }\r\n    }\r\n\r\n    companion object {\r\n        @Volatile\r\n        private var INSTANCE: UserPreference? = null\r\n\r\n        private val EMAIL_KEY = stringPreferencesKey(\"email\")\r\n        private val IMAGE_KEY = stringPreferencesKey(\"image\")\r\n        private val NAME_KEY = stringPreferencesKey(\"name\")\r\n        private val IS_LOGIN_KEY = booleanPreferencesKey(\"isLogin\")\r\n\r\n        fun getInstance(dataStore: DataStore<Preferences>): UserPreference {\r\n            return INSTANCE ?: synchronized(this) {\r\n                val instance = UserPreference(dataStore)\r\n                INSTANCE = instance\r\n                instance\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wisyuk/data/pref/UserPreference.kt b/app/src/main/java/com/wisyuk/data/pref/UserPreference.kt
+--- a/app/src/main/java/com/wisyuk/data/pref/UserPreference.kt	(revision 053b54a8fbfae6b76b7c7f13bcd665a5bd8f7a69)
++++ b/app/src/main/java/com/wisyuk/data/pref/UserPreference.kt	(date 1717660605205)
+@@ -15,7 +15,6 @@
+     suspend fun saveSession(user: UserModel) {
+         dataStore.edit { preferences ->
+             preferences[EMAIL_KEY] = user.email
+-            preferences[IMAGE_KEY] = user.image
+             preferences[NAME_KEY] = user.name
+             preferences[IS_LOGIN_KEY] = true
+         }
+@@ -25,7 +24,6 @@
+         return dataStore.data.map { preferences ->
+             UserModel(
+                 preferences[EMAIL_KEY] ?: "",
+-                preferences[IMAGE_KEY] ?: "",
+                 preferences[NAME_KEY] ?: "",
+                 preferences[IS_LOGIN_KEY] ?: false
+             )
+@@ -43,7 +41,6 @@
+         private var INSTANCE: UserPreference? = null
+ 
+         private val EMAIL_KEY = stringPreferencesKey("email")
+-        private val IMAGE_KEY = stringPreferencesKey("image")
+         private val NAME_KEY = stringPreferencesKey("name")
+         private val IS_LOGIN_KEY = booleanPreferencesKey("isLogin")
+ 

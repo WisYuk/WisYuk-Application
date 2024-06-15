@@ -1,0 +1,97 @@
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">WisYuk</string>\r\n    <string name=\"login_title_header\">Login</string>\r\n    <string name=\"enter_email\">Email</string>\r\n    <string name=\"email_format_is_not_correct\">Email format is not correct</string>\r\n    <string name=\"enter_password\">Password</string>\r\n    <string name=\"password_can_t_be_lower_than_8_characters\">Password can\\'t be lower than 8 characters</string>\r\n    <string name=\"login\">Login</string>\r\n    <string name=\"sign_up_header_title\">Sign Up</string>\r\n    <string name=\"enter_name\">Name</string>\r\n    <string name=\"sign_up\">Sign Up</string>\r\n    <string name=\"forgot_password\">Forgot Password?</string>\r\n    <string name=\"i_already_have_an_account\">I already have an account</string>\r\n    <string name=\"welcome\">Welcome</string>\r\n    <string name=\"search_tour\">Search Tour</string>\r\n    <string name=\"welcome_title\">Where do you want to go, %1$s?</string>\r\n    <string name=\"welcome_to_wisyuk\">Welcome to WisYuk</string>\r\n    <string name=\"recommendation_today\">Recommendations Today</string>\r\n    <string name=\"tourism_preview_photo\">Tourism Preview Photo</string>\r\n    <string name=\"tourism_title\">Tourism Title</string>\r\n    <string name=\"description_item\">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>\r\n    <string name=\"date_item\">Jan 00, 1971</string>\r\n    <string name=\"title_tour\">Title Tour</string>\r\n    <string name=\"hotel\">Hotel</string>\r\n    <string name=\"note_hotel\">*akomodasi hotel selama tiga hari terhitung sejak satu hari sebelum tanggal tertera sampai satu hari setelah tanggal tertentu</string>\r\n    <string name=\"price\">Price</string>\r\n    <string name=\"price_value\">Rp100</string>\r\n    <string name=\"add_to_plan\">Add to Plan</string>\r\n    <string name=\"ride\">Ride</string>\r\n    <string name=\"local_tour_guide\">Local Tour Guide</string>\r\n    <string name=\"continue_payment\">Lanjutkan ke pembayaran</string>\r\n    <string name=\"dummy_selected_hotel\">Hotel Hidayat</string>\r\n    <string name=\"dummy_selected_ride\">Suzuki Ertiga Jaya</string>\r\n    <string name=\"dummy_selected_tour_guide\">Alex</string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	
++++ b/app/src/main/res/values/strings.xml	
+@@ -32,4 +32,9 @@
+     <string name="dummy_selected_hotel">Hotel Hidayat</string>
+     <string name="dummy_selected_ride">Suzuki Ertiga Jaya</string>
+     <string name="dummy_selected_tour_guide">Alex</string>
++    <string name="title_activity_main2">MainActivity2</string>
++    <string name="title_home">Home</string>
++    <string name="title_dashboard">Dashboard</string>
++    <string name="title_notifications">Notifications</string>
++    <string name="title_activity_home">HomeActivity</string>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.WisYuk\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".ui.yourplan.detail_plan.DetailPlanActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ui.home.detail_home.DetailActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ui.signup.SignUpActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ui.login.LoginActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ui.home.MainActivity\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	
++++ b/app/src/main/AndroidManifest.xml	
+@@ -13,6 +13,14 @@
+         android:theme="@style/Theme.WisYuk"
+         tools:targetApi="31">
+         <activity
++            android:name=".ui.home.HomeActivity"
++            android:exported="false"
++            android:label="@string/title_activity_home" />
++        <activity
++            android:name=".ui.home.MainActivity2"
++            android:exported="false"
++            android:label="@string/title_activity_main2" />
++        <activity
+             android:name=".ui.yourplan.detail_plan.DetailPlanActivity"
+             android:exported="false" />
+         <activity
+Index: app/src/main/java/com/wisyuk/ui/home/ui/dashboard/DashboardViewModel.kt
+===================================================================
+diff --git a/app/src/main/java/com/wisyuk/ui/home/ui/dashboard/DashboardViewModel.kt b/app/src/main/java/com/wisyuk/ui/home/ui/dashboard/DashboardViewModel.kt
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/com/wisyuk/ui/home/ui/dashboard/DashboardViewModel.kt	
+@@ -0,0 +1,13 @@
++package com.wisyuk.ui.home.ui.dashboard
++
++import androidx.lifecycle.LiveData
++import androidx.lifecycle.MutableLiveData
++import androidx.lifecycle.ViewModel
++
++class DashboardViewModel : ViewModel() {
++
++    private val _text = MutableLiveData<String>().apply {
++        value = "This is dashboard Fragment"
++    }
++    val text: LiveData<String> = _text
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_dashboard.xml
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_dashboard.xml b/app/src/main/res/layout/fragment_dashboard.xml
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/res/layout/fragment_dashboard.xml	
+@@ -0,0 +1,22 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".ui.home.ui.dashboard.DashboardFragment">
++
++    <TextView
++        android:id="@+id/text_dashboard"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="8dp"
++        android:layout_marginTop="8dp"
++        android:layout_marginEnd="8dp"
++        android:textAlignment="center"
++        android:textSize="20sp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file

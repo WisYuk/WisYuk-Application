@@ -1,0 +1,28 @@
+Index: app/src/main/res/layout/item_payment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:padding=\"16dp\">\r\n\r\n<<<<<<< HEAD\r\n    <com.google.android.material.button.MaterialButton\r\n=======\r\n    <TextView\r\n>>>>>>> origin/master\r\n        android:id=\"@+id/bt_payment\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:background=\"#0000\"\r\n<<<<<<< HEAD\r\n        android:drawableLeft=\"@drawable/baseline_account_circle_24\"\r\n=======\r\n>>>>>>> origin/master\r\n        android:paddingVertical=\"8dp\"\r\n        android:text=\"@string/ovo\"\r\n        android:textAlignment=\"textStart\"\r\n        android:textColor=\"@color/black\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:strokeWidth=\"2dp\" />\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+===================================================================
+diff --git a/app/src/main/res/layout/item_payment.xml b/app/src/main/res/layout/item_payment.xml
+--- a/app/src/main/res/layout/item_payment.xml	
++++ b/app/src/main/res/layout/item_payment.xml	
+@@ -5,19 +5,11 @@
+     android:layout_height="wrap_content"
+     android:padding="16dp">
+ 
+-<<<<<<< HEAD
+-    <com.google.android.material.button.MaterialButton
+-=======
+     <TextView
+->>>>>>> origin/master
+         android:id="@+id/bt_payment"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:background="#0000"
+-<<<<<<< HEAD
+-        android:drawableLeft="@drawable/baseline_account_circle_24"
+-=======
+->>>>>>> origin/master
+         android:paddingVertical="8dp"
+         android:text="@string/ovo"
+         android:textAlignment="textStart"
