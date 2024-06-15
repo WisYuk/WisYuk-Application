@@ -1,5 +1,6 @@
 package com.wisyuk.ui.home
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
@@ -13,6 +14,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.wisyuk.R
 import com.wisyuk.databinding.ActivityMainBinding
+import com.wisyuk.ui.preference.PreferenceActivity
+import com.wisyuk.ui.userdatemenu.DateActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
         setupView()
+        setupAction()
     }
 
     private fun setupView() {
@@ -63,6 +67,13 @@ class MainActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
+        }
+    }
+
+    private fun setupAction() {
+        binding.fab.setOnClickListener {
+            val intent = Intent(this@MainActivity, DateActivity::class.java)
+            startActivity(intent)
         }
     }
 }
