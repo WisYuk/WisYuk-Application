@@ -22,7 +22,6 @@ import java.nio.file.Files.find
 import kotlin.properties.Delegates
 
 class PreferenceActivity : AppCompatActivity() {
-    // TODO when preferences had been asked once, doesn't need to come to this act again
 
     private lateinit var binding: ActivityPreferenceBinding
     private val viewModel by viewModels<PreferenceViewModel> {
