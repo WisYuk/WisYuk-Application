@@ -3,12 +3,14 @@ package com.wisyuk.data.api
 import com.wisyuk.data.response.FavoriteResponse
 import com.wisyuk.data.response.AddPaidPlanResponse
 import com.wisyuk.data.response.AddPreferencesResponse
+import com.wisyuk.data.response.DataTour
 import com.wisyuk.data.response.DetailPlanResponse
 import com.wisyuk.data.response.DetailTourismResponse
 import com.wisyuk.data.response.LoginResponse
 import com.wisyuk.data.response.PaymentMethodResponse
 import com.wisyuk.data.response.PreferencesResponse
 import com.wisyuk.data.response.ProfileResponse
+import com.wisyuk.data.response.RecommendationResponse
 import com.wisyuk.data.response.SignUpResponse
 import com.wisyuk.data.response.TourismResponse
 import com.wisyuk.data.response.UpdateProfileResponse
@@ -137,4 +139,11 @@ interface ApiService {
         @Path("tourismID") tourismID: Int,
         @Path("go_date") goDate: String
     )  : FavoriteResponse
+
+    @FormUrlEncoded
+    @POST("view-recommendation")
+    suspend fun viewRecommendation(
+        @Field("go_at") goAt: String,
+        @Field("userID") userID: Int
+    ) : TourismResponse
 }

@@ -20,6 +20,11 @@ import com.wisyuk.ui.preference.PreferenceActivity
 import com.wisyuk.ui.userdatemenu.DateActivity
 
 class HomeFragment : Fragment() {
+    companion object {
+        const val EXTRA_GOAT = "go_at"
+        const val EXTRA_USERID = "userid"
+    }
+
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -41,6 +46,9 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        val goAt = activity?.intent?.getStringExtra(EXTRA_GOAT)
+        val userID = activity?.intent?.getIntExtra(EXTRA_USERID, -1)
+        println("WEYNARD data $goAt dan $userID")
 
         homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
             if (!user.isLogin) {
@@ -49,6 +57,9 @@ class HomeFragment : Fragment() {
                 binding.choosePlanTitle.text = getString(R.string.welcome_title_guest)
             } else {
                 homeViewModel.checkProfile(user.id)
+                if (goAt != null && userID != null) {
+                    homeViewModel.getTourisms(goAt, userID)
+                }
                 binding.loginButton.visibility = View.GONE
                 binding.logoutButton.visibility = View.VISIBLE
                 binding.choosePlanTitle.text = getString(R.string.welcome_title, user.name)
