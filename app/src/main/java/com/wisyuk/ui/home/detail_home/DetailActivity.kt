@@ -5,8 +5,6 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
@@ -16,14 +14,10 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
 import com.wisyuk.R
 import com.wisyuk.data.extras.BookingDetails
-import com.wisyuk.data.response.DataHotelsItem
 import com.wisyuk.data.response.ListTourismItem
-import com.wisyuk.data.response.PlanDataItem
 import com.wisyuk.databinding.ActivityDetailBinding
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.home.MainActivity
@@ -292,7 +286,7 @@ class DetailActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun observerViewModel() {
-        viewModel.addResponse.observe(this) {
+        viewModel.favResponse.observe(this) {
             if (it != null) {
                 viewModel.getFavData(userID, tourismID, goAt.dateFormattedGoAt())
             }

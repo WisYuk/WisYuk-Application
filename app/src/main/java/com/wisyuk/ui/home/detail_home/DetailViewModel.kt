@@ -36,11 +36,11 @@ class DetailViewModel(private val repository: UserRepository) : ViewModel() {
     private val _message = MutableLiveData<String?>()
     val message : LiveData<String?> = _message
 
-    private val _favoriteData = MutableLiveData<PlanDataItem>()
-    val favoriteData : LiveData<PlanDataItem> = _favoriteData
+    private val _favoriteData = MutableLiveData<PlanDataItem?>()
+    val favoriteData : LiveData<PlanDataItem?> = _favoriteData
 
-    private val _addResponse = MutableLiveData<FavoriteResponse>()
-    val addResponse : LiveData<FavoriteResponse> = _addResponse
+    private val _favResponse = MutableLiveData<FavoriteResponse>()
+    val favResponse : LiveData<FavoriteResponse> = _favResponse
 
     fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()
@@ -87,7 +87,7 @@ class DetailViewModel(private val repository: UserRepository) : ViewModel() {
                 _message.value = response.message
                 _isLoading.value = false
                 _isError.value = false
-                _addResponse.value = response
+                _favResponse.value = response
             } catch (e: HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
@@ -107,7 +107,8 @@ class DetailViewModel(private val repository: UserRepository) : ViewModel() {
                 _message.value = response.message
                 _isLoading.value = false
                 _isError.value = false
-                _addResponse.value = response
+                _favResponse.value = response
+                nullifyFavData()
             } catch (e: HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
@@ -117,5 +118,9 @@ class DetailViewModel(private val repository: UserRepository) : ViewModel() {
                 _isError.value = true
             }
         }
+    }
+
+    private fun nullifyFavData() {
+        _favoriteData.value = null
     }
 }

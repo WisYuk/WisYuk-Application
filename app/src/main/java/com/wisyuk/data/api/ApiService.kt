@@ -131,10 +131,10 @@ interface ApiService {
     @GET("payment-methods")
     suspend fun getPaymentMethod(): PaymentMethodResponse
 
-    @DELETE("delete-favourite")
+    @DELETE("favourites/{userID}/{tourismID}/{go_date}")
     suspend fun deleteFavouritePlan(
-        @Field("userID") userID: Int,
-        @Field("tourismID") tourismID: Int,
-        @Field("go_date") goDate: String
+        @Path("userID") userID: Int,
+        @Path("tourismID") tourismID: Int,
+        @Path("go_date") goDate: String
     )  : FavoriteResponse
 }

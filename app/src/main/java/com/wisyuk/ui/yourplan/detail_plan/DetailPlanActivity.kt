@@ -3,6 +3,7 @@ package com.wisyuk.ui.yourplan.detail_plan
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.viewModels
@@ -36,6 +37,8 @@ class DetailPlanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailPlanBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.favoriteButton.visibility = View.GONE
 
         val tourism = if (Build.VERSION.SDK_INT >= 33) {
             intent.getParcelableExtra(TOURISM, ListTourismItem::class.java)
