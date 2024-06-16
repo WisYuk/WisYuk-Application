@@ -74,7 +74,7 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        binding.ivProfilePhoto.setOnClickListener {
+        binding.ivProfilePhotoContainer.setOnClickListener {
             if (profileViewModel.editMode.value == true)
                 startGallery()
         }
