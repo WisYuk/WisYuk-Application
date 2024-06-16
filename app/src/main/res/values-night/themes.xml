@@ -47,8 +47,18 @@
         <item name="colorSurfaceContainer">@color/md_theme_surfaceContainer</item>
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
+        <item name="android:textViewStyle">@style/PoppinsTextViewStyle</item>
+        <item name="buttonStyle">@style/PoppinsButtonStyle</item>
     </style>
     <style name="Custom.BlackWhite" parent="Base.Theme.WisYuk">
         <item name="colorSecondary">@color/white</item>
+    </style>
+
+    <style name="PoppinsTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="PoppinsButtonStyle" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">@font/poppins</item>
     </style>
 </resources>
