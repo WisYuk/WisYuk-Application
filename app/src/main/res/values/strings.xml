@@ -22,13 +22,13 @@
     <string name="date_item">Jan 00, 1971</string>
     <string name="title_tour">Title Tour</string>
     <string name="hotel">Hotel</string>
-    <string name="note_hotel">*akomodasi hotel selama tiga hari terhitung sejak satu hari sebelum tanggal tertera sampai satu hari setelah tanggal tertentu</string>
+    <string name="note_hotel">*Hotel accommodation for three days since previous day until the next day of the date</string>
     <string name="price">Price</string>
     <string name="price_value">Rp100</string>
     <string name="add_to_plan">Add to Plan</string>
     <string name="ride">Ride</string>
     <string name="local_tour_guide">Local Tour Guide</string>
-    <string name="continue_payment">Lanjutkan ke pembayaran</string>
+    <string name="continue_payment">Continue to Payment</string>
     <string name="dummy_selected_hotel">Hotel Hidayat</string>
     <string name="dummy_selected_ride">Suzuki Ertiga Jaya</string>
     <string name="dummy_selected_tour_guide">Alex</string>
@@ -92,4 +92,6 @@
     <string name="back_to_home">Back to home</string>
     <string name="icon_calender">Icon Calender</string>
     <string name="favorite_deleted">Favorite removed!</string>
+    <string name="dummy_method">Dummy Method</string>
+    <string name="receipt">Receipt</string>
 </resources>

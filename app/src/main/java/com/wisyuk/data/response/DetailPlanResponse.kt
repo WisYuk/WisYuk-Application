@@ -29,5 +29,8 @@ data class PlanDataItem(
 	val rideName: String,
 
 	@field:SerializedName("hotel_name")
-	val hotelName: String
+	val hotelName: String,
+
+	@field:SerializedName("payment_receipt_id")
+	val paymentReceiptId: Int
 )

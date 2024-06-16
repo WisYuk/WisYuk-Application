@@ -8,6 +8,7 @@ import com.wisyuk.data.response.DetailPlanResponse
 import com.wisyuk.data.response.DetailTourismResponse
 import com.wisyuk.data.response.LoginResponse
 import com.wisyuk.data.response.PaymentMethodResponse
+import com.wisyuk.data.response.PaymentReceiptResponse
 import com.wisyuk.data.response.PreferencesResponse
 import com.wisyuk.data.response.ProfileResponse
 import com.wisyuk.data.response.RecommendationResponse
@@ -134,6 +135,12 @@ interface ApiService {
     suspend fun getPaymentMethod(): PaymentMethodResponse
 
     @DELETE("favourites/{userID}/{tourismID}/{go_date}")
+    @GET("view-payment-receipt/{receiptID}")
+    suspend fun getReceipt(
+        @Path("receiptID") receiptID: Int
+    ) : PaymentReceiptResponse
+
+    @DELETE("delete-favourite")
     suspend fun deleteFavouritePlan(
         @Path("userID") userID: Int,
         @Path("tourismID") tourismID: Int,

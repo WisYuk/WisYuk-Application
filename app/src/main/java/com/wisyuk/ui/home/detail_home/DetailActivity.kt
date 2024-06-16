@@ -70,9 +70,7 @@ class DetailActivity : AppCompatActivity() {
 
             if (tourism != null) {
                 Glide.with(this).load(tourism.image).into(binding.ivDetailPhoto)
-                Log.d("Check", tourism.image)
                 photoUrl = tourism.image
-                Log.d("Check2", photoUrl)
                 binding.tvDetailName.text = tourism.name
 
                 if (tourism.goAt != null) {
@@ -245,7 +243,6 @@ class DetailActivity : AppCompatActivity() {
         }
 
         binding.continuePaymentButton.setOnClickListener {
-            Log.d("Tes", photoUrl + " " + tourismID )
             val bookingDetails = BookingDetails(
                 tourismID,
                 photoUrl,

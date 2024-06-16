@@ -14,6 +14,7 @@ import com.wisyuk.ui.home.ui.profile.ProfileViewModel
 import com.wisyuk.ui.login.LoginViewModel
 import com.wisyuk.ui.payment.PaymentViewModel
 import com.wisyuk.ui.paymentmethod.PaymentMethodViewModel
+import com.wisyuk.ui.paymentreceipt.PaymentReceiptViewModel
 import com.wisyuk.ui.preference.PreferenceViewModel
 import com.wisyuk.ui.signup.SignUpViewModel
 import com.wisyuk.ui.userdatemenu.DateViewModel
@@ -58,6 +59,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(PaymentMethodViewModel::class.java) -> {
                 PaymentMethodViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(PaymentReceiptViewModel::class.java) -> {
+                PaymentReceiptViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

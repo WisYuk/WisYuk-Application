@@ -118,6 +118,8 @@ class UserRepository private constructor(
 
     suspend fun getPaymentMethod() = apiService.getPaymentMethod()
 
+    suspend fun getReceipt(receiptID: Int) = apiService.getReceipt(receiptID)
+
     suspend fun deleteFavouritePlan(userID: Int, tourismID: Int, goAt: String) = apiService.deleteFavouritePlan(userID, tourismID, goAt)
     suspend fun saveSession(user: UserModel) {
         userPreference.saveSession(user)

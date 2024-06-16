@@ -31,7 +31,6 @@ class PaymentMethodViewModel(private val repository: UserRepository): ViewModel(
     fun fetchPaymentMethod(){
         _isLoading.value = true
 
-
         viewModelScope.launch {
             try {
                 val response = repository.getPaymentMethod()

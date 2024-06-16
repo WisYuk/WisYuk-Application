@@ -15,6 +15,7 @@ import com.wisyuk.data.response.ListTourismItem
 import com.wisyuk.databinding.ActivityDetailPlanBinding
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.login.LoginActivity
+import com.wisyuk.ui.paymentreceipt.PaymentReceiptActivity
 import com.wisyuk.utils.Utils.calculateReminder
 import com.wisyuk.utils.Utils.dateFormatted
 import com.wisyuk.utils.Utils.dateFormattedGoAt
@@ -27,11 +28,13 @@ class DetailPlanActivity : AppCompatActivity() {
 
     companion object {
         const val TOURISM = "tourism_detail_paid"
+        const val RECEIPT_ID = "receipt_id"
     }
 
     private var userID = -1
     private var tourismID = -1
     private var goAt = ""
+    private var receiptId = -1
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,7 +86,11 @@ class DetailPlanActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-
+        binding.receipt.setOnClickListener {
+            val intent = Intent(this, PaymentReceiptActivity::class.java)
+            intent.putExtra(RECEIPT_ID, receiptId)
+            startActivity(intent)
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -106,8 +113,7 @@ class DetailPlanActivity : AppCompatActivity() {
                 reminderRide.text = getString(R.string.reminder_date, reminderDays.toString())
                 reminderTourGuide.text = getString(R.string.reminder_date, reminderDays.toString())
             }
-
-
+            receiptId = it.paymentReceiptId
         }
     }
 }
