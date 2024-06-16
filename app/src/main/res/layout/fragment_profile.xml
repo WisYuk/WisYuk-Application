@@ -37,16 +37,28 @@
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <FrameLayout
             android:id="@+id/iv_profile_photo"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_centerInParent="true"
-            android:layout_marginTop="-75dp"
-            android:src="@drawable/baseline_account_circle_24"
             app:layout_constraintEnd_toEndOf="@+id/tv_title"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            android:layout_marginTop="-75dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/profile_photo_background"
+                android:layout_gravity="center"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/no_profile"
+                android:layout_gravity="center"/>
+        </FrameLayout>
 
         <ImageView
             android:id="@+id/edit_icon"
