@@ -51,6 +51,19 @@ object Utils {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
+    fun convertDateFromYMDtoMDy(inputDate: String): String {
+        // Define the input and output date formatters
+        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val outputFormatter = DateTimeFormatter.ofPattern("MMMM d, yyyy")
+
+        // Parse the input date string to a LocalDate
+        val date = LocalDate.parse(inputDate, inputFormatter)
+
+        // Format the LocalDate to the desired output string format
+        return date.format(outputFormatter)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
     fun calculateReminder(goAt: String) : Int {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val targetDate = LocalDate.parse(goAt, formatter)

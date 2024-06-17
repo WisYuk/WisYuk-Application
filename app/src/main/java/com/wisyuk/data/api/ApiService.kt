@@ -141,7 +141,7 @@ interface ApiService {
         @Path("receiptID") receiptID: Int
     ) : PaymentReceiptResponse
 
-    @DELETE("delete-favourite")
+    @DELETE("favourites/{userID}/{tourismID}/{go_date}")
     suspend fun deleteFavouritePlan(
         @Path("userID") userID: Int,
         @Path("tourismID") tourismID: Int,

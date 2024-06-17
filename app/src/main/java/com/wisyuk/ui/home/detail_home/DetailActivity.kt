@@ -24,6 +24,7 @@ import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.home.MainActivity
 import com.wisyuk.ui.login.LoginActivity
 import com.wisyuk.ui.payment.PaymentActivity
+import com.wisyuk.utils.Utils.convertDateFromYMDtoMDy
 import com.wisyuk.utils.Utils.dateFormatted
 import com.wisyuk.utils.Utils.dateFormattedGoAt
 
@@ -61,7 +62,7 @@ class DetailActivity : AppCompatActivity() {
             intent.getParcelableExtra<RecommendationsItem>(TOURISM)
         }
 
-        val goAt = intent.getStringExtra(goAt)
+        goAt = intent.getStringExtra(EXTRA_GOAT).toString()
 
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
@@ -78,7 +79,7 @@ class DetailActivity : AppCompatActivity() {
                 binding.tvDetailName.text = tourism.details.name
 
                 if (goAt != null) {
-                    binding.tvDetailDate.text = goAt.dateFormatted()
+                    binding.tvDetailDate.text = convertDateFromYMDtoMDy(goAt)
                 }
 //                else {
 //                    binding.tvDetailDate.text = goAt
@@ -88,7 +89,7 @@ class DetailActivity : AppCompatActivity() {
                 viewModel.getDetailTourism(tourismID)
 
                 if (goAt != null) {
-                    viewModel.getFavData(userID, tourismID, goAt.dateFormattedGoAt())
+                    viewModel.getFavData(userID, tourismID, goAt)
                 }
             }
         }
@@ -260,7 +261,7 @@ class DetailActivity : AppCompatActivity() {
                 tourGuideName = tourGuideTitle,
                 itemTourGuideId,
                 tourGuidePrice ?: 0,
-                date = goAt.dateFormattedGoAt()
+                date = goAt
             )
 
             val intent = Intent(this@DetailActivity, PaymentActivity::class.java)
@@ -277,10 +278,10 @@ class DetailActivity : AppCompatActivity() {
 
         binding.favoriteButton.setOnClickListener{
             if (!isFavorite) {
-                viewModel.addFavorite(userID, tourismID, itemHotelId, itemRideId, itemTourGuideId, goAt.dateFormattedGoAt())
+                viewModel.addFavorite(userID, tourismID, itemHotelId, itemRideId, itemTourGuideId, goAt)
                 Toast.makeText(this, getString(R.string.favorite_added), Toast.LENGTH_SHORT).show()
             } else {
-                viewModel.deleteFavorite(userID, tourismID, goAt.dateFormattedGoAt())
+                viewModel.deleteFavorite(userID, tourismID, goAt)
                 Toast.makeText(this, getString(R.string.favorite_deleted), Toast.LENGTH_SHORT).show()
             }
         }
@@ -290,7 +291,7 @@ class DetailActivity : AppCompatActivity() {
     private fun observerViewModel() {
         viewModel.favResponse.observe(this) {
             if (it != null) {
-                viewModel.getFavData(userID, tourismID, goAt.dateFormattedGoAt())
+                viewModel.getFavData(userID, tourismID, goAt)
             }
         }
         viewModel.isLoading.observe(this) {

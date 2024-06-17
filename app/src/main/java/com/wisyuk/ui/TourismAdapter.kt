@@ -13,11 +13,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.wisyuk.data.response.Details
 import com.wisyuk.data.response.ListTourismItem
+import com.wisyuk.data.response.RecommendationsItem
 import com.wisyuk.databinding.ItemTourismBinding
 import com.wisyuk.ui.home.detail_home.DetailActivity
+import com.wisyuk.ui.home.detail_home.DetailActivity.Companion.EXTRA_GOAT
 import com.wisyuk.ui.home.detail_home.DetailActivity.Companion.TOURISM
 import com.wisyuk.utils.Utils.dateFormatted
+import com.wisyuk.utils.Utils.dateFormattedGoAt
 
 class TourismAdapter : ListAdapter<ListTourismItem, TourismAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
@@ -46,7 +50,8 @@ class TourismAdapter : ListAdapter<ListTourismItem, TourismAdapter.MyViewHolder>
                 binding.tvSubtitle.text = item.goAt.dateFormatted()
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailActivity::class.java)
-                    intent.putExtra(TOURISM, item)
+                    intent.putExtra(TOURISM, convertToRecommendationsItem(item))
+                    intent.putExtra(EXTRA_GOAT, item.goAt.dateFormattedGoAt())
 
                     val optionsCompat: ActivityOptionsCompat =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(
@@ -63,6 +68,25 @@ class TourismAdapter : ListAdapter<ListTourismItem, TourismAdapter.MyViewHolder>
                 binding.tvSubtitle.text = item.createdAt?.dateFormatted() // ?
             }
 
+        }
+
+        fun convertToRecommendationsItem(listTourismItem: ListTourismItem): RecommendationsItem {
+            val details = Details(
+                image = listTourismItem.image,
+                city = "Unknown", // Assuming city is not available in ListTourismItem, you might need to handle this appropriately
+                latitude = listTourismItem.latitude ?: "",
+                name = listTourismItem.name,
+                rating = 0.0, // Assuming rating is not available in ListTourismItem, you might need to handle this appropriately
+                description = listTourismItem.description,
+                id = listTourismItem.id,
+                category = listTourismItem.category ?: "",
+                longitude = listTourismItem.longitude ?: ""
+            )
+
+            return RecommendationsItem(
+                details = details,
+                id = listTourismItem.id
+            )
         }
     }
 

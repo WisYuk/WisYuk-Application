@@ -28,6 +28,7 @@ class DetailPlanActivity : AppCompatActivity() {
 
     companion object {
         const val TOURISM = "tourism_detail_paid"
+        const val EXTRA_GOAT = "goAt"
         const val RECEIPT_ID = "receipt_id"
     }
 

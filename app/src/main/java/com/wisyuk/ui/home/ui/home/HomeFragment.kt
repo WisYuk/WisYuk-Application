@@ -23,6 +23,7 @@ import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.login.LoginActivity
 import com.wisyuk.ui.preference.PreferenceActivity
 import com.wisyuk.ui.userdatemenu.DateActivity
+import com.wisyuk.utils.Utils
 import com.wisyuk.utils.Utils.dateFormatted
 import com.wisyuk.utils.Utils.dateFormattedGoAt
 
@@ -70,7 +71,9 @@ class HomeFragment : Fragment() {
             } else {
                 homeViewModel.checkProfile(user.id)
                 if (goAt != null && userID != null) {
-                    binding.recommendationHeader.text = getString(R.string.recommendation_date, goAt)
+                    binding.recommendationHeader.text = getString(R.string.recommendation_date,
+                        Utils.convertDateFromYMDtoMDy(goAt!!)
+                    )
                     homeViewModel.getTourisms(goAt!!, userID!!)
                 }
                 binding.loginButton.visibility = View.GONE

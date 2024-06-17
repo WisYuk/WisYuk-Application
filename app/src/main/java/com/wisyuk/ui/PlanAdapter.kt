@@ -12,10 +12,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.wisyuk.data.response.Details
 import com.wisyuk.data.response.ListTourismItem
+import com.wisyuk.data.response.RecommendationsItem
 import com.wisyuk.databinding.ItemTourismBinding
 import com.wisyuk.ui.yourplan.detail_plan.DetailPlanActivity
-import com.wisyuk.utils.Utils.dateFormatted
 
 class PlanAdapter : ListAdapter<ListTourismItem, PlanAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
@@ -37,11 +38,12 @@ class PlanAdapter : ListAdapter<ListTourismItem, PlanAdapter.MyViewHolder>(DIFF_
             Glide.with(itemView.context).load(item.image).into(binding.ivItemPhoto)
             binding.tvItemName.text = item.name
             binding.tvItemDescription.text = item.description
-            binding.tvSubtitle.text = item.goAt?.dateFormatted() ?: "" // ?
+            binding.tvSubtitle.text = item.goAt
 
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailPlanActivity::class.java)
-                intent.putExtra(DetailPlanActivity.TOURISM, item)
+                intent.putExtra(DetailPlanActivity.TOURISM, convertToRecommendationsItem(item))
+//                intent.putExtra(DetailPlanActivity.EXTRA_GOAT, goAt)
 
                 val optionsCompat: ActivityOptionsCompat =
                     ActivityOptionsCompat.makeSceneTransitionAnimation(
@@ -55,7 +57,29 @@ class PlanAdapter : ListAdapter<ListTourismItem, PlanAdapter.MyViewHolder>(DIFF_
                 itemView.context.startActivity(intent, optionsCompat.toBundle())
             }
         }
+
+        fun convertToRecommendationsItem(listTourismItem: ListTourismItem): RecommendationsItem {
+            val details = Details(
+                image = listTourismItem.image,
+                city = "Unknown", // TODO Assuming city is not available in ListTourismItem, you might need to handle this appropriately
+                latitude = listTourismItem.latitude ?: "",
+                name = listTourismItem.name,
+                rating = 0.0, // TODO Assuming rating is not available in ListTourismItem, you might need to handle this appropriately
+                description = listTourismItem.description,
+                id = listTourismItem.id,
+                category = listTourismItem.category ?: "",
+                longitude = listTourismItem.longitude ?: ""
+            )
+
+            return RecommendationsItem(
+                details = details,
+                id = listTourismItem.id
+            )
+        }
     }
+
+
+
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ListTourismItem>() {
