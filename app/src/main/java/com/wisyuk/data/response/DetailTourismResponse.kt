@@ -52,8 +52,11 @@ data class DataHotelsItem(
 	@field:SerializedName("city")
 	val city: String,
 
-	@field:SerializedName("price")
-	val price: Int,
+	@field:SerializedName("min_price")
+	val minPrice: Int,
+
+	@field:SerializedName("max_price")
+	val maxPrice: Int,
 
 	@field:SerializedName("latitude")
 	val latitude: String,

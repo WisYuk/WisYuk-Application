@@ -158,6 +158,7 @@ class DetailActivity : AppCompatActivity() {
                 }
             }
 
+            // TODO: SESUAIKAN PRICE HOTEL (SEMENTARA AVERAGE)
             binding.spinnerHotel.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 @SuppressLint("SetTextI18n")
                 override fun onItemSelected(
@@ -168,8 +169,9 @@ class DetailActivity : AppCompatActivity() {
                 ) {
                     val item = hotel.find {it.name == items[position] }
                     itemHotelId = item?.id ?: -1
-                    binding.priceValueHotel.text = "Rp ${item?.price}"
-                    hotelPrice = item?.price
+                    val avgPrice = (item?.maxPrice?.minus(item.minPrice))?.div(2)
+                    binding.priceValueHotel.text = "Rp $avgPrice"
+                    hotelPrice = avgPrice
                     hotelTitle = item?.name
                 }
 
