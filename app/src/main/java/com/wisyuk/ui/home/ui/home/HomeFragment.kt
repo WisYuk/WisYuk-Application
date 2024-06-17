@@ -61,7 +61,12 @@ class HomeFragment : Fragment() {
 
         goAt = activity?.intent?.getStringExtra(EXTRA_GOAT)
         userID = activity?.intent?.getIntExtra(EXTRA_USERID, -1)
-        homeViewModel.getTourism()
+        if (goAt != null && userID != null) {
+            homeViewModel.getTourisms(goAt!!, userID!!)
+        } else {
+            homeViewModel.getTourism()
+        }
+
 
         homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
             if (!user.isLogin) {
@@ -74,7 +79,6 @@ class HomeFragment : Fragment() {
                     binding.recommendationHeader.text = getString(R.string.recommendation_date,
                         Utils.convertDateFromYMDtoMDy(goAt!!)
                     )
-                    homeViewModel.getTourisms(goAt!!, userID!!)
                 }
                 binding.loginButton.visibility = View.GONE
                 binding.logoutButton.visibility = View.VISIBLE
