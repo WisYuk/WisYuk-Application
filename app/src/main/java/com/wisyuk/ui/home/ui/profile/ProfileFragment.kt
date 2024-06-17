@@ -99,6 +99,12 @@ class ProfileFragment : Fragment() {
             binding.preferenceContainerEdit.visibility = View.VISIBLE
         }
 
+        binding.logoutButton.setOnClickListener {
+            profileViewModel.logout()
+            val intent = Intent(requireActivity(), LoginActivity::class.java)
+            startActivity(intent)
+        }
+
         return root
     }
 

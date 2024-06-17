@@ -71,7 +71,6 @@ class HomeFragment : Fragment() {
         homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
             if (!user.isLogin) {
                 binding.loginButton.visibility = View.VISIBLE
-                binding.logoutButton.visibility = View.GONE
                 binding.choosePlanTitle.text = getString(R.string.welcome_title_guest)
             } else {
                 homeViewModel.checkProfile(user.id)
@@ -81,7 +80,6 @@ class HomeFragment : Fragment() {
                     )
                 }
                 binding.loginButton.visibility = View.GONE
-                binding.logoutButton.visibility = View.VISIBLE
                 binding.choosePlanTitle.text = getString(R.string.welcome_title, user.name)
             }
         }
@@ -99,11 +97,6 @@ class HomeFragment : Fragment() {
         searchEngine()
 
         binding.loginButton.setOnClickListener {
-            val intent = Intent(requireActivity(), LoginActivity::class.java)
-            startActivity(intent)
-        }
-        binding.logoutButton.setOnClickListener {
-            homeViewModel.logout()
             val intent = Intent(requireActivity(), LoginActivity::class.java)
             startActivity(intent)
         }

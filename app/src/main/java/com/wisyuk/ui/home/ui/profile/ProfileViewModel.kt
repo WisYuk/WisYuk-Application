@@ -127,4 +127,12 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
             }
         }
     }
+
+    fun logout() {
+        _isLoading.value = true
+        viewModelScope.launch {
+            repository.logout()
+            _isLoading.value = false
+        }
+    }
 }
