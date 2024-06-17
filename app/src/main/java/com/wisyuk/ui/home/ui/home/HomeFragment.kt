@@ -1,23 +1,30 @@
 package com.wisyuk.ui.home.ui.home
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.telecom.Call.Details
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wisyuk.R
 import com.wisyuk.data.response.ListTourismItem
+import com.wisyuk.data.response.RecommendationsItem
 import com.wisyuk.databinding.FragmentHomeBinding
+import com.wisyuk.ui.RecommendationAdapter
 import com.wisyuk.ui.TourismAdapter
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.login.LoginActivity
 import com.wisyuk.ui.preference.PreferenceActivity
 import com.wisyuk.ui.userdatemenu.DateActivity
+import com.wisyuk.utils.Utils.dateFormatted
+import com.wisyuk.utils.Utils.dateFormattedGoAt
 
 class HomeFragment : Fragment() {
     companion object {
@@ -37,7 +44,11 @@ class HomeFragment : Fragment() {
     }
 
     private var errorMessage: String = ""
+    private var goAt: String? = null
+    private var userID: Int? = null
 
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,9 +57,10 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        val goAt = activity?.intent?.getStringExtra(EXTRA_GOAT)
-        val userID = activity?.intent?.getIntExtra(EXTRA_USERID, -1)
-        println("WEYNARD data $goAt dan $userID")
+
+        goAt = activity?.intent?.getStringExtra(EXTRA_GOAT)
+        userID = activity?.intent?.getIntExtra(EXTRA_USERID, -1)
+        homeViewModel.getTourism()
 
         homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
             if (!user.isLogin) {
@@ -58,7 +70,8 @@ class HomeFragment : Fragment() {
             } else {
                 homeViewModel.checkProfile(user.id)
                 if (goAt != null && userID != null) {
-                    homeViewModel.getTourisms(goAt, userID)
+                    binding.recommendationHeader.text = getString(R.string.recommendation_date, goAt)
+                    homeViewModel.getTourisms(goAt!!, userID!!)
                 }
                 binding.loginButton.visibility = View.GONE
                 binding.logoutButton.visibility = View.VISIBLE
@@ -102,6 +115,9 @@ class HomeFragment : Fragment() {
         homeViewModel.listTourism.observe(viewLifecycleOwner) {
             setData(it)
         }
+        homeViewModel.listRecs.observe(viewLifecycleOwner) {
+            setDataRec(it)
+        }
         homeViewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
         }
@@ -118,6 +134,12 @@ class HomeFragment : Fragment() {
     private fun setData(data: List<ListTourismItem>) {
         val adapter = TourismAdapter()
         adapter.submitList(data)
+        binding.rvTour.adapter = adapter
+    }
+
+    private fun setDataRec(data: List<RecommendationsItem>) {
+        val adapter = goAt?.let { RecommendationAdapter(it) }
+        adapter?.submitList(data)
         binding.rvTour.adapter = adapter
     }
 

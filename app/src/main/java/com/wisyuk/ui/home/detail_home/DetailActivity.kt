@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.wisyuk.R
 import com.wisyuk.data.extras.BookingDetails
 import com.wisyuk.data.response.ListTourismItem
+import com.wisyuk.data.response.RecommendationsItem
 import com.wisyuk.databinding.ActivityDetailBinding
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.home.MainActivity
@@ -33,6 +34,7 @@ class DetailActivity : AppCompatActivity() {
     }
     companion object {
         const val TOURISM = "tourism"
+        const val EXTRA_GOAT = "goAt"
     }
 
     private var errorMessage = ""
@@ -53,11 +55,13 @@ class DetailActivity : AppCompatActivity() {
 
         showLoading(false)
         val tourism = if (Build.VERSION.SDK_INT >= 33) {
-            intent.getParcelableExtra<ListTourismItem>(TOURISM, ListTourismItem::class.java)
+            intent.getParcelableExtra<RecommendationsItem>(TOURISM, RecommendationsItem::class.java)
         } else {
             @Suppress("DEPRECATION")
-            intent.getParcelableExtra<ListTourismItem>(TOURISM)
+            intent.getParcelableExtra<RecommendationsItem>(TOURISM)
         }
+
+        val goAt = intent.getStringExtra(goAt)
 
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
@@ -69,22 +73,23 @@ class DetailActivity : AppCompatActivity() {
             userID = user.id
 
             if (tourism != null) {
-                Glide.with(this).load(tourism.image).into(binding.ivDetailPhoto)
-                photoUrl = tourism.image
-                binding.tvDetailName.text = tourism.name
+                Glide.with(this).load(tourism.details.image).into(binding.ivDetailPhoto)
+                photoUrl = tourism.details.image
+                binding.tvDetailName.text = tourism.details.name
 
-                if (tourism.goAt != null) {
-                    goAt = tourism.goAt
-                    binding.tvDetailDate.text = goAt.dateFormatted()
-                } else {
-                    goAt = tourism.createdAt.toString()
+                if (goAt != null) {
                     binding.tvDetailDate.text = goAt.dateFormatted()
                 }
-                binding.tvDetailDescription.text = tourism.description
+//                else {
+//                    binding.tvDetailDate.text = goAt
+//                }
+                binding.tvDetailDescription.text = tourism.details.description
                 tourismID = tourism.id
                 viewModel.getDetailTourism(tourismID)
 
-                viewModel.getFavData(userID, tourismID, goAt.dateFormattedGoAt())
+                if (goAt != null) {
+                    viewModel.getFavData(userID, tourismID, goAt.dateFormattedGoAt())
+                }
             }
         }
 

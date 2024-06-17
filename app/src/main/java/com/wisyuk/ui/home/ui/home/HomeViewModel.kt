@@ -5,12 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.bumptech.glide.Glide.init
 import com.google.gson.Gson
 import com.wisyuk.data.pref.UserModel
 import com.wisyuk.data.repository.UserRepository
 import com.wisyuk.data.response.ErrorResponse
 import com.wisyuk.data.response.ListTourismItem
+import com.wisyuk.data.response.RecommendationsItem
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
@@ -18,6 +18,9 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
 
     private val _listTourism = MutableLiveData<List<ListTourismItem>>()
     val listTourism: LiveData<List<ListTourismItem>> = _listTourism
+
+    private val _listRecs = MutableLiveData<List<RecommendationsItem>>()
+    val listRecs: LiveData<List<RecommendationsItem>> = _listRecs
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -31,9 +34,9 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
     private val _noProfile = MutableLiveData<Boolean>()
     val noProfile : LiveData<Boolean> = _noProfile
 
-    init {
-        getTourism()
-    }
+//    init {
+//        getTourism()
+//    }
 
     fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()
@@ -57,7 +60,7 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
         }
     }
 
-    private fun getTourism() {
+    fun getTourism() {
         _isLoading.value = true
         viewModelScope.launch {
             try {
@@ -105,7 +108,7 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
                 _message.value = response.status
                 _isLoading.value = false
                 _isError.value = false
-                _listTourism.value = response.data
+                _listRecs.value = response.data.recommendations
             } catch (e: HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)

@@ -12,6 +12,7 @@ import com.wisyuk.data.response.PaymentReceiptResponse
 import com.wisyuk.data.response.PreferencesResponse
 import com.wisyuk.data.response.ProfileResponse
 import com.wisyuk.data.response.RecommendationResponse
+import com.wisyuk.data.response.RecommendationsItem
 import com.wisyuk.data.response.SignUpResponse
 import com.wisyuk.data.response.TourismResponse
 import com.wisyuk.data.response.UpdateProfileResponse
@@ -152,5 +153,5 @@ interface ApiService {
     suspend fun viewRecommendation(
         @Field("go_at") goAt: String,
         @Field("userID") userID: Int
-    ) : TourismResponse
+    ) : RecommendationResponse
 }

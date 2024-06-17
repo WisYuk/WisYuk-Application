@@ -94,4 +94,5 @@
     <string name="favorite_deleted">Favorite removed!</string>
     <string name="dummy_method">Dummy Method</string>
     <string name="receipt">Receipt</string>
+    <string name="recommendation_date">Recommendation for %1$s</string>
 </resources>

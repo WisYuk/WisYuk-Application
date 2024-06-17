@@ -43,25 +43,26 @@ class TourismAdapter : ListAdapter<ListTourismItem, TourismAdapter.MyViewHolder>
             binding.tvItemName.text = item.name
             binding.tvItemDescription.text = item.description
             if (item.goAt != null) {
-                binding.tvItemDate.text = item.goAt.dateFormatted()
+                binding.tvSubtitle.text = item.goAt.dateFormatted()
+                itemView.setOnClickListener {
+                    val intent = Intent(itemView.context, DetailActivity::class.java)
+                    intent.putExtra(TOURISM, item)
+
+                    val optionsCompat: ActivityOptionsCompat =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(
+                            itemView.context as Activity,
+                            Pair(binding.ivItemPhoto, "photo"),
+                            Pair(binding.tvItemName, "name"),
+                            Pair(binding.tvSubtitle, "date"),
+                            Pair(binding.tvItemDescription, "description")
+                        )
+
+                    itemView.context.startActivity(intent, optionsCompat.toBundle())
+                }
             } else {
-                binding.tvItemDate.text = item.createdAt?.dateFormatted() // ?
+                binding.tvSubtitle.text = item.createdAt?.dateFormatted() // ?
             }
-            itemView.setOnClickListener {
-                val intent = Intent(itemView.context, DetailActivity::class.java)
-                intent.putExtra(TOURISM, item)
 
-                val optionsCompat: ActivityOptionsCompat =
-                    ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        itemView.context as Activity,
-                        Pair(binding.ivItemPhoto, "photo"),
-                        Pair(binding.tvItemName, "name"),
-                        Pair(binding.tvItemDate, "date"),
-                        Pair(binding.tvItemDescription, "description")
-                    )
-
-                itemView.context.startActivity(intent, optionsCompat.toBundle())
-            }
         }
     }
 
