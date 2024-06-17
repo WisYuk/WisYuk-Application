@@ -87,6 +87,9 @@ class DetailPlanActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
+        binding.backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
         binding.receipt.setOnClickListener {
             val intent = Intent(this, PaymentReceiptActivity::class.java)
             intent.putExtra(RECEIPT_ID, receiptId)

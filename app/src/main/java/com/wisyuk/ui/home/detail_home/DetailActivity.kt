@@ -271,9 +271,7 @@ class DetailActivity : AppCompatActivity() {
         }
 
         binding.backButton.setOnClickListener {
-            val intent = Intent(this@DetailActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            onBackPressedDispatcher.onBackPressed()
         }
 
         binding.favoriteButton.setOnClickListener{
