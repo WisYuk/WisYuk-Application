@@ -84,7 +84,6 @@ class PaymentActivity : AppCompatActivity() {
             intent?.extras?.getParcelable("BOOKING_DETAILS", BookingDetails::class.java)
 
         if (bookingDetail != null) {
-            Log.d("Testing", bookingDetail.toString())
             bookingDetails = bookingDetail
         }
 
@@ -106,10 +105,9 @@ class PaymentActivity : AppCompatActivity() {
         }
         supportActionBar?.hide()
 
-        Log.d("Check", bookingDetails.toString())
         Glide.with(this).load(bookingDetails.photoUrl).into(binding.ivPlanPhoto)
-
-        val formattedDate = bookingDetails.date?.dateFormat_ddmmmyyyy()
+        Log.d("Check", bookingDetails.date.toString())
+        val formattedDate = bookingDetails.date
 
         binding.tvPlanHotelName.text = bookingDetails.hotelName
         val hotelPrice = "Rp ${bookingDetails.hotelPrice}"
@@ -131,6 +129,7 @@ class PaymentActivity : AppCompatActivity() {
         binding.tvPlanTotalPriceValue.text = totalPrice
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setupAction() {
         binding.btMethodChoose.setOnClickListener {
             val paymentMethodIntent =
@@ -144,7 +143,7 @@ class PaymentActivity : AppCompatActivity() {
             val rideID = bookingDetails.rideId
             val tourGuideID = bookingDetails.tourGuideId
             val goDate = bookingDetails.date ?: ""
-            val status = 1
+            val status = "1"
             val paymentMethodID = selectedValueId
 
             viewModel.addPaidPlan(

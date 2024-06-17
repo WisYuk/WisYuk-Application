@@ -70,7 +70,7 @@ interface ApiService {
         @Field("rideID") rideID: Int,
         @Field("tourGuideID") tourGuideID: Int,
         @Field("go_date") goDate: String,
-        @Field("status") status: Int,
+        @Field("status") status: String,
         @Field("paymentMethodID") paymentMethodID: Int,
     ): AddPaidPlanResponse
 

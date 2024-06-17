@@ -26,7 +26,7 @@ class PaymentViewModel(private val repository: UserRepository) : ViewModel() {
     private val _paymentResponse = MutableLiveData<AddPaidPlanResponse>()
     val paymentResponse: LiveData<AddPaidPlanResponse> = _paymentResponse
 
-    fun addPaidPlan(userID: Int, tourismID: Int, hotelID: Int, rideID: Int, tourGuideID: Int, goDate: String, status: Int, paymentMethodID: Int) {
+    fun addPaidPlan(userID: Int, tourismID: Int, hotelID: Int, rideID: Int, tourGuideID: Int, goDate: String, status: String, paymentMethodID: Int) {
         _isLoading.value = true
 
         viewModelScope.launch {

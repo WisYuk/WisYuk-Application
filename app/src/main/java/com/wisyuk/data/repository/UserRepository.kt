@@ -71,7 +71,7 @@ class UserRepository private constructor(
         rideID: Int,
         tourGuideID: Int,
         go_date: String,
-        status: Int,
+        status: String,
         paymentMethodID: Int
     ): AddPaidPlanResponse {
         return apiService.addPaidPlan(
