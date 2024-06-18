@@ -34,12 +34,16 @@ class DetailPlanActivity : AppCompatActivity() {
     companion object {
         const val TOURISM = "tourism_detail_paid"
         const val EXTRA_GOAT = "goAt"
+        const val EXTRA_NAME = "name"
+        const val PLAN_NAME = "plan_name"
         const val RECEIPT_ID = "receipt_id"
     }
 
     private var userID = -1
     private var tourismID = -1
+    private var tourismName = ""
     private var goAt = ""
+    private var name = ""
     private var receiptId = -1
     private var errorMessage = ""
     @RequiresApi(Build.VERSION_CODES.O)
@@ -66,8 +70,10 @@ class DetailPlanActivity : AppCompatActivity() {
                 finish()
             }
             userID = user.id
+            name = user.name
             if (tourism != null) {
                 tourismID = tourism.id
+                tourismName = tourism.name
                 goAt = tourism.goAt ?: ""
                 Log.d("Cek", goAt)
             }
@@ -106,6 +112,8 @@ class DetailPlanActivity : AppCompatActivity() {
         binding.receipt.setOnClickListener {
             val intent = Intent(this, PaymentReceiptActivity::class.java)
             intent.putExtra(RECEIPT_ID, receiptId)
+            intent.putExtra(PLAN_NAME, tourismName)
+            intent.putExtra(EXTRA_NAME, name)
             startActivity(intent)
         }
     }

@@ -45,7 +45,7 @@ class PaymentReceiptViewModel(private val repository: UserRepository): ViewModel
                 _isError.value = false
                 _data.value = response.data
 
-                if (response.data.paymentMethodsId != null) fetchPaymentMethod(response.data.paymentMethodsId)
+//                if (response.data.paymentMethodsId != null) fetchPaymentMethod(response.data.paymentMethodsId)
             } catch (e: HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)

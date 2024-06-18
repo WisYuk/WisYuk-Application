@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.wisyuk.R
 import com.wisyuk.databinding.ActivityPaymentReceiptBinding
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.yourplan.detail_plan.DetailPlanActivity
@@ -19,14 +20,16 @@ class PaymentReceiptActivity : AppCompatActivity() {
     private val viewModel by viewModels<PaymentReceiptViewModel> {
         ViewModelFactory.getInstance(this)
     }
+    private var tourName = ""
+    private var name = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPaymentReceiptBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val receiptId = intent.getIntExtra(DetailPlanActivity.RECEIPT_ID, -1)
-
-        viewModel.fetchPaymentMethod(receiptId)
+        tourName = intent.getStringExtra(DetailPlanActivity.PLAN_NAME).toString()
+        name = intent.getStringExtra(DetailPlanActivity.EXTRA_NAME).toString()
         viewModel.getDetailTourism(receiptId)
         setupView()
         setupAction()
@@ -56,25 +59,27 @@ class PaymentReceiptActivity : AppCompatActivity() {
     private fun observerViewModel() {
         viewModel.data.observe(this) {
             with(binding) {
-                planName.text = it.hotelName
+                planName.text = tourName
+                userName.text = name
 
                 hotelNameValue.text = it.hotelName
-                hotelPriceValue.text = it.hotelPrice.toString()
+                hotelPriceValue.text = getString(R.string.rp_format, it.hotelPrice.toFloat().toInt().toString())
 
                 rideNameValue.text = it.rideName
-                ridePriceValue.text = it.ridePrice.toString()
+                ridePriceValue.text = getString(R.string.rp_format, it.ridePrice.toString())
 
                 guideNameValue.text = it.guideName
-                guidePriceValue.text = it.tourGuidePrice.toString()
+                guidePriceValue.text = getString(R.string.rp_format, it.tourGuidePrice.toString())
 
-                totalPriceValue.text = it.paymentTotal.toString()
+                totalPriceValue.text = getString(R.string.rp_format, it.paymentTotal.toString())
+                paymentMethod.text = it.paymentMethodName
             }
         }
-        viewModel.selectedPaymentMethod.observe(this){
-            if (it != null) {
-                binding.paymentMethod.text = it.name
-            }
-        }
+//        viewModel.selectedPaymentMethod.observe(this){
+//            if (it != null) {
+//                binding.paymentMethod.text = it.name
+//            }
+//        }
     }
 
     private fun animation(){

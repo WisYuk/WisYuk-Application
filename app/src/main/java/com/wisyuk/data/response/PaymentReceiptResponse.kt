@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class PaymentReceiptResponse(
 
-	@field:SerializedName("Receipt")
+	@field:SerializedName("data")
 	val data: Receipt,
 
 	@field:SerializedName("status")
@@ -14,44 +14,44 @@ data class PaymentReceiptResponse(
 data class Receipt(
 
 	@field:SerializedName("user_name")
-	val userName: String? = null,
+	val userName: String,
 
 	@field:SerializedName("hotel_price")
-	val hotelPrice: Int? = null,
+	val hotelPrice: String,
 
 	@field:SerializedName("created_at")
-	val createdAt: String? = null,
+	val createdAt: String,
 
 	@field:SerializedName("guide_name")
-	val guideName: String? = null,
+	val guideName: String,
 
 	@field:SerializedName("payment_total")
-	val paymentTotal: Int? = null,
+	val paymentTotal: Int,
 
 	@field:SerializedName("payment_method_name")
-	val paymentMethodName: String? = null,
+	val paymentMethodName: String,
 
 	@field:SerializedName("ride_price")
-	val ridePrice: Int? = null,
+	val ridePrice: Int,
 
 	@field:SerializedName("payment_methods_id")
-	val paymentMethodsId: Int? = null,
+	val paymentMethodsId: Int,
 
 	@field:SerializedName("hotel_name")
-	val hotelName: String? = null,
+	val hotelName: String,
 
 	@field:SerializedName("updated_at")
-	val updatedAt: String? = null,
+	val updatedAt: String,
 
 	@field:SerializedName("tour_guide_price")
-	val tourGuidePrice: Int? = null,
+	val tourGuidePrice: Int,
 
 	@field:SerializedName("users_id")
-	val usersId: Int? = null,
+	val usersId: Int,
 
 	@field:SerializedName("ride_name")
-	val rideName: String? = null,
+	val rideName: String,
 
 	@field:SerializedName("status")
-	val status: Int? = null
+	val status: Int
 )
