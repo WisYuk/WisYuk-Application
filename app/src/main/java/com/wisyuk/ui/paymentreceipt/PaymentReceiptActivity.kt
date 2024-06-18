@@ -51,7 +51,7 @@ class PaymentReceiptActivity : AppCompatActivity() {
     }
 
     private fun setupAction(){
-        binding.btBack.setOnClickListener(){
+        binding.btBack.setOnClickListener {
             finish()
         }
     }
@@ -84,7 +84,7 @@ class PaymentReceiptActivity : AppCompatActivity() {
 
     private fun animation(){
         val successIcon = binding.successIcon
-        val spinAnimation: Animation = AnimationUtils.loadAnimation(this, com.wisyuk.R.anim.spin)
+        val spinAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.spin)
         successIcon.startAnimation(spinAnimation)
     }
 }
