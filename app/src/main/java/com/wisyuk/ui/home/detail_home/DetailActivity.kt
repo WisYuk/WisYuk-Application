@@ -167,7 +167,7 @@ class DetailActivity : AppCompatActivity() {
                 ) {
                     val item = hotel.find {it.name == items[position] }
                     itemHotelId = item?.id ?: -1
-                    val avgPrice = (item?.maxPrice?.and(item.minPrice))?.div(2)
+                    val avgPrice = (item?.minPrice?.let { item.maxPrice.plus(it) })?.div(2)
                     binding.priceValueHotel.text = "Rp $avgPrice"
                     hotelPrice = avgPrice
                     hotelTitle = item?.name

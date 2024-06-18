@@ -13,7 +13,7 @@
         android:paddingVertical="8dp"
         android:text="@string/ovo"
         android:textAlignment="textStart"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeWidth="2dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

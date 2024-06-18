@@ -17,6 +17,7 @@ import com.wisyuk.data.response.ListTourismItem
 import com.wisyuk.data.response.RecommendationsItem
 import com.wisyuk.databinding.ItemTourismBinding
 import com.wisyuk.ui.yourplan.detail_plan.DetailPlanActivity
+import com.wisyuk.utils.Utils.dateFormatted
 import com.wisyuk.utils.Utils.dateFormattedGoAt
 
 class PlanAdapter : ListAdapter<ListTourismItem, PlanAdapter.MyViewHolder>(DIFF_CALLBACK) {
@@ -39,7 +40,7 @@ class PlanAdapter : ListAdapter<ListTourismItem, PlanAdapter.MyViewHolder>(DIFF_
             Glide.with(itemView.context).load(item.image).into(binding.ivItemPhoto)
             binding.tvItemName.text = item.name
             binding.tvItemDescription.text = item.description
-            binding.tvSubtitle.text = item.goAt?.dateFormattedGoAt() ?: item.goAt
+            binding.tvSubtitle.text = item.goAt?.dateFormatted() ?: item.goAt
 
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailPlanActivity::class.java)
