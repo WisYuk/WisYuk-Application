@@ -59,20 +59,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:src="@drawable/no_profile" />
+                android:src="@drawable/maskot_signup" />
         </FrameLayout>
 
-        <ImageView
-            android:id="@+id/edit_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
-            android:contentDescription="@string/edit_your_profile_picture"
-            android:src="@drawable/baseline_edit_24"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_profile_photo_container"
-            app:layout_constraintEnd_toEndOf="@+id/iv_profile_photo_container" />
+<!--        <ImageView-->
+<!--            android:id="@+id/edit_icon"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="0dp"-->
+<!--            android:layout_marginBottom="0dp"-->
+<!--            android:contentDescription="@string/edit_your_profile_picture"-->
+<!--            android:src="@drawable/baseline_edit_24"-->
+<!--            android:visibility="gone"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/iv_profile_photo_container"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/iv_profile_photo_container" />-->
 
         <TextView
             android:id="@+id/tv_profile_name"

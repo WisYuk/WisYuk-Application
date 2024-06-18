@@ -74,15 +74,15 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        binding.ivProfilePhotoContainer.setOnClickListener {
-            if (profileViewModel.editMode.value == true)
-                startGallery()
-        }
-
-        binding.editIcon.setOnClickListener{
-            if (profileViewModel.editMode.value == true)
-                startGallery()
-        }
+//        binding.ivProfilePhotoContainer.setOnClickListener {
+//            if (profileViewModel.editMode.value == true)
+//                startGallery()
+//        }
+//
+//        binding.editIcon.setOnClickListener{
+//            if (profileViewModel.editMode.value == true)
+//                startGallery()
+//        }
 
         binding.saveButton.setOnClickListener {
             if (profileViewModel.editMode.value == true) save()
@@ -92,7 +92,7 @@ class ProfileFragment : Fragment() {
             profileViewModel.toggleEditMode()
             binding.editButton.visibility = View.GONE
             binding.saveButton.visibility = View.VISIBLE
-            binding.editIcon.visibility = View.VISIBLE
+//            binding.editIcon.visibility = View.VISIBLE
             binding.tvProfileName.visibility = View.GONE
             binding.tvProfileNameEdit.visibility = View.VISIBLE
             binding.preferenceContainer.visibility = View.GONE
@@ -251,7 +251,7 @@ class ProfileFragment : Fragment() {
             currentImageUri = null
             binding.editButton.visibility = View.VISIBLE
             binding.saveButton.visibility = View.GONE
-            binding.editIcon.visibility = View.GONE
+//            binding.editIcon.visibility = View.GONE
             binding.tvProfileName.visibility = View.VISIBLE
             binding.tvProfileNameEdit.visibility = View.GONE
             binding.preferenceContainer.visibility = View.VISIBLE
