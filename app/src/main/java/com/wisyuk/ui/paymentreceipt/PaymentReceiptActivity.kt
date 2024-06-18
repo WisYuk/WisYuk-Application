@@ -27,6 +27,7 @@ class PaymentReceiptActivity : AppCompatActivity() {
         val receiptId = intent.getIntExtra(DetailPlanActivity.RECEIPT_ID, -1)
 
         viewModel.fetchPaymentMethod(receiptId)
+        viewModel.getDetailTourism(receiptId)
         setupView()
         setupAction()
         observerViewModel()

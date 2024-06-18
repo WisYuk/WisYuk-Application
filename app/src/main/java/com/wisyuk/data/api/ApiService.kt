@@ -135,7 +135,6 @@ interface ApiService {
     @GET("payment-methods")
     suspend fun getPaymentMethod(): PaymentMethodResponse
 
-    @DELETE("favourites/{userID}/{tourismID}/{go_date}")
     @GET("view-payment-receipt/{receiptID}")
     suspend fun getReceipt(
         @Path("receiptID") receiptID: Int
