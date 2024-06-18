@@ -51,6 +51,15 @@ object Utils {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
+    fun String.dateFormattedYYYYMMDD(): String {
+        // Parse the ISO 8601 date-time string
+        val zonedDateTime = ZonedDateTime.parse(this, DateTimeFormatter.ISO_ZONED_DATE_TIME)
+        // Format the parsed ZonedDateTime to the desired format
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        return zonedDateTime.format(formatter)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
     fun convertDateFromYMDtoMDy(inputDate: String): String {
         // Define the input and output date formatters
         val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")

@@ -25,8 +25,6 @@ import com.wisyuk.ui.home.MainActivity
 import com.wisyuk.ui.login.LoginActivity
 import com.wisyuk.ui.payment.PaymentActivity
 import com.wisyuk.utils.Utils.convertDateFromYMDtoMDy
-import com.wisyuk.utils.Utils.dateFormatted
-import com.wisyuk.utils.Utils.dateFormattedGoAt
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding

@@ -15,7 +15,6 @@ import com.wisyuk.ui.home.MainActivity
 import com.wisyuk.ui.home.ui.home.HomeFragment.Companion.EXTRA_GOAT
 import com.wisyuk.ui.home.ui.home.HomeFragment.Companion.EXTRA_USERID
 import com.wisyuk.ui.login.LoginActivity
-import com.wisyuk.utils.Utils.dateFormattedGoAt
 import java.text.SimpleDateFormat
 import java.util.Locale
 

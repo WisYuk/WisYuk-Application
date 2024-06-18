@@ -7,34 +7,21 @@ import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.wisyuk.R
 import com.wisyuk.data.extras.BookingDetails
-import com.wisyuk.databinding.ActivityLoginBinding
 import com.wisyuk.databinding.ActivityPaymentBinding
-import com.wisyuk.databinding.ActivitySignUpBinding
 import com.wisyuk.ui.ViewModelFactory
-import com.wisyuk.ui.home.MainActivity
 import com.wisyuk.ui.login.LoginActivity
 import com.wisyuk.ui.paymentmethod.PaymentMethodActivity
-import com.wisyuk.ui.signup.SignUpViewModel
 import com.wisyuk.ui.transaction.TransactionActivity
-import com.wisyuk.utils.Utils.dateFormat_ddmmmyyyy
-import com.wisyuk.utils.Utils.dateFormatted
 import java.lang.Integer.parseInt
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 class PaymentActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPaymentBinding

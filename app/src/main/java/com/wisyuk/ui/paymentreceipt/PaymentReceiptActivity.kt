@@ -28,6 +28,7 @@ class PaymentReceiptActivity : AppCompatActivity() {
 
         viewModel.fetchPaymentMethod(receiptId)
         setupView()
+        setupAction()
         observerViewModel()
         animation()
     }
@@ -43,6 +44,12 @@ class PaymentReceiptActivity : AppCompatActivity() {
             )
         }
         supportActionBar?.hide()
+    }
+
+    private fun setupAction(){
+        binding.btBack.setOnClickListener(){
+            finish()
+        }
     }
 
     private fun observerViewModel() {

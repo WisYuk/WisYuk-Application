@@ -3,22 +3,27 @@ package com.wisyuk.ui.yourplan.detail_plan
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.wisyuk.R
 import com.wisyuk.data.response.ListTourismItem
+import com.wisyuk.data.response.RecommendationsItem
 import com.wisyuk.databinding.ActivityDetailPlanBinding
 import com.wisyuk.ui.ViewModelFactory
 import com.wisyuk.ui.login.LoginActivity
 import com.wisyuk.ui.paymentreceipt.PaymentReceiptActivity
 import com.wisyuk.utils.Utils.calculateReminder
+import com.wisyuk.utils.Utils.convertDateFromYMDtoMDy
 import com.wisyuk.utils.Utils.dateFormatted
 import com.wisyuk.utils.Utils.dateFormattedGoAt
+import com.wisyuk.utils.Utils.dateFormattedYYYYMMDD
 
 class DetailPlanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailPlanBinding
@@ -36,6 +41,7 @@ class DetailPlanActivity : AppCompatActivity() {
     private var tourismID = -1
     private var goAt = ""
     private var receiptId = -1
+    private var errorMessage = ""
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +57,7 @@ class DetailPlanActivity : AppCompatActivity() {
             intent.getParcelableExtra(TOURISM)
         }
 
+
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
                 startActivity(
@@ -62,13 +69,19 @@ class DetailPlanActivity : AppCompatActivity() {
             if (tourism != null) {
                 tourismID = tourism.id
                 goAt = tourism.goAt ?: ""
+                Log.d("Cek", goAt)
             }
-            viewModel.getDetailTourism(userID, tourismID, goAt.dateFormattedGoAt())
+            viewModel.getDetailTourism(userID, tourismID, goAt.dateFormattedYYYYMMDD())
         }
         setupView()
         setupAction()
         observerViewModel()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showLoading(false)
     }
 
     private fun setupView() {
@@ -118,6 +131,27 @@ class DetailPlanActivity : AppCompatActivity() {
                 reminderTourGuide.text = getString(R.string.reminder_date, reminderDays.toString())
             }
             receiptId = it.paymentReceiptId
+        }
+        viewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
+        viewModel.isError.observe(this) {
+            showError(it)
+        }
+        viewModel.message.observe(this) {
+            if (it != null) {
+                errorMessage = it
+            }
+        }
+    }
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.main.visibility = if (isLoading) View.GONE else View.VISIBLE
+    }
+
+    private fun showError(isError: Boolean) {
+        if (isError) {
+            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
         }
     }
 }

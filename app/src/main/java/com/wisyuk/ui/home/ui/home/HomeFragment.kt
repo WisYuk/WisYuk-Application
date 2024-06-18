@@ -24,8 +24,6 @@ import com.wisyuk.ui.login.LoginActivity
 import com.wisyuk.ui.preference.PreferenceActivity
 import com.wisyuk.ui.userdatemenu.DateActivity
 import com.wisyuk.utils.Utils
-import com.wisyuk.utils.Utils.dateFormatted
-import com.wisyuk.utils.Utils.dateFormattedGoAt
 
 class HomeFragment : Fragment() {
     companion object {
