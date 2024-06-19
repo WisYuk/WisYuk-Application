@@ -78,6 +78,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginTop="24dp"
             android:text="@string/welcome_title"
             android:textSize="@dimen/heading1"
@@ -99,14 +100,16 @@
 
         <TextView
             android:id="@+id/recommendation_header"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/recommendation_today"
             android:textSize="@dimen/heading1"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/welcome_image" />
 
         <androidx.recyclerview.widget.RecyclerView
