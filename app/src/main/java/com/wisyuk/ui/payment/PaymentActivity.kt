@@ -16,8 +16,10 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.wisyuk.R
 import com.wisyuk.data.extras.BookingDetails
+import com.wisyuk.data.response.RecommendationsItem
 import com.wisyuk.databinding.ActivityPaymentBinding
 import com.wisyuk.ui.ViewModelFactory
+import com.wisyuk.ui.home.detail_home.DetailActivity
 import com.wisyuk.ui.login.LoginActivity
 import com.wisyuk.ui.paymentmethod.PaymentMethodActivity
 import com.wisyuk.ui.transaction.TransactionActivity
@@ -52,7 +54,7 @@ class PaymentActivity : AppCompatActivity() {
         binding.btPayment.setBackgroundColor(ContextCompat.getColor(this, R.color.md_theme_primary))
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPaymentBinding.inflate(layoutInflater)
@@ -67,8 +69,13 @@ class PaymentActivity : AppCompatActivity() {
                 userId = user.id.toString()
             }
         }
-        val bookingDetail: BookingDetails? =
-            intent?.extras?.getParcelable("BOOKING_DETAILS", BookingDetails::class.java)
+
+        val bookingDetail =  if (Build.VERSION.SDK_INT >= 33) {
+            intent.getParcelableExtra("BOOKING_DETAILS", BookingDetails::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            intent.getParcelableExtra("BOOKING_DETAILS")
+        }
 
         if (bookingDetail != null) {
             bookingDetails = bookingDetail
