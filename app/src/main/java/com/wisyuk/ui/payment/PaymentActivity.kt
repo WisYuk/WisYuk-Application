@@ -16,10 +16,8 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.wisyuk.R
 import com.wisyuk.data.extras.BookingDetails
-import com.wisyuk.data.response.RecommendationsItem
 import com.wisyuk.databinding.ActivityPaymentBinding
 import com.wisyuk.ui.ViewModelFactory
-import com.wisyuk.ui.home.detail_home.DetailActivity
 import com.wisyuk.ui.login.LoginActivity
 import com.wisyuk.ui.paymentmethod.PaymentMethodActivity
 import com.wisyuk.ui.transaction.TransactionActivity
